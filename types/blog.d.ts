@@ -1,4 +1,4 @@
-declare namespace IBlog {
+export namespace IBlog {
   interface Author {
     email: string
     username: string

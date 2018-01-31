@@ -1,8 +1,15 @@
 import * as React from 'react'
 import axios, { AxiosResponse } from 'axios'
-import { IResponse } from '../../../types/api';
+import { IResponse } from '../../../types/api'
+import { IBlog } from '../../../types/blog';
+
+export interface PostListStates {
+  list: IBlog.Post[]
+}
 
 class PostList extends React.Component {
+  state: PostListStates
+
   constructor(props: {}) {
     super(props)
 
@@ -24,8 +31,20 @@ class PostList extends React.Component {
   }
 
   render() {
+    const { list } = this.state
+    
+    const renderList = list.map((post) => {
+      return (
+        <li key={post.id}>{post.title}</li>
+      )
+    })
+
     return (
-      <div>Post List</div>
+      <div>
+        <ul>
+          {renderList}
+        </ul>
+      </div>
     )
   }
 }
