@@ -1,6 +1,6 @@
-import { Component } from 'react'
+import * as React from 'react'
 
-class PostDetail extends Component {
+class PostDetail extends React.Component {
   render() {
     return (
       <div>Post Detail</div>
