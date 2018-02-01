@@ -1,7 +1,9 @@
 import * as React from 'react'
-import axios, { AxiosResponse } from 'axios'
+import { AxiosResponse } from 'axios'
+import http from 'services/http/http'
+
 import { IResponse } from '../../../types/api'
-import { IBlog } from '../../../types/blog';
+import { IBlog } from '../../../types/blog'
 
 export interface PostListStates {
   list: IBlog.Post[]
@@ -20,7 +22,8 @@ class PostList extends React.Component {
 
   async componentDidMount() {
     try {
-      const response: AxiosResponse<IResponse.PostList> = await axios.get('//api.dev.dogrod.xyz/blog/posts')
+      const response: AxiosResponse<IResponse.PostList>
+        = await http.get('/blog/posts')
   
       this.setState({
         list: response.data.results
@@ -35,7 +38,11 @@ class PostList extends React.Component {
     
     const renderList = list.map((post) => {
       return (
-        <li key={post.id}>{post.title}</li>
+        <li key={post.id}>
+          <div>{post.publish_at}</div>
+          <div>{post.title}</div>
+          <div>tags</div>
+        </li>
       )
     })
 

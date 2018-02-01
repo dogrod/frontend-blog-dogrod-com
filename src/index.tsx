@@ -1,8 +1,8 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import App from './components/App/App'
+import App from './App'
 import registerServiceWorker from './registerServiceWorker'
-import './index.css'
+import 'assets/styles/common.css'
 import { BrowserRouter } from 'react-router-dom'
 
 ReactDOM.render(

@@ -23,6 +23,7 @@ export namespace IBlog {
     publish_at: string
     
     author: Author
+    tags: Tag[]
   }
 }
 

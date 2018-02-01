@@ -1,7 +1,7 @@
 import * as React from 'react'
 import './App.css'
 
-import Routes from 'components/Routes/Routes'
+import Routes from 'views/Routes/index'
 
 class App extends React.Component {
   render() {
