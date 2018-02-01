@@ -2,8 +2,8 @@ import * as React from 'react'
 import { AxiosResponse } from 'axios'
 import http from 'services/http/http'
 
-import { IResponse } from '../../../types/api'
-import { IBlog } from '../../../types/blog'
+import { IResponse } from 'types/api'
+import { IBlog } from 'types/blog'
 
 export interface PostListStates {
   list: IBlog.Post[]
@@ -37,17 +37,31 @@ class PostList extends React.Component {
     const { list } = this.state
     
     const renderList = list.map((post) => {
+      const publishTime = new Date(post.publish_at)
+      const displayPublishTime = `${publishTime.getFullYear()}-${publishTime.getMonth() + 1}-${publishTime.getDate()}`
+      
+      const tagsLength = post.tags.length
+      const renderTags = post.tags.map((tag, index) => {
+        return (
+          <span key={tag.slug}>{tag.name}{index !== tagsLength - 1 ? ', ' : null}</span>
+        )
+      })
+
+      const renderTagsBlock = () => {
+        return tagsLength ? (<div>tags: {renderTags}</div>) : null
+      }
+
       return (
         <li key={post.id}>
-          <div>{post.publish_at}</div>
+          <div>{displayPublishTime}</div>
           <div>{post.title}</div>
-          <div>tags</div>
+          {renderTagsBlock()}
         </li>
       )
     })
 
     return (
-      <div>
+      <div className="post-list">
         <ul>
           {renderList}
         </ul>
