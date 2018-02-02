@@ -5,6 +5,8 @@ import http from 'services/http/http'
 import { IResponse } from 'types/api'
 import { IBlog } from 'types/blog'
 
+import './index.css'
+
 export interface PostListStates {
   list: IBlog.Post[]
 }
@@ -48,13 +50,13 @@ class PostList extends React.Component {
       })
 
       const renderTagsBlock = () => {
-        return tagsLength ? (<div>tags: {renderTags}</div>) : null
+        return tagsLength ? (<div className="post-list__tags">tags: {renderTags}</div>) : null
       }
 
       return (
         <li key={post.id}>
-          <div>{displayPublishTime}</div>
-          <div>{post.title}</div>
+          <div className="post-list__publish-time">{displayPublishTime}</div>
+          <h2>{post.title.toUpperCase()}</h2>
           {renderTagsBlock()}
         </li>
       )
