@@ -40,23 +40,29 @@ class PostList extends React.Component {
     
     const renderList = list.map((post) => {
       const publishTime = new Date(post.publish_at)
-      const displayPublishTime = `${publishTime.getFullYear()}-${publishTime.getMonth() + 1}-${publishTime.getDate()}`
+      const publishMonth = publishTime.toLocaleString('en-us', { month: 'short' });
+      const displayPublishTime = `${publishMonth} ${publishTime.getDate()}, ${publishTime.getFullYear()}`
       
       const tagsLength = post.tags.length
       const renderTags = post.tags.map((tag, index) => {
         return (
-          <span key={tag.slug}>{tag.name}{index !== tagsLength - 1 ? ', ' : null}</span>
+          <span key={tag.slug}>
+            <a className="post-list__tag">{tag.name}</a>
+            {index !== tagsLength - 1 ? ', ' : null}
+          </span>
         )
       })
 
       const renderTagsBlock = () => {
-        return tagsLength ? (<div className="post-list__tags">tags: {renderTags}</div>) : null
+        return tagsLength ? (
+          <div className="post-list__tags">tag{tagsLength > 1 ? 's' : null}: {renderTags}</div>
+        ) : null
       }
 
       return (
         <li key={post.id}>
           <div className="post-list__publish-time">{displayPublishTime}</div>
-          <h2>{post.title.toUpperCase()}</h2>
+          <div className="post-list__title"><h2>{post.title.toUpperCase()}</h2></div>
           {renderTagsBlock()}
         </li>
       )
