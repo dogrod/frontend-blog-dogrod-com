@@ -1,0 +1,44 @@
+.post-list {
+  ul {
+    padding: 0;
+    padding-top: 4px;
+    list-style-type: none;
+    text-align: center;
+  }
+  
+  li {
+    position: relative;
+    padding: 30px 0 30px;
+    border-bottom: 1px solid #e6e6e6;
+  }
+
+  &__title {
+    cursor: pointer;
+    transition: .3s;
+
+    h2 {
+      font-weight: 400;
+      font-size: 24px;
+      letter-spacing: 1px;
+    }
+
+    &:hover {
+      color: #e54973;
+    }
+  }
+
+  &__publish-time,
+  &__tags {
+    color: #999;
+  }
+
+  &__tag {
+    cursor: pointer;
+    transition: .3s;
+    border-bottom: 1px dashed transparent;
+    
+    &:hover {
+      border-color: #999;
+    }
+  }
+}
