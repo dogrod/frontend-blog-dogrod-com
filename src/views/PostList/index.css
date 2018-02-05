@@ -23,6 +23,7 @@
   color: #999; }
 
 .post-list__tag {
+  color: #999;
   cursor: pointer;
   transition: .3s;
   border-bottom: 1px dashed transparent; }

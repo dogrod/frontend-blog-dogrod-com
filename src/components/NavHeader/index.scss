@@ -1,0 +1,40 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.header {
+  &__logo img {
+    height: 40px;
+  }
+
+  &__nav-list {
+
+    li {
+      display: inline-block;
+      padding: 20px 10px;
+
+      a {
+        padding: 5px 0;
+
+        font-size: 16px;
+        border-bottom: 2px solid transparent;
+        transition: .2s;
+        
+        &:hover,
+        &.nav-list--active {
+          border-color: #2c3e50;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  header {
+    flex-direction: column;
+    padding: 20px 0;
+  }
+}
