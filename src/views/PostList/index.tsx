@@ -1,5 +1,7 @@
 import * as React from 'react'
 import { AxiosResponse } from 'axios'
+import { Link } from 'react-router-dom'
+
 import http from 'services/http/http'
 
 import { IResponse } from 'types/api'
@@ -62,7 +64,13 @@ class PostList extends React.Component {
       return (
         <li key={post.id}>
           <div className="post-list__publish-time">{displayPublishTime}</div>
-          <div className="post-list__title"><h2>{post.title.toUpperCase()}</h2></div>
+          <div className="post-list__title">
+            <h2>
+              <Link to={`/posts/${post.id}`}>
+                {post.title.toUpperCase()}
+              </Link>
+            </h2>
+          </div>
           {renderTagsBlock()}
         </li>
       )
