@@ -66,7 +66,7 @@ class PostList extends React.Component {
           <div className="post-list__publish-time">{displayPublishTime}</div>
           <div className="post-list__title">
             <h2>
-              <Link to={`/posts/${post.id}`}>
+              <Link to={`/posts/${post.slug}`}>
                 {post.title.toUpperCase()}
               </Link>
             </h2>

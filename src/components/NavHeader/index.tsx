@@ -1,5 +1,5 @@
 import * as React from 'react'
-
+import { Link } from 'react-router-dom'
 import logo from 'assets/images/icon_d.svg'
 
 import './index.css'
@@ -8,12 +8,12 @@ class NavHeader extends React.Component {
   render() {
     return (
       <header>
-        <a className="header__logo"  href="/">
+        <Link to="/" className="header__logo">
           <img src={logo} />
-        </a>
+        </Link>
         <ul className="header__nav-list">
           <li>
-            <a className="nav-list--active" href="/">BLOG</a>
+            <Link to="/" className="nav-list--active">BLOG</Link>
           </li>
           <li>
             <a href="//www.for-my-ferrari.com/" target="_blank">FOR MY FERRARI</a>

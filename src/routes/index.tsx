@@ -52,7 +52,7 @@ class Routes extends React.Component {
     return (
       <Switch>
         <Route exact={true} path="/" component={PostList}/>
-        <Route path="/posts/:id" component={PostDetail}/>
+        <Route path="/posts/:slug" component={PostDetail}/>
         {/* <Route path="/topics" component={Topics}/> */}
       </Switch>
     )
