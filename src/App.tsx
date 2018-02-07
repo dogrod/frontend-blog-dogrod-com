@@ -7,9 +7,11 @@ import NavHeader from 'components/NavHeader/index'
 class App extends React.Component {
   render() {
     return (
-      <div className="App">
+      <div className="app">
         <NavHeader />
-        <Routes />
+        <div className="content">
+          <Routes />
+        </div>
       </div>
     )
   }

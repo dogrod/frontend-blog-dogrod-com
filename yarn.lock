@@ -10,6 +10,10 @@
   version "22.1.1"
   resolved "http://registry.npm.taobao.org/@types/jest/download/@types/jest-22.1.1.tgz#231d7c60ed130200af9e96c82469ed25b59a7ea2"
 
+"@types/lodash@^4.14.101":
+  version "4.14.101"
+  resolved "http://registry.npm.taobao.org/@types/lodash/download/@types/lodash-4.14.101.tgz#512f6c9e1749890f4d024e98cb995a63f562d458"
+
 "@types/node@*", "@types/node@^9.4.0":
   version "9.4.0"
   resolved "http://registry.npm.taobao.org/@types/node/download/@types/node-9.4.0.tgz#b85a0bcf1e1cc84eb4901b7e96966aedc6f078d1"
@@ -3429,7 +3433,7 @@ lodash.uniq@^4.5.0:
   version "4.17.4"
   resolved "http://registry.npm.taobao.org/lodash/download/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
-lodash@^4.0.0, lodash@~4.17.4:
+lodash@^4.0.0, lodash@^4.17.5, lodash@~4.17.4:
   version "4.17.5"
   resolved "http://registry.npm.taobao.org/lodash/download/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
 

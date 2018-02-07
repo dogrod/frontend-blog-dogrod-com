@@ -13,5 +13,5 @@ declare namespace IResponse {
     results: IBlog.Post[]
   }
 
-  const PostDetail: IBlog.Post
+  interface PostDetail extends IBlog.Post {}
 }

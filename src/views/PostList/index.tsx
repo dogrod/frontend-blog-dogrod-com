@@ -44,22 +44,6 @@ class PostList extends React.Component {
       const publishTime = new Date(post.publish_at)
       const publishMonth = publishTime.toLocaleString('en-us', { month: 'short' });
       const displayPublishTime = `${publishMonth} ${publishTime.getDate()}, ${publishTime.getFullYear()}`
-      
-      const tagsLength = post.tags.length
-      const renderTags = post.tags.map((tag, index) => {
-        return (
-          <span key={tag.slug}>
-            <a className="post-list__tag">{tag.name}</a>
-            {index !== tagsLength - 1 ? ', ' : null}
-          </span>
-        )
-      })
-
-      const renderTagsBlock = () => {
-        return tagsLength ? (
-          <div className="post-list__tags">tag{tagsLength > 1 ? 's' : null}: {renderTags}</div>
-        ) : null
-      }
 
       return (
         <li key={post.id}>
@@ -71,7 +55,6 @@ class PostList extends React.Component {
               </Link>
             </h2>
           </div>
-          {renderTagsBlock()}
         </li>
       )
     })

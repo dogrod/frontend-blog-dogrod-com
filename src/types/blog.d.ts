@@ -11,8 +11,12 @@ export namespace IBlog {
   }
 
   interface Tag {
-    // id: number
     name: number
+    slug: string
+  }
+
+  interface Category {
+    title: string
     slug: string
   }
 
@@ -21,9 +25,11 @@ export namespace IBlog {
     title: string
     slug: string | string[]
     publish_at: string
+    content: string
     
     author: Author
     tags: Tag[]
+    category: Category
   }
 }
 

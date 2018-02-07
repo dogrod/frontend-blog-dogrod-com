@@ -2,7 +2,8 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px; }
+  padding: 10px 20px;
+  border-bottom: 1px solid #e6e6e6; }
 
 .header__logo img {
   height: 40px; }
@@ -21,4 +22,4 @@ header {
 @media screen and (max-width: 700px) {
   header {
     flex-direction: column;
-    padding: 20px 0; } }
+    padding: 10px 0; } }
