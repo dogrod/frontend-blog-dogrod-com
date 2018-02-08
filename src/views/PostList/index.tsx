@@ -42,18 +42,16 @@ class PostList extends React.Component {
     
     const renderList = list.map((post) => {
       const publishTime = new Date(post.publish_at)
-      const publishMonth = publishTime.toLocaleString('en-us', { month: 'short' });
+      const publishMonth = publishTime.toLocaleString('en-us', { month: 'short' }).toLocaleUpperCase()
       const displayPublishTime = `${publishMonth} ${publishTime.getDate()}, ${publishTime.getFullYear()}`
 
       return (
         <li key={post.id}>
           <div className="post-list__publish-time">{displayPublishTime}</div>
           <div className="post-list__title">
-            <h2>
-              <Link to={`/posts/${post.slug}`}>
-                {post.title.toUpperCase()}
-              </Link>
-            </h2>
+            <Link to={`/posts/${post.slug}`}>
+              {post.title.toUpperCase()}
+            </Link>
           </div>
         </li>
       )
