@@ -8,7 +8,18 @@
   .post-list li {
     display: flex;
     padding: 30px 50px 10px; }
+  .post-list__publish-time {
+    flex-grow: 0;
+    margin-top: 5px;
+    width: 150px;
+    min-width: 150px;
+    color: #999;
+    font-size: 18px;
+    letter-spacing: 1px; }
   .post-list__title {
+    flex-grow: 1;
+    width: auto;
+    text-align: left;
     cursor: pointer;
     transition: .3s; }
     .post-list__title a {
@@ -17,14 +28,14 @@
       letter-spacing: 1px; }
       .post-list__title a:hover {
         color: #e54973; }
-  .post-list__publish-time {
-    margin-top: 5px;
-    width: 150px;
-    color: #999;
-    font-size: 18px;
-    letter-spacing: 1px; }
 
 @media screen and (max-width: 700px) {
   .post-list li {
     padding-left: 0;
-    padding-right: 0; } }
+    padding-right: 0; }
+  .post-list__publish-time {
+    width: 120px;
+    min-width: 120px;
+    font-size: 13px; }
+  .post-list__title a {
+    font-size: 18px; } }
