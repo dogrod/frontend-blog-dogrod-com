@@ -6,6 +6,8 @@ import http from 'services/http/http'
 
 import { IResponse } from 'types/api'
 import { IBlog } from 'types/blog'
+
+import './index.css'
 interface DetailRouterProps {
   slug: string
 }
@@ -67,16 +69,17 @@ class PostDetail extends React.Component<DetailProps> {
       })
 
       return tagsLength ? (
-          <div className="post__tag">tag{tagsLength > 1 ? 's' : null}
+          <div className="post__tag">Tag{tagsLength > 1 ? 's' : null}
           : {renderTagsContent}</div>
         ) : null
     }
 
     return (
       <div className="post">
-        <div>{post.title}</div>
-        <div>{displayPublishTime}</div>
-        <div>{post.content}</div>
+        <div className="post__title">{post.title}</div>
+        <div className="post__publish-time">{displayPublishTime}</div>
+        <div className="post__content">{post.content}</div>
+        <div className="post__category">Category: {post.category.title}</div>
         {renderTags()}
       </div>
     )
