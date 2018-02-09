@@ -7,8 +7,3 @@ body {
 a, a:active {
   color: #2c3e50;
   text-decoration: none; }
-
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0; }

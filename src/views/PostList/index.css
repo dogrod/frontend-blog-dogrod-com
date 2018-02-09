@@ -1,5 +1,7 @@
 .post-list ul {
+  list-style: none;
   padding: 0;
+  margin: 0;
   padding-top: 4px;
   list-style-type: none;
   text-align: center; }
