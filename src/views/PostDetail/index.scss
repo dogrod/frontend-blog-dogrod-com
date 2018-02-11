@@ -1,4 +1,12 @@
+@import '~assets/styles/variables.scss';
+
 .post {
+  &__title {
+    font-weight: 400;
+    font-size: $title-size;
+    letter-spacing: 1px;
+  }
+
   &__content {
     padding: 10px 0;
   }
