@@ -100,6 +100,7 @@ module.exports = {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
+      '@': path.resolve(__dirname, 'src'),
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).
@@ -159,6 +160,20 @@ module.exports = {
           // "style" loader turns CSS into JS modules that inject <style> tags.
           // In production, we use a plugin to extract that CSS to a file, but
           // in development "style" loader enables hot editing of CSS.
+          {
+            test: /\.scss$/,
+            use: [{
+              loader: "style-loader"
+            }, {
+              loader: "css-loader", options: {
+                sourceMap: true
+              }
+            }, {
+              loader: "sass-loader", options: {
+                sourceMap: true
+              }
+            }]
+          },
           {
             test: /\.css$/,
             use: [
