@@ -7,7 +7,7 @@ import http from 'services/http/http'
 import { IResponse } from 'types/api'
 import { IBlog } from 'types/blog'
 
-import './index.css'
+import './index.scss'
 
 export interface PostListStates {
   list: IBlog.Post[]

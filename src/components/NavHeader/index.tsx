@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Link } from 'react-router-dom'
 import logo from 'assets/images/icon_d.svg'
 
-import './index.css'
+import './index.scss'
 
 class NavHeader extends React.Component {
   render() {

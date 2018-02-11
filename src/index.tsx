@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import App from './App'
 import registerServiceWorker from './registerServiceWorker'
-import 'assets/styles/common.css'
+import 'assets/styles/common.scss'
 import { BrowserRouter } from 'react-router-dom'
 
 ReactDOM.render(
