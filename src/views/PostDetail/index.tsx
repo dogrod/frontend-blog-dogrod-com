@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { RouteComponentProps } from 'react-router'
 import { AxiosResponse } from 'axios'
-import * as marked from 'marked'
 
 import http from 'services/http/http'
 
@@ -82,7 +81,7 @@ class PostDetail extends React.Component<DetailProps> {
         <div
           className="post__content"
           dangerouslySetInnerHTML={{
-            __html: marked(post.content)
+            __html: post.content
           }}
         />
         <div className="post__category">Category: {post.category.title}</div>
