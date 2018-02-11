@@ -106,13 +106,17 @@ module.exports = {
       '.json',
       '.web.jsx',
       '.jsx',
+      '.scss',
     ],
     alias: {
       
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
-      '@': path.resolve(__dirname, 'src'),
+      'assets': path.resolve(__dirname, 'src/assets'),
+      'components': path.resolve(__dirname, 'src/components'),
+      'utils': path.resolve(__dirname, 'src/utils'),
+      'services': path.resolve(__dirname, 'src/services'),
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).
