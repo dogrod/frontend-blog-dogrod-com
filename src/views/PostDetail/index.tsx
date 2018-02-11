@@ -69,8 +69,7 @@ class PostDetail extends React.Component<DetailProps> {
       })
 
       return tagsLength ? (
-          <div className="post__tag">Tag{tagsLength > 1 ? 's' : null}
-          : {renderTagsContent}</div>
+          <div className="post__tag">标签: {renderTagsContent}</div>
         ) : null
     }
 
@@ -84,7 +83,7 @@ class PostDetail extends React.Component<DetailProps> {
             __html: post.content
           }}
         />
-        <div className="post__category">Category: {post.category.title}</div>
+        <div className="post__category">分类: {post.category.title}</div>
         {renderTags()}
       </div>
     )

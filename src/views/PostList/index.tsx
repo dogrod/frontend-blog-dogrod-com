@@ -48,10 +48,22 @@ class PostList extends React.Component {
       return (
         <li key={post.id}>
           <div className="post-list__publish-time">{displayPublishTime}</div>
-          <div className="post-list__title">
-            <Link to={`/posts/${post.slug}`}>
-              {post.title.toUpperCase()}
-            </Link>
+          <div className="post-list__content">
+            <div className="post-list__title">
+              <Link to={`/posts/${post.slug}`}>
+                {post.title.toUpperCase()}
+              </Link>
+            </div>
+            <div className="post-list__summary">
+              <div
+                dangerouslySetInnerHTML={{__html: post.content}}
+              />
+              <span className="post-list__summary__view">
+                <Link to={`/posts/${post.slug}`}>
+                  查看全文
+                </Link>
+              </span>
+            </div>
           </div>
         </li>
       )

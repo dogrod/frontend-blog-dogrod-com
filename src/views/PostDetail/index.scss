@@ -1,13 +1,30 @@
 @import '~assets/styles/variables.scss';
+@import '~assets/styles/mixins.scss';
 
 .post {
+  padding: 10px;
+
+  &__title,
+  &__publish-time {
+    text-align: center;
+  }
+
   &__title {
-    font-weight: 400;
-    font-size: $title-size;
+    @include font($extra-large-font-size);
+
     letter-spacing: 1px;
+
+    @media screen and (max-width: 700px) {
+      @include font($large-font-size);      
+    }
+  }
+
+  &__publish-time {
+    color: $assist-font-color;
   }
 
   &__content {
+    @include font($normal-font-size);
     padding: 10px 0;
   }
 }
