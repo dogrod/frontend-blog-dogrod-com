@@ -61,29 +61,27 @@ class PostDetail extends React.Component<DetailProps> {
 
       const renderTagsContent = post.tags.map((tag, index) => {
         return (
-          <span key={tag.slug}>
-            <a className="post__tag">{tag.name}</a>
-            {index !== tagsLength - 1 ? ', ' : null}
+          <span className="post__tag" key={tag.slug}>
+            <a>{tag.name}</a>
           </span>
         )
       })
 
       return tagsLength ? (
-          <div className="post__tag">标签: {renderTagsContent}</div>
+          <div className="post__tags">{renderTagsContent}</div>
         ) : null
     }
 
     return (
       <div className="post">
         <div className="post__title">{post.title}</div>
-        <div className="post__publish-time">{displayPublishTime}</div>
+        <div className="post__info">{post.category.title} · {displayPublishTime}</div>
         <div
           className="post__content"
           dangerouslySetInnerHTML={{
             __html: post.content
           }}
         />
-        <div className="post__category">分类: {post.category.title}</div>
         {renderTags()}
       </div>
     )
