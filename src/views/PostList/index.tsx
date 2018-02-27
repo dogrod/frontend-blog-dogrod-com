@@ -10,7 +10,8 @@ import { IBlog } from 'types/blog'
 import './index.scss'
 
 export interface PostListStates {
-  list: IBlog.Post[]
+  list: IBlog.Post[],
+  isLoading: boolean
 }
 
 class PostList extends React.Component {
@@ -20,7 +21,8 @@ class PostList extends React.Component {
     super(props)
 
     this.state = {
-      list: []
+      list: [],
+      isLoading: true
     }
   }
 
@@ -30,16 +32,26 @@ class PostList extends React.Component {
         = await http.get('/blog/posts')
   
       this.setState({
-        list: response.data.results
+        list: response.data.results,
+        isLoading: false
       })
     } catch (error) {
       console.error(error)
+
+      this.setState({
+        isLoading: false
+      })
     }
   }
 
   render() {
-    const { list } = this.state
+    const {
+      list,
+      isLoading,
+    } = this.state
     
+    if (isLoading) return 'Loading...'
+
     const renderList = list.map((post) => {
       const publishTime = new Date(post.publish_at)
       const publishMonth = publishTime.toLocaleString('en-us', { month: 'short' }).toLocaleUpperCase()

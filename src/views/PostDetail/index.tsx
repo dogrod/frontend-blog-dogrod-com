@@ -17,6 +17,7 @@ interface DetailProps extends RouteComponentProps<DetailRouterProps> {}
 interface PostDetailStates {
   post?: IBlog.Post
   slug: string
+  isLoading: boolean
 }
 
 class PostDetail extends React.Component<DetailProps> {
@@ -26,7 +27,8 @@ class PostDetail extends React.Component<DetailProps> {
     super(props)
     
     this.state = {
-      slug: props.match.params.slug
+      slug: props.match.params.slug,
+      isLoading: true,
     }
   }
 
@@ -36,21 +38,27 @@ class PostDetail extends React.Component<DetailProps> {
         = await http.get(`/blog/posts/${this.state.slug}`)
 
       this.setState({
-        post: response.data
+        post: response.data,
+        isLoading: false,
       })
     } catch (error) {
       console.error(error)
+
+      this.setState({
+        isLoading: false
+      })
     }
   }
 
   render() {
     const {
-      post
+      post,
+      isLoading,
     } = this.state
+    
+    if (isLoading) return 'Loading...'
 
-    if (!post) {
-      return 'Post does not exist.'
-    }
+    if (!post) return 'Post does not exist.'
 
     const publishTime = new Date(post.publish_at)
     const publishMonth = publishTime.toLocaleString('en-us', { month: 'short' });
