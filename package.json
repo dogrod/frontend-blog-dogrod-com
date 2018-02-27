@@ -1,5 +1,5 @@
 {
-  "name": "react-ts",
+  "name": "blog_dogrod_com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -100,7 +100,7 @@
     ],
     "globals": {
       "ts-jest": {
-        "tsConfigFile": "/Users/rodrickzhu/Desktop/side-projects/blog_dogrod_com/tsconfig.test.json"
+        "tsConfigFile": "tsconfig.test.json"
       }
     }
   },
