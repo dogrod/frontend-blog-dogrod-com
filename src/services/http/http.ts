@@ -1,11 +1,8 @@
 import axios from 'axios'
-import constants from '../../dev-constants'
-
-const env = process.env.NODE_ENV || 'local'
-const baseURL = constants[env]
+import serverConfig from '../../server.config'
 
 const httpRequest = axios.create({
-  baseURL,
+  baseURL: serverConfig.baseURL,
 })
 
 export default httpRequest

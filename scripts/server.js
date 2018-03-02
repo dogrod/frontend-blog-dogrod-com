@@ -6,7 +6,10 @@ const app = express()
 app.use(express.static(path.join(process.cwd(), 'build')))
 
 app.get('/*', (req, res) => {
+  console.log(req.method)
   res.sendFile(path.join(process.cwd(), 'build', 'index.html'))
 })
 
 app.listen(9000)
+
+console.log('App is now running at port 9000')

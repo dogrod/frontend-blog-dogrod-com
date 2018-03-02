@@ -51,9 +51,10 @@
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "start": "NODE_ENV=development node scripts/start.js",
     "start-watch-sass": "npm-run-all -p watch-css start-js",
-    "build": "NODE_ENV=production node scripts/build.js",
+    "build": "node scripts/build.js",
     "build-all": "npm-run-all build-css build-js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "server": "NODE_ENV=production npm run build && node scripts/server.js"
   },
   "devDependencies": {
     "@types/jest": "^22.1.1",
