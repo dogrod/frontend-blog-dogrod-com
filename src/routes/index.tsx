@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Switch, Route } from 'react-router-dom'
-import PostList from 'views/PostList/index'
-import PostDetail from 'views/PostDetail/index'
+import PostList from 'pages/PostList/index'
+import PostDetail from 'pages/PostDetail/index'
 
 // const About = () => (
 //   <div>
