@@ -29,7 +29,7 @@ export namespace IBlog {
     
     author: Author
     tags: Tag[]
-    category: Category
+    category?: Category
   }
 }
 

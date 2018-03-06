@@ -83,7 +83,7 @@ class PostDetail extends React.Component<DetailProps> {
     return (
       <div className="post">
         <div className="post__title">{post.title}</div>
-        <div className="post__info">{post.category.title} · {displayPublishTime}</div>
+        <div className="post__info">{post.category ? post.category.title : null} · {displayPublishTime}</div>
         <div
           className="post__content"
           dangerouslySetInnerHTML={{
