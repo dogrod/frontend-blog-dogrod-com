@@ -3,13 +3,22 @@ const express = require('express')
 const path = require('path')
 const app = express()
 
+const port = 9002
+
 app.use(express.static(path.join(process.cwd(), 'build')))
 
-app.get('/*', (req, res) => {
-  console.log(req.method)
-  res.sendFile(path.join(process.cwd(), 'build', 'index.html'))
+const outputRequest = (req, res, next) => {
+  console.log(req)
+
+  next()
+}
+
+const sendFile = (req, res) => {
+  return res.sendFile(path.join(process.cwd(), 'build', 'index.html'))
+}
+
+app.get('*', outputRequest, sendFile)
+
+app.listen(port, () => {
+  console.log(`App is now running at port ${port}`)
 })
-
-app.listen(9000)
-
-console.log('App is now running at port 9000')
