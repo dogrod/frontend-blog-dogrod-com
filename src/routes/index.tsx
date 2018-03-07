@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { Switch, Route } from 'react-router-dom'
-import PostList from 'pages/PostList/index'
-import PostDetail from 'pages/PostDetail/index'
+import PostList from 'pages/PostList'
+import PostDetail from 'pages/PostDetail'
+import PostsWithTag from 'pages/PostsWithTag'
 
 // const About = () => (
 //   <div>
@@ -53,7 +54,7 @@ class Routes extends React.Component {
       <Switch>
         <Route exact={true} path="/" component={PostList}/>
         <Route path="/posts/:slug" component={PostDetail}/>
-        {/* <Route path="/topics" component={Topics}/> */}
+        <Route path="/tags/:slug" component={PostsWithTag}/>
       </Switch>
     )
   }
