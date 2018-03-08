@@ -44,6 +44,13 @@
     "@types/history" "*"
     "@types/react" "*"
 
+"@types/react-router@^4.0.22":
+  version "4.0.22"
+  resolved "http://registry.npm.taobao.org/@types/react-router/download/@types/react-router-4.0.22.tgz#2b97336eddfdf5886973539539b8ce7037cf629b"
+  dependencies:
+    "@types/history" "*"
+    "@types/react" "*"
+
 "@types/react@*", "@types/react@^16.0.35":
   version "16.0.35"
   resolved "http://registry.npm.taobao.org/@types/react/download/@types/react-16.0.35.tgz#7ce8a83cad9690fd965551fc513217a74fc9e079"

@@ -5,6 +5,7 @@
   "dependencies": {
     "@types/lodash": "^4.14.101",
     "@types/marked": "^0.3.0",
+    "@types/react-router": "^4.0.22",
     "@types/react-router-dom": "^4.2.3",
     "autoprefixer": "7.1.6",
     "axios": "^0.17.1",

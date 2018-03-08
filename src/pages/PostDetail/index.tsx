@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { RouteComponentProps } from 'react-router'
+import { Link } from 'react-router-dom'
 import { AxiosResponse } from 'axios'
 
 import http from 'services/http/http'
@@ -69,9 +70,13 @@ class PostDetail extends React.Component<DetailProps> {
 
       const renderTagsContent = post.tags.map((tag, index) => {
         return (
-          <span className="post__tag" key={tag.slug}>
-            <a>{tag.name}</a>
-          </span>
+          <Link
+            className="post__tag"
+            to={`/tags/${tag.slug}`}
+            key={tag.slug}
+          >
+            {tag.name}
+          </Link>
         )
       })
 
