@@ -3,7 +3,7 @@ import { RouteComponentProps } from 'react-router'
 import { Link } from 'react-router-dom'
 import { AxiosResponse } from 'axios'
 
-import http from 'services/http/http'
+import $http from 'services/http/http'
 
 import { IResponse } from 'types/api'
 import { IBlog } from 'types/blog'
@@ -95,13 +95,13 @@ class PostDetail extends React.Component<DetailProps> {
   private async fetchPostData() {
     try {
       const response: AxiosResponse<IResponse.PostDetail>
-        = await http.get(`/blog/posts/${this.state.slug}`)
+        = await $http.get(`/blog/posts/${this.state.slug}`)
       
-      this.setState({
+      return this.setState({
         post: response.data,
       })
     } catch (error) {
-      console.error(error)
+      return console.error(error)
     }
   }
 }
