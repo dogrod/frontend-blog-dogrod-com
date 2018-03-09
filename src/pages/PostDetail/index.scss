@@ -38,5 +38,9 @@
     background: mix($color-black, $color-white, 5%);
     border-radius: 3px;
     transition: .2s;
+
+    &:hover {
+      background: mix($color-black, $color-white, 15%);
+    }
   }
 }
