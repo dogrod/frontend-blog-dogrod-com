@@ -9,11 +9,11 @@ import { IResponse } from 'types/api'
 import { IBlog } from 'types/blog'
 
 import './index.scss'
-interface DetailRouterProps {
+interface DetailRouteProps {
   slug: string
 }
 
-interface DetailProps extends RouteComponentProps<DetailRouterProps> {}
+interface DetailProps extends RouteComponentProps<DetailRouteProps> {}
 
 interface PostDetailStates {
   post?: IBlog.Post
@@ -34,21 +34,11 @@ class PostDetail extends React.Component<DetailProps> {
   }
 
   async componentDidMount() {
-    try {
-      const response: AxiosResponse<IResponse.PostDetail>
-        = await http.get(`/blog/posts/${this.state.slug}`)
+    await this.fetchPostData()
 
-      this.setState({
-        post: response.data,
-        isLoading: false,
-      })
-    } catch (error) {
-      console.error(error)
-
-      this.setState({
-        isLoading: false
-      })
-    }
+    this.setState({
+      isLoading: false
+    })
   }
 
   render() {
@@ -100,6 +90,19 @@ class PostDetail extends React.Component<DetailProps> {
         {renderTags()}
       </div>
     )
+  }
+
+  private async fetchPostData() {
+    try {
+      const response: AxiosResponse<IResponse.PostDetail>
+        = await http.get(`/blog/posts/${this.state.slug}`)
+      
+      this.setState({
+        post: response.data,
+      })
+    } catch (error) {
+      console.error(error)
+    }
   }
 }
 
