@@ -39,8 +39,17 @@ export default class PostsWithTag extends React.Component<Props> {
   }
 
   render() {
+    const {
+      posts
+    } = this.state
+
+    const renderPosts = () => {
+      return posts && posts.length
+        ? posts.map((post) => (<li>{post.title}</li>)) : 'No post with this tag.'
+    }
+
     return (
-      <div>Posts with tag</div>
+      <div>{renderPosts()}</div>
     )
   }
 
