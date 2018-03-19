@@ -52,7 +52,7 @@ class PostDetail extends React.Component<DetailProps> {
     if (!post) return 'Post does not exist.'
 
     const publishTime = new Date(post.publish_at)
-    const publishMonth = publishTime.toLocaleString('en-us', { month: 'short' });
+    const publishMonth = publishTime.toLocaleString('en-us', { month: 'short' })
     const displayPublishTime = `${publishMonth} ${publishTime.getDate()}, ${publishTime.getFullYear()}`
 
     const renderTags = () => {
@@ -62,10 +62,10 @@ class PostDetail extends React.Component<DetailProps> {
         return (
           <Link
             className="post__tag"
-            to={`/tags/${tag.slug}`}
-            key={tag.slug}
+            to={`/tag/${tag}`}
+            key={tag}
           >
-            {tag.name}
+            {tag}
           </Link>
         )
       })
@@ -79,7 +79,7 @@ class PostDetail extends React.Component<DetailProps> {
       <div className="post">
         <div className="post__title">{post.title}</div>
         <div className="post__info">
-          {post.category ? post.category.title : null}{post.category ? '·' : null}{displayPublishTime}
+          {post.category ? post.category : null}{post.category ? '·' : null}{displayPublishTime}
         </div>
         <div
           className="post__content"
@@ -94,11 +94,11 @@ class PostDetail extends React.Component<DetailProps> {
 
   private async fetchPostData() {
     try {
-      const response: AxiosResponse<IResponse.PostDetail>
-        = await $http.get(`/blog/posts/${this.state.slug}`)
+      const response: AxiosResponse<IResponse.PostDetailResponse>
+        = await $http.get(`/blog/post/${this.state.slug}`)
       
       return this.setState({
-        post: response.data,
+        post: response.data.result,
       })
     } catch (error) {
       return console.error(error)

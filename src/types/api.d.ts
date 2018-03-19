@@ -2,7 +2,6 @@ import IBlog from './blog'
 
 declare namespace IResponse {
   interface BasicList {
-    results: any[]
     total: number
     pageNumber: number
     pageSize: number
@@ -10,8 +9,21 @@ declare namespace IResponse {
   }
 
   interface PostList extends BasicList {
-    results: IBlog.Post[]
+    posts: IBlog.Post[]
   }
 
   interface PostDetail extends IBlog.Post {}
+
+  interface CommonResponse {
+    code: string
+    result: any
+  }
+
+  interface PostListResponse extends CommonResponse {
+    result: PostList
+  }
+
+  interface PostDetailResponse extends CommonResponse {
+    result: PostDetail
+  }
 }

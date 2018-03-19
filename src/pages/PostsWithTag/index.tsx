@@ -55,11 +55,11 @@ export default class PostsWithTag extends React.Component<Props> {
 
   private async fetchPosts() {
     try {
-      const response: AxiosResponse<IResponse.PostList>
-        = await $http.get(`/blog/tags/${this.state.slug}`)
+      const response: AxiosResponse<IResponse.PostListResponse>
+        = await $http.get(`/blog/tag/${this.state.slug}`)
 
       return this.setState({
-        posts: response.data.results
+        posts: response.data.result
       })
     } catch (error) {
       return console.error(error)

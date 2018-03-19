@@ -28,11 +28,11 @@ class PostList extends React.Component {
 
   async componentDidMount() {
     try {
-      const response: AxiosResponse<IResponse.PostList>
+      const response: AxiosResponse<IResponse.PostListResponse>
         = await http.get('/blog/posts')
   
       this.setState({
-        list: response.data.results,
+        list: response.data.result.posts,
         isLoading: false
       })
     } catch (error) {

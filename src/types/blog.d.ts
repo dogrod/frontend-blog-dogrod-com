@@ -23,13 +23,13 @@ export namespace IBlog {
   interface Post {
     id: number
     title: string
-    slug: string | string[]
+    slug: string
     publish_at: string
     content: string
     
     author: Author
-    tags: Tag[]
-    category?: Category
+    tags: string[]
+    category: string
   }
 }
 
