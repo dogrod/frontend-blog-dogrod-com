@@ -1,0 +1,102 @@
+@import '~styles/variables.scss';
+@import '~styles/mixins.scss';
+
+.list-item {
+  display: flex;
+  padding: 30px 50px 10px;
+
+  @media screen and (max-width: 700px) {
+    padding-top: 10px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  &__publish-time {
+    @include font($large-font-size);
+
+    flex-grow: 0;
+    width: 150px;
+    min-width: 150px;
+
+    color: $assist-font-color;
+    letter-spacing: 1px;
+
+    @media screen and (max-width: 700px) {
+      @include font($small-font-size);
+      
+      margin-top: 2px;
+      width: 100px;
+      min-width: 100px;
+    }
+  }
+
+  &__content {
+    flex-grow: 1;
+    width: auto;
+    overflow: hidden;
+  }
+
+  &__title {
+    text-align: left;
+    cursor: pointer;
+    transition: .3s;
+    
+    a {
+      @include font($extra-large-font-size);
+
+      display: inline-block;
+      width: 100%;
+      overflow: hidden;
+
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-weight: 400;
+      letter-spacing: 1px;
+      
+      &:hover {
+        color: $active-color;
+      }
+
+      @media screen and (max-width: 700px) {
+        @include font($large-font-size);
+      }
+    }
+  }
+
+  &__summary {
+    @include font($normal-font-size);
+
+    position: relative;
+    padding-bottom: 20px;
+    
+    color: $assist-font-color;
+    text-align: left;
+
+    li {
+      padding: 0;
+      margin: 0;
+      text-align: left;
+    }
+    
+    &__view {
+      @include font($small-font-size);
+
+      position: absolute;
+      right: 0;
+      bottom: 0;
+
+      a {
+        border-bottom: 1px dashed transparent;
+        transition: .3s;
+
+        &:hover {
+          border-color: #2c3e50;
+        }
+      }
+    }
+
+    @media screen and (max-width: 700px) {
+      display: none;
+    }
+  }
+}

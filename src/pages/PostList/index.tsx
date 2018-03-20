@@ -1,11 +1,14 @@
 import * as React from 'react'
 import { AxiosResponse } from 'axios'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 import http from 'services/http/http'
 
 import { IResponse } from 'types/api'
 import { IBlog } from 'types/blog'
+
+import List from 'components/List'
+import ListItem from 'components/List/list-item.tsx'
 
 import './index.scss'
 
@@ -58,34 +61,21 @@ class PostList extends React.Component {
       const displayPublishTime = `${publishMonth} ${publishTime.getDate()}, ${publishTime.getFullYear()}`
 
       return (
-        <li key={post.id}>
-          <div className="post-list__publish-time">{displayPublishTime}</div>
-          <div className="post-list__content">
-            <div className="post-list__title">
-              <Link to={`/posts/${post.slug}`}>
-                {post.title.toUpperCase()}
-              </Link>
-            </div>
-            <div className="post-list__summary">
-              <div
-                dangerouslySetInnerHTML={{__html: post.content}}
-              />
-              <span className="post-list__summary__view">
-                <Link to={`/posts/${post.slug}`}>
-                  查看全文
-                </Link>
-              </span>
-            </div>
-          </div>
-        </li>
+        <ListItem
+          key={post.id}
+          title={post.title.toLocaleUpperCase()}
+          publishTime={displayPublishTime}
+          url={`/posts/${post.slug}`}
+          summary={post.content}
+        />
       )
     })
 
     return (
       <div className="post-list">
-        <ul>
+        <List>
           {renderList}
-        </ul>
+        </List>
       </div>
     )
   }
