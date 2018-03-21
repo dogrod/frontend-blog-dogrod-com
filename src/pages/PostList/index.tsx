@@ -65,7 +65,7 @@ class PostList extends React.Component {
           key={post.id}
           title={post.title.toLocaleUpperCase()}
           publishTime={displayPublishTime}
-          url={`/posts/${post.slug}`}
+          url={`/post/${post.slug}`}
           summary={post.content}
         />
       )

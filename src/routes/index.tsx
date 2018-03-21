@@ -54,7 +54,7 @@ class Routes extends React.Component {
       <Switch>
         <Route exact={true} path="/" component={PostList}/>
         <Route path="/post/:slug" component={PostDetail}/>
-        <Route path="/tag/:slug" component={PostsWithTag}/>
+        <Route path="/tag/:tagName" component={PostsWithTag}/>
       </Switch>
     )
   }
