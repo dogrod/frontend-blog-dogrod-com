@@ -58,7 +58,7 @@ export default class PostsWithTag extends React.Component<Props> {
       return (
         <ListItem
           key={post.id}
-          title={post.title.toLocaleUpperCase()}
+          title={post.title.toUpperCase()}
           publishTime={displayPublishTime}
           url={`/post/${post.slug}`}
           summary={post.content}
