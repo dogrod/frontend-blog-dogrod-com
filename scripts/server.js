@@ -7,17 +7,11 @@ const port = 9002
 
 app.use(express.static(path.join(process.cwd(), 'build')))
 
-const outputRequest = (req, res, next) => {
-  console.log(req)
-
-  next()
-}
-
 const sendFile = (req, res) => {
   return res.sendFile(path.join(process.cwd(), 'build', 'index.html'))
 }
 
-app.get('*', outputRequest, sendFile)
+app.get('*', sendFile)
 
 app.listen(port, () => {
   console.log(`App is now running at port ${port}`)
