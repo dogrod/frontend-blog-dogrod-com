@@ -1,18 +1,26 @@
-// Reference: https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#deployment
-const express = require('express')
+const Koa = require('koa')
+// const Router = require('koa-router')
+const serve = require('koa-static')
+const send = require('koa-send')
 const path = require('path')
-const app = express()
 
-const port = 9002
+const app = new Koa()
+// const router = new Router()
 
-app.use(express.static(path.join(process.cwd(), 'build')))
+const port = parseInt(process.env.PORT) || 9002
 
-const sendFile = (req, res) => {
-  return res.sendFile(path.join(process.cwd(), 'build', 'index.html'))
-}
+app.use(serve(path.join(process.cwd(), 'build')))
 
-app.get('*', sendFile)
+// app.use(router.routes())
 
-app.listen(port, () => {
-  console.log(`App is now running at port ${port}`)
+app.use(async (ctx, next) => {
+  await send(path.join(process.cwd(), 'build', 'index.html'))
+
+  await next()
+})
+
+app.listen(port, err => {
+  if (err) throw err
+
+  console.log(`> Ready on http://localhost:${port}`)
 })
