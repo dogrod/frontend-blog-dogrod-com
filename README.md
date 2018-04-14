@@ -2,8 +2,12 @@
 
 ## TO-DO
 
-- [ ] Basic content rendering
+- [x] Basic content rendering
+- [ ] Deployment
 - [ ] Code spliting
+- [ ] Node.js server-side log
+- [ ] Unit test
+- [ ] Comment modules (and back-end support)
 
 ## Deployment
 
@@ -12,6 +16,7 @@
 3. Run `npm run server` or `yarn run server`
 
 ### Deploy use docker
-1. Create `pm2.json` and config
-2. Build image: `docker build --rm --no-cache=true -t frontend-blog .`
-2. Run `docker run -d --name frontend-blog --restart unless-stopped -p 34001:9002 frontend-blog`
+1. Create `server.config.js` and config
+2. Create `pm2.json` and config
+3. Build image: `docker build --rm --no-cache=true -t frontend-blog .`
+4. Run `docker run -d --name frontend-blog --restart unless-stopped -p 34001:9002 frontend-blog`
