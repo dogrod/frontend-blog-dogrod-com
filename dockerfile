@@ -6,8 +6,7 @@ WORKDIR /home/service
 COPY . /home/service
 
 # Install app dependencies
-ENV NPM_CONFIG_LOGLEVEL warn
-RUN npm install --registry=https://registry.npm.taobao.org
+RUN npm install --registry=https://registry.npm.taobao.org --loglevel=silly 2> debug.log
 
 # Show current folder structure in logs
 RUN ls -al -R
