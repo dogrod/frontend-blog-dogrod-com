@@ -1,8 +1,7 @@
 import axios from 'axios'
-import serverConfig from '../../server.config'
 
 const httpRequest = axios.create({
-  baseURL: serverConfig.baseURL,
+  baseURL: '/api/v1',
 })
 
 export default httpRequest
