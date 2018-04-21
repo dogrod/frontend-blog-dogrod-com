@@ -1,5 +1,5 @@
 const Koa = require('koa')
-const Router = require('koa-router')
+// const Router = require('koa-router')
 const proxy = require('koa-better-http-proxy')
 
 const serve = require('koa-static')
@@ -10,7 +10,7 @@ const koaLogger = require('koa-logger')
 const serverConfig = require(path.join(process.cwd(), 'server.config.js'))
 
 const app = new Koa()
-const router = new Router()
+// const router = new Router()
 
 const port = parseInt(serverConfig.port, 10) || 9002
 
@@ -18,7 +18,7 @@ app.use(koaLogger())
 
 app.use(serve(path.join(process.cwd(), 'build')))
 
-router.get('*', async (ctx, next) => {
+app.use(async (ctx, next) => {
   // 如果请求头中含有json请求，则简单判定为非前端页面请求，直接跳过
   if (
     ctx.header.accept
@@ -27,10 +27,10 @@ router.get('*', async (ctx, next) => {
     return await next()
   }
 
-  await send(ctx, path.join('../build', 'index.html'))
+  await send(ctx, path.join(process.cwd(), 'build', 'index.html'))
 })
 
-app.use(router.routes())
+// app.use(router.routes())
 
 app.use(proxy(serverConfig.proxy['/api']))
 
