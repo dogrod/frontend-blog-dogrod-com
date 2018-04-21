@@ -22,7 +22,7 @@ router.get('*', async (ctx, next) => {
   // 如果请求头中含有json请求，则简单判定为非前端页面请求，直接跳过
   if (
     ctx.header.accept
-    && ctx.header.accept.indexOf('application/json' > -1)
+    && ctx.header.accept.indexOf('application/json') > -1
   ) {
     return await next()
   }
