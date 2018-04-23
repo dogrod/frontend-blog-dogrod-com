@@ -5,7 +5,7 @@ import * as proxy from 'koa-better-http-proxy'
 import * as serve from 'koa-static'
 import * as send from 'koa-send'
 import * as koaLogger from 'koa-logger'
-import path from 'path'
+import * as path from 'path'
 
 import logger from './utils/logger'
 
