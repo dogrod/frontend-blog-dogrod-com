@@ -27,6 +27,4 @@ export default async (ctx: Koa.Context, next: () => void) => {
 
   ctx.set('Contetn-Type', 'text/html; charset=utf-8')
   ctx.body = readBundleFile('index.html')
-
-  await next()
 }
