@@ -7,6 +7,8 @@ import logger from '../utils/logger'
 
 const log = logger('transmit-bundle-files')
 
+const REG_STATIC_EXTENSION = /\.(js|css|ico|gif|jpg|jpeg|png|bmp|svg|woff|woff2|eot|ttf)$/
+
 const readBundleFile = (filename: string) => {
   const filePath = path.join(process.cwd(), 'build', filename)
 
@@ -20,7 +22,13 @@ export default async (ctx: Koa.Context, next: () => void) => {
     ctx.req.headers.accept
     && ctx.req.headers.accept.indexOf('application/json') > -1
   ) {
-    log.info(`Request ${ctx.path} is not a static file request. Skipped.`)
+    log.info(`Request ${ctx.path} is required a 'application/json' response. Skipped.`)
+
+    return await next()
+  }
+
+  if (REG_STATIC_EXTENSION.test(ctx.path)) {
+    log.info(`Request ${ctx.path} is a static file request. Skipped.`)
 
     return await next()
   }
