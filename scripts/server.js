@@ -27,7 +27,7 @@ app.use(async (ctx, next) => {
     return await next()
   }
 
-  await send(ctx, path.join(process.cwd(), 'build', 'index.html'))
+  await send(ctx, path.join('../build', 'index.html'))
 })
 
 // app.use(router.routes())
