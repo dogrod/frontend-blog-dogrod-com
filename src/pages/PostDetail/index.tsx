@@ -9,6 +9,8 @@ import { IResponse } from 'types/api'
 import { IBlog } from 'types/blog'
 
 import './index.scss'
+import 'styles/markdown.scss'
+
 interface DetailRouteProps {
   slug: string
 }
@@ -82,7 +84,7 @@ class PostDetail extends React.Component<DetailProps> {
           {post.category ? post.category : null}{post.category ? '·' : null}{displayPublishTime}
         </div>
         <div
-          className="post__content"
+          className="post__content md"
           dangerouslySetInnerHTML={{
             __html: post.content
           }}
