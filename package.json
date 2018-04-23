@@ -5,6 +5,8 @@
   "dependencies": {
     "@types/jest": "^22.1.1",
     "@types/koa": "^2.0.45",
+    "@types/koa-router": "^7.0.27",
+    "@types/koa-static": "^4.0.0",
     "@types/lodash": "^4.14.101",
     "@types/marked": "^0.3.0",
     "@types/node": "^9.4.0",

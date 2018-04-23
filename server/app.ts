@@ -1,13 +1,13 @@
 import * as Koa from 'koa'
-const Router = require('koa-router')
-const proxy = require('koa-better-http-proxy')
+import * as Router from 'koa-router'
+import * as proxy from 'koa-better-http-proxy'
 
-const serve = require('koa-static')
-const send = require('koa-send')
-const path = require('path')
-const koaLogger = require('koa-logger')
+import * as serve from 'koa-static'
+import * as send from 'koa-send'
+import * as koaLogger from 'koa-logger'
+import path from 'path'
 
-const logger = require('./utils/logger')
+import logger from './utils/logger'
 
 const serverConfig = require(path.join(process.cwd(), 'server.config.js'))
 
@@ -37,7 +37,7 @@ router.get('*', async (ctx: Koa.Context, next: () => void) => {
 
 app.use(router.routes())
 
-app.use(proxy(serverConfig.proxy['/api']))
+app.use(proxy(serverConfig.proxy['/api'], {}))
 
 app.listen(port, () => {
   log.info(`> Ready on http://localhost:${port}`)
