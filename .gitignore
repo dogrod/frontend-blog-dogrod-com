@@ -22,3 +22,4 @@ yarn-error.log*
 
 pm2.json
 server.config.*
+dev-*.*
