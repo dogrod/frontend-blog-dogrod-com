@@ -3,9 +3,9 @@
 ## TO-DO
 
 - [x] Basic content rendering
-- [ ] Deployment
+- [x] Deployment
 - [ ] Code spliting
-- [ ] Node.js server-side log
+- [x] Node.js server-side log
 - [ ] Unit test
 - [ ] Comment modules (and back-end support)
 
