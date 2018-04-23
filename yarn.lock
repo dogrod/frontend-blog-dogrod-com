@@ -69,6 +69,12 @@
   version "3.2.2"
   resolved "http://registry.npm.taobao.org/@types/koa-compose/download/@types/koa-compose-3.2.2.tgz#dc106e000bbf92a3ac900f756df47344887ee847"
 
+"@types/koa-logger@^3.1.0":
+  version "3.1.0"
+  resolved "http://registry.npm.taobao.org/@types/koa-logger/download/@types/koa-logger-3.1.0.tgz#133acdbc56d87b5a559cab25528b087381a8fc0d"
+  dependencies:
+    "@types/koa" "*"
+
 "@types/koa-router@^7.0.27":
   version "7.0.27"
   resolved "http://registry.npm.taobao.org/@types/koa-router/download/@types/koa-router-7.0.27.tgz#4993d50cb9efdfcfb11f16c726a4b34f8fb3e0d4"
