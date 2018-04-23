@@ -1,4 +1,4 @@
-const Koa = require('koa')
+import * as Koa from 'koa'
 const Router = require('koa-router')
 const proxy = require('koa-better-http-proxy')
 
@@ -21,7 +21,7 @@ app.use(koaLogger())
 
 app.use(serve(path.join(process.cwd(), 'build')))
 
-router.get('*', async (ctx, next) => {
+router.get('*', async (ctx: Koa.Context, next: () => void) => {
   // 如果请求头中含有json请求，则简单判定为非前端页面请求，直接跳过
   if (
     ctx.header.accept
@@ -39,8 +39,6 @@ app.use(router.routes())
 
 app.use(proxy(serverConfig.proxy['/api']))
 
-app.listen(port, err => {
-  if (err) throw err
-
+app.listen(port, () => {
   log.info(`> Ready on http://localhost:${port}`)
 })
