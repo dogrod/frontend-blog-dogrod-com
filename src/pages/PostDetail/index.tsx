@@ -2,6 +2,7 @@ import * as React from 'react'
 import { RouteComponentProps } from 'react-router'
 import { Link } from 'react-router-dom'
 import { AxiosResponse } from 'axios'
+import * as marked from 'marked'
 
 import $http from 'services/http/http'
 
@@ -84,9 +85,9 @@ class PostDetail extends React.Component<DetailProps> {
           {post.category ? post.category : null}{post.category ? '·' : null}{displayPublishTime}
         </div>
         <div
-          className="post__content md"
+          className="post__content markdown"
           dangerouslySetInnerHTML={{
-            __html: post.content
+            __html: marked(post.content)
           }}
         />
         {renderTags()}

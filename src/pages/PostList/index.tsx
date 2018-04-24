@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { AxiosResponse } from 'axios'
-// import { Link } from 'react-router-dom'
+import * as marked from 'marked'
 
 import http from 'services/http/http'
 
@@ -66,7 +66,7 @@ class PostList extends React.Component {
           title={post.title.toUpperCase()}
           publishTime={displayPublishTime}
           url={`/post/${post.slug}`}
-          summary={post.content}
+          summary={marked(post.content)}
         />
       )
     })
