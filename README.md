@@ -38,7 +38,7 @@ yarn start
   2. Create `pm2.json` and config
   3. Build image
   ```
-    docker build --rm --no-cache=true -t frontend-blog .
+  docker build --rm --no-cache=true -t frontend-blog .
   ```
   4. Run
   ```
