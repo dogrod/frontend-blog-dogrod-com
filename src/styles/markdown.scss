@@ -1,6 +1,7 @@
 .markdown {
+  // quote block
   blockquote {
-    border-left: 6px solid #ccc;
+    border-left: 6px solid #ddd;
     margin: 0;
     padding: 15px;
     padding-left: 25px;
@@ -8,6 +9,38 @@
     margin-bottom: 25px;
   }
 
+  // code field
+  code {
+    padding: 2px 4px;
+    background-color: #f6f6f6;
+    border: none;
+    color: #657b83;
+    font-size: 12px;
+    white-space: pre-wrap;
+  }
+
+  // code block
+  pre {
+    margin-bottom: 20px;
+    padding: 15px;
+    overflow: auto;
+
+    white-space: pre;
+    word-wrap: normal;
+    word-break: break-word!important;
+    word-break: break-all;
+    
+    background: #f6f6f6;
+
+    color: #657b83;
+    font-size: 13px;
+    -webkit-text-size-adjust: none;
+
+    border: 1px solid #ddd;
+    border-radius: 0;
+  }
+
+  // list block
   ol,
   ul {
     margin: 0;
