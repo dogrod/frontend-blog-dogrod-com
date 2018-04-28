@@ -26,6 +26,7 @@
     "file-loader": "0.11.2",
     "fork-ts-checker-webpack-plugin": "^0.2.8",
     "fs-extra": "3.0.1",
+    "highlight.js": "^9.12.0",
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
     "koa": "^2.5.0",
@@ -124,5 +125,8 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "devDependencies": {
+    "@types/highlight.js": "^9.12.2"
   }
 }

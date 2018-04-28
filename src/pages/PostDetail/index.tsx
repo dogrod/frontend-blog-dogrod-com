@@ -2,7 +2,7 @@ import * as React from 'react'
 import { RouteComponentProps } from 'react-router'
 import { Link } from 'react-router-dom'
 import { AxiosResponse } from 'axios'
-import * as marked from 'marked'
+import marked from 'utils/marked'
 
 import $http from 'services/http/http'
 import setTitle from 'utils/set-title'
