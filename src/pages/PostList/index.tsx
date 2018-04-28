@@ -34,11 +34,10 @@ class PostList extends React.Component {
     setTitle()
 
     try {
-      const response: AxiosResponse<IResponse.PostListResponse>
-        = await http.get('/blog/posts')
+      const list = await this.fetchListData()
   
       this.setState({
-        list: response.data.result.posts,
+        list: list,
         isLoading: false
       })
     } catch (error) {
@@ -81,6 +80,17 @@ class PostList extends React.Component {
         </List>
       </div>
     )
+  }
+
+  private async fetchListData() {
+    try {
+      const response: AxiosResponse<IResponse.PostListResponse>
+        = await http.get('/blog/posts')
+      
+      return response.data.result.posts
+    } catch (error) {
+      throw error
+    }
   }
 }
 
