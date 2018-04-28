@@ -16,7 +16,7 @@ class NavHeader extends React.Component {
             <Link to="/" className="nav-list--active">BLOG</Link>
           </li>
           <li>
-            <a href="//www.for-my-ferrari.com/">FOR MY FERRARI</a>
+            <a onClick={() => alert('Coming soon')}>FOR MY FERRARI</a>
           </li>
           <li>
             <a href="//www.github.com/dogrod" target="_blank">GIT HUB</a>

@@ -35,6 +35,7 @@ header {
 
         border-bottom: 2px solid transparent;
         transition: .2s;
+        cursor: pointer;
         
         &:hover,
         &.nav-list--active {
