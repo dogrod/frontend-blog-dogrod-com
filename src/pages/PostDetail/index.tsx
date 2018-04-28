@@ -5,6 +5,7 @@ import { AxiosResponse } from 'axios'
 import * as marked from 'marked'
 
 import $http from 'services/http/http'
+import setTitle from 'utils/set-title'
 
 import { IResponse } from 'types/api'
 import { IBlog } from 'types/blog'
@@ -36,7 +37,7 @@ class PostDetail extends React.Component<DetailProps> {
     }
   }
 
-  async componentDidMount() {
+  async componentWillMount() {
     await this.fetchPostData()
 
     this.setState({
@@ -100,8 +101,14 @@ class PostDetail extends React.Component<DetailProps> {
       const response: AxiosResponse<IResponse.PostDetailResponse>
         = await $http.get(`/blog/post/${this.state.slug}`)
       
+      const result = response.data.result
+      
+      const title = `${result.title.substring(0, 8)}${result.title.length > 8 ? '...' : ''} - 不唠嗑`
+
+      setTitle(title)
+
       return this.setState({
-        post: response.data.result,
+        post: result,
       })
     } catch (error) {
       return console.error(error)

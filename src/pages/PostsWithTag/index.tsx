@@ -5,6 +5,7 @@ import { AxiosResponse } from 'axios'
 
 import $http from 'services/http/http'
 import { IResponse } from 'types/api'
+import setTitle from 'utils/set-title'
 
 import List from 'components/List'
 import ListItem from 'components/List/list-item.tsx'
@@ -36,7 +37,9 @@ export default class PostsWithTag extends React.Component<Props> {
     }
   }
 
-  async componentDidMount() {
+  async componentWillMount() {
+    setTitle()
+
     await this.fetchPosts()
 
     this.setState({

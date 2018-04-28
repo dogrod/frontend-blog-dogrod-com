@@ -3,6 +3,7 @@ import { AxiosResponse } from 'axios'
 import * as marked from 'marked'
 
 import http from 'services/http/http'
+import setTitle from 'utils/set-title'
 
 import { IResponse } from 'types/api'
 import { IBlog } from 'types/blog'
@@ -29,7 +30,9 @@ class PostList extends React.Component {
     }
   }
 
-  async componentDidMount() {
+  async componentWillMount() {
+    setTitle()
+
     try {
       const response: AxiosResponse<IResponse.PostListResponse>
         = await http.get('/blog/posts')
