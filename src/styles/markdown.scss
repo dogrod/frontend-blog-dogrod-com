@@ -21,8 +21,8 @@
 
   // code block
   pre {
-    margin-bottom: 20px;
-    padding: 15px;
+    margin: 30px 10px;
+    padding: 30px;
     overflow: auto;
 
     white-space: pre;
@@ -30,14 +30,18 @@
     word-break: break-word!important;
     word-break: break-all;
     
-    background: #f6f6f6;
-
     color: #657b83;
     font-size: 13px;
     -webkit-text-size-adjust: none;
+    
+    background: #222;
+    border-radius: 10px;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 
-    border: 1px solid #ddd;
-    border-radius: 0;
+    code {
+      background: transparent;
+      color: #eee;
+    }
   }
 
   // list block
@@ -45,5 +49,12 @@
   ul {
     margin: 0;
     padding: 0;
+  }
+
+  // link field
+  a:any-link {
+    color: #657b83;
+    margin: 0 5px;
+    text-decoration: underline;
   }
 }
