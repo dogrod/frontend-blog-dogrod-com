@@ -1,5 +1,7 @@
-# 0.1 Hello World
-
-- Init project via [Create-react-app with react-scripts-ts](https://github.com/Microsoft/TypeScript-React-Starter)
-- Simple node.js server to provide SPA
-- Basic blog list/detail rendering (Only display)
+## 0.1 Hello World
+---
+### Coding
+  - Init project via [Create-react-app with react-scripts-ts](https://github.com/Microsoft/TypeScript-React-Starter)
+  - Simple node.js server to provide SPA
+### Feature
+  - Basic blog list/detail rendering (Only display)
