@@ -10,7 +10,7 @@ import setTitle from 'utils/set-title'
 import { IResponse } from 'types/api'
 import { IBlog } from 'types/blog'
 
-import 'highlight.js/styles/solarized-dark.css'
+import 'styles/solarized-dark.css'
 import './index.scss'
 import 'styles/markdown.scss'
 
