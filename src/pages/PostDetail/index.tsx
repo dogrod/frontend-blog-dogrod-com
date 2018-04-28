@@ -104,7 +104,7 @@ class PostDetail extends React.Component<DetailProps> {
       
       const result = response.data.result
       
-      const title = `${result.title.substring(0, 8)}${result.title.length > 8 ? '...' : ''} - 不唠嗑`
+      const title = `${result.title.substring(0, 8)}${result.title.length > 8 ? '...' : ''} | 不唠嗑`
 
       setTitle(title)
 
