@@ -82,7 +82,7 @@ class PostDetail extends React.Component<DetailProps> {
       <div className="post">
         <div className="post__title">{post.title}</div>
         <div className="post__info">
-          {post.category ? post.category : null}{post.category ? '·' : null}{displayPublishTime}
+          {post.category ? post.category : null}{post.category ? ' · ' : null}{displayPublishTime}
         </div>
         <div
           className="post__content markdown"
