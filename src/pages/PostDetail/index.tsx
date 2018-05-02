@@ -57,8 +57,12 @@ class PostDetail extends React.Component<DetailProps> {
     if (!post) return 'Post does not exist.'
 
     const publishTime = new Date(post.publish_at)
-    const publishMonth = publishTime.toLocaleString('en-us', { month: 'short' })
-    const displayPublishTime = `${publishMonth} ${publishTime.getDate()}, ${publishTime.getFullYear()}`
+    const publishDate = publishTime.toLocaleString('zh-cn', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
+    const displayPublishTime = `${publishDate}`
 
     const renderTags = () => {
       const tagsLength = post.tags.length

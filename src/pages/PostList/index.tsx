@@ -59,8 +59,12 @@ class PostList extends React.Component {
 
     const renderList = list.map((post) => {
       const publishTime = new Date(post.publish_at)
-      const publishMonth = publishTime.toLocaleString('en-us', { month: 'short' }).toLocaleUpperCase()
-      const displayPublishTime = `${publishMonth} ${publishTime.getDate()}, ${publishTime.getFullYear()}`
+      const publishDate = publishTime.toLocaleString('zh-cn', {
+        month: 'long',
+        day: 'numeric',
+        timeZone: 'Asia/Shanghai',
+      }).toLocaleUpperCase()
+      const displayPublishTime = `${publishDate}`
 
       return (
         <ListItem
