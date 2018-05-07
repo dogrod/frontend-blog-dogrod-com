@@ -16,7 +16,20 @@
     border: none;
     color: #657b83;
     font-size: 12px;
-    white-space: pre-wrap;
+
+    &::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 2px;
+      background-color: #666;
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: 2px;
+      background-color: #ddd;
+    }
   }
 
   // code block
