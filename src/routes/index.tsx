@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import PostList from 'pages/PostList'
 import PostDetail from 'pages/PostDetail'
 import PostsWithTag from 'pages/PostsWithTag'
@@ -55,6 +55,7 @@ class Routes extends React.Component {
         <Route exact={true} path="/" component={PostList}/>
         <Route path="/post/:slug" component={PostDetail}/>
         <Route path="/tag/:tagName" component={PostsWithTag}/>
+        <Redirect from="*" to="/" />
       </Switch>
     )
   }
