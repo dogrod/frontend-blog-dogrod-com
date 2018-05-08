@@ -55,6 +55,10 @@
       background: transparent;
       color: #eee;
     }
+
+    @media screen and (max-width: 700px) {
+      margin: 0;
+    }
   }
 
   // list block
@@ -69,5 +73,11 @@
     color: #657b83;
     margin: 0 5px;
     text-decoration: underline;
+  }
+
+  // image block
+  img {
+    margin: 0 auto;
+    display: block;
   }
 }
