@@ -21,7 +21,12 @@ app.use(koaLogger())
 
 app.use(transmitBundleFile)
 
-app.use(serve(path.join(process.cwd(), 'build')))
+app.use(serve(
+  path.join(process.cwd(), 'build'),
+  {
+    maxage: 1000 * 60 * 60 * 24 * 20,
+  }
+))
 
 // app.use(router.routes())
 
