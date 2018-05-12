@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "baseUrl": "../", // Base directory to resolve non-relative module names.
+    "target": "es6", // Specify ECMAScript target version
+    "module": "esnext", // Specify module code generation
+    "lib": [ // List of library files to be included in the compilation.
+      "es6",
+      "es2017.object",
+      "dom"
+    ],
+    "experimentalDecorators": true, // Enables experimental support for ES decorators.
+    "sourceMap": true, // Generates corresponding .map file.
+    "allowJs": true, // Allow JavaScript files to be compiled.
+    "jsx": "preserve", // Support JSX in .tsx files
+    "moduleResolution": "node", // Determine how modules get resolved.
+    "forceConsistentCasingInFileNames": true, // Disallow inconsistently-cased references to the same file.
+    "allowSyntheticDefaultImports": true, // Allow default imports from modules with no default export. This does not affect code emit, just typechecking.
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
