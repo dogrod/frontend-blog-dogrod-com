@@ -4,7 +4,8 @@
   "private": true,
   "description": "> My own blog project. > > [> Dokodemo Door](http://blog.dogrod.com)",
   "scripts": {
-    "start": "NODE_ENV=development node server/index.js"
+    "start": "NODE_ENV=development node scripts/start-dev.js",
+    "start:server": "nodemon server/index.js"
   },
   "main": "server/index.js",
   "repository": {
@@ -21,20 +22,26 @@
   },
   "homepage": "https://github.com/dogrod/blog_dogrod_com#readme",
   "dependencies": {
+    "axios": "^0.18.0",
+    "ip": "^1.1.5",
     "koa": "^2.5.1",
     "koa-logger": "^3.2.0",
+    "nodemon": "^1.17.4",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
-    "ts-node": "^6.0.3"
+    "ts-node": "^6.0.3",
+    "winston": "^2.4.2"
   },
   "devDependencies": {
+    "@types/ip": "^0.0.31",
     "@types/koa": "^2.0.45",
     "@types/koa-logger": "^3.1.0",
     "@types/react": "^16.3.14",
     "@types/react-dom": "^16.0.5",
     "@types/react-router-dom": "^4.2.6",
+    "@types/winston": "^2.3.9",
     "awesome-typescript-loader": "^5.0.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
@@ -44,6 +51,7 @@
     "connect-history-api-fallback": "^1.5.0",
     "html-webpack-plugin": "^3.2.0",
     "koa-connect": "^2.0.1",
+    "react-dev-utils": "^5.0.1",
     "typescript": "^2.8.3",
     "webpack": "^4.8.2",
     "webpack-cli": "^2.1.3",

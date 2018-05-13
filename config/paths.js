@@ -15,5 +15,4 @@ module.exports = {
   serverSrc: resolveAppPath('server'),
   serverTsConfig: resolveAppPath('server/tsconfig.json'),
   appConfig: resolveAppPath('app.config.js'),
-  bundlePath: resolveAppPath('dist')
 }
