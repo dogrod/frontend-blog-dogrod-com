@@ -3,13 +3,14 @@ import path from 'path'
 import axios from 'axios'
 import * as Koa from 'koa'
 
-import isDev from '../utils/is-dev'
 import Logger from '../utils/logger'
 
 const paths = require('../../config/paths')
 
 const appConfig = require(paths.appConfig)
 const bundleDir = appConfig.bundleDir || 'dist'
+
+const { isDev } = require(paths.env)
 
 const logger = Logger('spa')
 
@@ -58,10 +59,10 @@ export default (filter = REG_DEFAULT_FILTER) => {
     // If NODE_ENV is development, retrieving page from webpack-serve
     if (isDev) {
       const webpackServePort = parseInt(appConfig.port, 10) + 100 || 9101
-      const indexPath = `http://localhost:${webpackServePort}/index.html`
+      const INDEX_PATH = `http://localhost:${webpackServePort}/index.html`
       
-      logger.info(`Retrieving page from webpack serve --> ${indexPath}`)
-      return axios.get(indexPath)
+      logger.info(`Retrieving page from webpack serve --> ${INDEX_PATH}`)
+      return axios.get(INDEX_PATH)
         .then((response) => {
           ctx.body = response.data
         })

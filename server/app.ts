@@ -2,12 +2,13 @@ import * as ip from 'ip'
 import * as Koa from 'koa'
 import * as koaLogger from 'koa-logger'
 
-import isDev from './utils/is-dev'
 import spaMiddleware from './middlewares/spa'
 import Logger from './utils/logger'
 
 const paths = require('../config/paths.js')
 const appConfig = require(paths.appConfig)
+
+const { isDev } = require(paths.env)
 
 const logger = Logger('app')
 const port = parseInt(appConfig.port, 10) || 9001

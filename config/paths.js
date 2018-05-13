@@ -7,7 +7,6 @@ const resolveAppPath = relativePath => path.resolve(appDirectory, relativePath)
 
 module.exports = {
   babelConfig: resolveAppPath('config/babel.config.js'),
-  webpackBaseConfig: resolveAppPath('config/webpack.config.base.js'),
   favicon: resolveAppPath('favicon.ico'),
   htmlTemplate: resolveAppPath('index.template.ejs'),
   clientSrc: resolveAppPath('client'),
@@ -15,4 +14,8 @@ module.exports = {
   serverSrc: resolveAppPath('server'),
   serverTsConfig: resolveAppPath('server/tsconfig.json'),
   appConfig: resolveAppPath('app.config.js'),
+  env: resolveAppPath('config/env.js'),
+  webpackBaseConfig: resolveAppPath('config/webpack.config.base.js'),
+  webpackDevConfig: resolveAppPath('config/webpack.config.dev.js'),
+  webpackProdConfig: resolveAppPath('config/webpack.config.prod.js'),
 }

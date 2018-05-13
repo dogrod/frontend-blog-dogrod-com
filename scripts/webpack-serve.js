@@ -3,7 +3,7 @@ const history = require('connect-history-api-fallback')
 const connect = require('koa-connect')
 
 const paths = require('../config/paths')
-const config = require('../config/webpack.config.base')
+const config = require('./webpack.config')
 
 const appConfig = require(paths.appConfig)
 
