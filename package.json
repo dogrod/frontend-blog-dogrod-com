@@ -4,7 +4,7 @@
   "private": true,
   "description": "> My own blog project. > > [> Dokodemo Door](http://blog.dogrod.com)",
   "scripts": {
-    "start": "NODE_ENV=development node scripts/webpack-serve.js"
+    "start": "NODE_ENV=development node scripts/start-webpack-serve.js"
   },
   "main": "server/index.js",
   "repository": {
@@ -22,18 +22,23 @@
   "homepage": "https://github.com/dogrod/blog_dogrod_com#readme",
   "dependencies": {
     "react": "^16.3.2",
-    "react-dom": "^16.3.2"
+    "react-dom": "^16.3.2",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2"
   },
   "devDependencies": {
     "@types/react": "^16.3.14",
     "@types/react-dom": "^16.0.5",
+    "@types/react-router-dom": "^4.2.6",
     "awesome-typescript-loader": "^5.0.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
+    "connect-history-api-fallback": "^1.5.0",
     "html-webpack-plugin": "^3.2.0",
+    "koa-connect": "^2.0.1",
     "typescript": "^2.8.3",
     "webpack": "^4.8.2",
     "webpack-cli": "^2.1.3",
