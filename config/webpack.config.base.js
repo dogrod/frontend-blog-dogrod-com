@@ -3,13 +3,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const paths = require('./paths')
 
+const bundleDir = paths.appConfig.bundleDir || 'dist'
+
 module.exports = {
   entry: {
     index: './client/index.tsx',
   },
   output: {
     filename: '[name].[hash:8].js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, bundleDir),
   },
   devtool: 'source-map',
   resolve: {

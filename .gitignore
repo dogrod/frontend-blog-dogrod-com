@@ -21,5 +21,6 @@ yarn-debug.log*
 yarn-error.log*
 
 pm2.json
-server.config.*
+server.config.js
+app.config.js
 dev-*.*
