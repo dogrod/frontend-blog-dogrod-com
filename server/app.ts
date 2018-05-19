@@ -2,6 +2,7 @@ import * as ip from 'ip'
 import * as Koa from 'koa'
 import * as koaLogger from 'koa-logger'
 
+import errorMiddleware from './middlewares/error'
 import spaMiddleware from './middlewares/spa'
 import Logger from './utils/logger'
 
@@ -16,6 +17,8 @@ const port = parseInt(appConfig.port, 10) || 9001
 const app = new Koa()
 
 app.use(koaLogger())
+
+app.use(errorMiddleware)
 
 app.use(spaMiddleware())
 
