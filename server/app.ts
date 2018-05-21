@@ -4,6 +4,7 @@ import * as koaLogger from 'koa-logger'
 
 import errorMiddleware from './middlewares/error'
 import spaMiddleware from './middlewares/spa'
+import httpMiddleware from './middlewares/http'
 import Logger from './utils/logger'
 
 const paths = require('../config/paths.js')
@@ -21,6 +22,8 @@ app.use(koaLogger())
 app.use(errorMiddleware)
 
 app.use(spaMiddleware())
+
+app.use(httpMiddleware)
 
 app.listen(port, () => {
   if (!isDev) return
