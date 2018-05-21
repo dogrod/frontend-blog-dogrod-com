@@ -1,13 +1,13 @@
 import * as Koa from 'koa'
-import logger from '../utils/logger'
+import Logger from '../utils/logger'
 
-const log = logger('error-handler')
+const logger = Logger('error-handler')
 
 export default async (ctx: Koa.Context, next: () => void) => {
   try {
     await next()
   } catch (error) {
-    log.error(`An error occurred: ${error.message}`)
+    logger.error(`An error occurred: ${error.message}`)
     const status = error.code ? 500 : error.status || 500
     
     const message = error.message || '网络错误，请稍后重试'
