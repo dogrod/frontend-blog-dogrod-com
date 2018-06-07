@@ -45,7 +45,7 @@ axiosInstance.interceptors.response.use(
 
     const requestMethod = config.method || ''
 
-    logger.info(`<-- Remote server response(${response.status}) cost ${Date.now() - config._requestStartTimestamp}ms for '${requestMethod.toUpperCase()} ${config.url}': ${JSON.stringify(response.data, null, 2)}`)
+    logger.info(`<-- Remote server response(${response.status}) cost ${Date.now() - config._requestStartTimeStamp}ms for '${requestMethod.toUpperCase()} ${config.url}': ${JSON.stringify(response.data, null, 2)}`)
 
     return response
   },
