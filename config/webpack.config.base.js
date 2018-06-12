@@ -1,11 +1,9 @@
 // Basic webpack configuration
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 
 const paths = require('./paths')
-
-const appConfig = require(paths.appConfig)
-const bundleDir = appConfig.bundleDir || 'dist'
 
 module.exports = () => {
   return {
@@ -14,13 +12,18 @@ module.exports = () => {
     },
     output: {
       filename: '[name].[hash:8].js',
-      path: path.resolve(__dirname, bundleDir),
+      path: paths.bundlePath,
     },
     resolve: {
+      // Add '.ts' and '.tsx' as resolvable extensions.
       extensions: ['.ts', '.tsx', '.js', '.json'],
+      alias: {
+        '@': paths.clientSrc,
+      },
     },
     module: {
       rules: [
+        // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
         {
           test: /\.(ts|tsx)$/,
           exclude: /node_modules/,
@@ -41,9 +44,34 @@ module.exports = () => {
             },
           }],
         },
+        // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
+        {
+          enforce: 'pre',
+          test: /\.js?$/,
+          use: 'source-map-loader',
+          exclude: /node_modules/,
+        },
+        // All files with '.js' extension will be handled by babel-load
+        {
+          test: /\.js?$/,
+          use: 'babel-loader',
+          exclude: /node_modules/,
+        },
+        // All static file will be handled by url-laoder
+        {
+          test: /\.(gif|jpg|jpeg|png|bmp|svg|woff|woff2|eot|ttf)(\?.*)?$/,
+          use: [{
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+              name: 'resources/[path][name].[hash:8].[ext]',
+            },
+          }],
+        },
       ],
     },
     plugins: [
+      new CaseSensitivePathsPlugin(),
       new HtmlWebpackPlugin({
         favicon: paths.favicon,
         filename: 'index.html',

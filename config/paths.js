@@ -18,4 +18,5 @@ module.exports = {
   webpackBaseConfig: resolveAppPath('config/webpack.config.base.js'),
   webpackDevConfig: resolveAppPath('config/webpack.config.dev.js'),
   webpackProdConfig: resolveAppPath('config/webpack.config.prod.js'),
+  bundlePath: resolveAppPath('dist'),
 }
