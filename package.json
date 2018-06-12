@@ -5,7 +5,8 @@
   "description": "> My own blog project. > > [> Dokodemo Door](http://blog.dogrod.com)",
   "scripts": {
     "start": "NODE_ENV=development node scripts/start-dev.js",
-    "start:server": "nodemon server/index.js"
+    "start:server": "nodemon server/index.js",
+    "build": "NODE_ENV=production rm -rf dist && ./node_modules/.bin/webpack --config ./config/webpack.config.prod.js"
   },
   "main": "server/index.js",
   "repository": {

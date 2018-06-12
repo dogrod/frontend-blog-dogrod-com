@@ -12,7 +12,7 @@ module.exports = () => {
     },
     output: {
       filename: '[name].[hash:8].js',
-      chunkFileName: '[name].[hash:8].bundle.js',
+      chunkFilename: '[name].[hash:8].bundle.js',
       path: paths.bundlePath,
     },
     resolve: {
