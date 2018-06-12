@@ -24,3 +24,6 @@ pm2.json
 server.config.js
 app.config.js
 dev-*.*
+
+# bundle files
+/dist
