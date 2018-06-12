@@ -25,4 +25,13 @@ config.plugins = (config.plugins || []).concat([
   }),
 ])
 
+// Define handler for files with .scss/.css extensions
+config.module.rules.push({
+  test: /\.scss?$/,
+  use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
+}, {
+  test: /\.css?$/,
+  use: ['style-loader', 'css-loader', 'postcss-loader'],
+})
+
 module.exports = config
