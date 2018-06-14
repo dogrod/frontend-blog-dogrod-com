@@ -1,7 +1,7 @@
-import fs from 'fs'
-import path from 'path'
-import axios from 'axios'
+import * as fs from 'fs'
+import * as path from 'path'
 import * as Koa from 'koa'
+import axios from 'axios'
 
 import Logger from '../utils/logger'
 
@@ -14,8 +14,8 @@ const { isDev } = require(paths.env)
 
 const logger = Logger('spa')
 
-// Detect any path if match a extension in the end
-const REG_STATIC_FILE = /\.[a-z]*$/i
+// Detect if match ant static file extension in the end of path
+const REG_STATIC_FILE = /\.(js|css|gif|jpg|jpeg|png|bmp|svg|woff|woff2|eot|ttf)(\?.*)?$/i
 // default filter rule
 const REG_DEFAULT_FILTER = /^\/api/
 
