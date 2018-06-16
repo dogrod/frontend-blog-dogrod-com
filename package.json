@@ -45,6 +45,7 @@
     "@types/react-dom": "^16.0.5",
     "@types/react-router-dom": "^4.2.6",
     "@types/winston": "^2.3.9",
+    "autoprefixer": "^8.6.2",
     "awesome-typescript-loader": "^5.0.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
