@@ -1,0 +1,23 @@
+@import './variables.scss';
+
+body {
+  margin: 0;
+  padding: 0;
+  
+  color: $blue;
+  font-size: $global-font-size;
+  font-family: $global-font-family;
+  line-height: $global-line-height;
+  font-weight: $global-font-weight;;
+}
+
+a, a:active {
+  color: $blue;
+  text-decoration: none;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
