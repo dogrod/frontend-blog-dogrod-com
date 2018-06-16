@@ -1,0 +1,31 @@
+// Global
+//-------------------------------
+$global-font-size: 14px;
+$global-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+"Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+SimSun, sans-serif;
+$global-font-weight: 400;
+$global-line-height: 1.5;
+
+// Colors
+//-------------------------------
+$black: #333;
+$white: #FFF;
+$gray-light: #e6e6e6;
+$pink: #E54973;
+$blue: #2C3E50;
+$blue-light: mix($white, $blue);
+
+// Font-size
+//-------------------------------
+$font-size-extra-large: 20px;
+$font-size-large: 16px;
+$font-size-medium: $global-font-size;
+$font-size-small: 13px;
+$font-size-extra-small: 12px;
+
+// Font-weight
+//-------------------------------
+$bold: 700;
+$regular: $global-font-weight;
+$thin: 200;
