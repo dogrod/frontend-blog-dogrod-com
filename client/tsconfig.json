@@ -22,6 +22,11 @@
     "noImplicitThis": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
+    "paths": {
+      "@/*": [
+        "client/*"
+      ]      
+    }
   },
   "exclude": [
     "node_modules"
