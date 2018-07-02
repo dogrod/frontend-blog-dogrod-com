@@ -21,3 +21,18 @@ ul {
   margin: 0;
   list-style: none;
 }
+
+.app {
+  max-width: 700px;
+  padding: 10px;
+  margin: 10px auto 20px;
+  position: relative;
+}
+
+.content {
+  padding: 30px 10px;
+  
+  @media screen and (max-width: 700px) {
+    padding-top: 10px;
+  }
+}
