@@ -19,7 +19,7 @@ class NavBar extends React.Component {
               <Link to="/" className={`${PREFIX_CLASS}--active`}>BLOG</Link>
             </li>
             <li>
-              <a onClick={() => alert('Coming soon...')}>FOR MY FERRARI</a>
+              <a onClick={() => alert('Coming soon')}>FOR MY FERRARI</a>
             </li>
             <li>
               <a href="//www.github.com/dogrod" target="_blank">GIT HUB</a>

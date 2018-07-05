@@ -25,11 +25,13 @@
   "homepage": "https://github.com/dogrod/blog_dogrod_com#readme",
   "dependencies": {
     "axios": "^0.18.0",
+    "babel-polyfill": "^6.26.0",
     "ip": "^1.1.5",
     "koa": "^2.5.1",
     "koa-better-http-proxy": "^0.2.4",
     "koa-logger": "^3.2.0",
     "nodemon": "^1.17.4",
+    "normalize.css": "^8.0.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-router": "^4.2.0",
