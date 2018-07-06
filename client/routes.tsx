@@ -8,6 +8,7 @@ import Tag from './pages/tag'
 export default [
   <Route exact key="post-list" path="/" component={PostList} />,
   <Route key="post-detail" path="/post/:slug" component={PostDetail} />,
-  <Route key="tag" path="/tag/:tagName" component={Tag} />,
+  <Route key="tag" path="/tags/:tagName" component={PostList} />,
+  <Route key="tags" path="/tags" component={Tag} />,
   <Redirect key="not-found" to="/" />
 ]
