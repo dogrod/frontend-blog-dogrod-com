@@ -1,5 +1,6 @@
 import * as React from 'react'
 // import { AxiosResponse } from 'axios'
+import { Link } from 'react-router-dom'
 
 // import { PostListResponse } from '@/types/api'
 import BlogTypes from '@/types/blog'
@@ -9,6 +10,8 @@ import api from '@/api'
 
 import List from '@/components/list'
 import ListItem from '@/components/list/item'
+
+import './index.scss'
 
 interface StateTypes {
   list: BlogTypes.Post[],
@@ -72,21 +75,32 @@ class PostList extends React.Component<{}, StateTypes> {
     const { list, isLoading } = state
 
     const renderList = () => {
-      return list.map((item) => (
-        <ListItem key={item.id}>
-          <div className={`${PREFIX_CLASS}__publish-time`}>
-            {convertTimeFormat(item.publish_at)}
-          </div>
-          <div className={`${PREFIX_CLASS}__content`}>
-            <div className={`${PREFIX_CLASS}__title`}>
-              {item.title}
+      return list.map((item) => {
+        const url = `/post/${item.slug}`
+
+        return (
+          <ListItem key={item.id}>
+            <div className={`${PREFIX_CLASS}__publish-time`}>
+              {convertTimeFormat(item.publish_at)}
             </div>
-            <div className={`${PREFIX_CLASS}__summary`}>
-              {item.content}
+            <div className={`${PREFIX_CLASS}__content`}>
+              <div className={`${PREFIX_CLASS}__title`}>
+                <Link to={url}>
+                  {item.title}
+                </Link>
+              </div>
+              <div className={`${PREFIX_CLASS}__summary`}>
+                <div dangerouslySetInnerHTML={{__html: item.content}} />
+                <span className={`${PREFIX_CLASS}__summary__view`}>
+                  <Link to={url}>
+                    查看全文
+                  </Link>
+                </span>
+              </div>
             </div>
-          </div>
-        </ListItem>
-      ))
+          </ListItem>
+        )
+      })
     }
 
     return (

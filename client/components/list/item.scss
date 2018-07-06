@@ -1,0 +1,10 @@
+.list-item {
+  display: flex;
+  padding: 30px 50px 10px;
+
+  @media screen and (max-width: 700px) {
+    padding-top: 10px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
