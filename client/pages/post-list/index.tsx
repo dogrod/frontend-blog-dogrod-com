@@ -7,10 +7,15 @@ import BlogTypes from '@/types/blog'
 import http from '@/utils/http'
 import api from '@/api'
 
+import List from '@/components/list'
+import ListItem from '@/components/list/item'
+
 interface StateTypes {
   list: BlogTypes.Post[],
   isLoading: Boolean,
 }
+
+const PREFIX_CLASS = 'post-list'
 
 class PostList extends React.Component<{}, StateTypes> {
   constructor(props: {}) {
@@ -58,13 +63,42 @@ class PostList extends React.Component<{}, StateTypes> {
     this.setState({ isLoading })
   }
 
+  convertTimeFormat(time: string) {
+    return new Date(time).toLocaleString('zh-cn', { month: 'long', day: 'numeric', timeZone: 'Asia/Shanghai'})
+  }
+
   render() {
-    const { list, isLoading } = this.state
+    const { state, convertTimeFormat } = this
+    const { list, isLoading } = state
+
+    const renderList = () => {
+      return list.map((item) => (
+        <ListItem key={item.id}>
+          <div className={`${PREFIX_CLASS}__publish-time`}>
+            {convertTimeFormat(item.publish_at)}
+          </div>
+          <div className={`${PREFIX_CLASS}__content`}>
+            <div className={`${PREFIX_CLASS}__title`}>
+              {item.title}
+            </div>
+            <div className={`${PREFIX_CLASS}__summary`}>
+              {item.content}
+            </div>
+          </div>
+        </ListItem>
+      ))
+    }
 
     return (
-      <div>
+      <div className={PREFIX_CLASS}>
         {
-          isLoading ? 'Loading...' : list.length
+          isLoading
+            ? 'Loading...'
+            : (
+              <List>
+                {renderList()}
+              </List>
+            )
         }
       </div>
     )
