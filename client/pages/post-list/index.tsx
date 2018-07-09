@@ -38,7 +38,7 @@ class PostList extends React.Component<{}, StateTypes> {
       const list = await this.fetchPostListData()
 
       this.setState({
-        list: list
+        list
       })
     } catch (error) {
       console.error(error)
@@ -53,8 +53,7 @@ class PostList extends React.Component<{}, StateTypes> {
     
     try {
       // FIXME: Fix conflict between axios response & axios response interceptors
-      const response: any
-        = await http.get(url)
+      const response: any = await http.get(url)
 
       return response.result.posts
     } catch (error) {
