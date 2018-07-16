@@ -80,7 +80,7 @@ class PostList extends React.Component<{}, StateTypes> {
         return (
           <ListItem key={item.id}>
             <div className={`${PREFIX_CLASS}__publish-time`}>
-              {convertTimeFormat(item.publish_at)}
+              {convertTimeFormat(item.publishAt)}
             </div>
             <div className={`${PREFIX_CLASS}__content`}>
               <div className={`${PREFIX_CLASS}__title`}>

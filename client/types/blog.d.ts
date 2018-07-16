@@ -20,7 +20,7 @@ declare namespace Blog {
     id: number
     title: string
     slug: string
-    publish_at: string
+    publishAt: string
     content: string
 
     author: Author
