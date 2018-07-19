@@ -2,6 +2,7 @@ import * as Koa from 'koa'
 import * as koaHttpProxy from 'koa-better-http-proxy'
 
 import Logger from '../utils/logger'
+import { URL } from 'url';
 
 const logger = Logger('proxy')
 
@@ -17,11 +18,16 @@ const proxyMiddleware = () => {
 
     Object.keys(proxyConfig).forEach((prefix: string) => {
       if (url.startsWith(prefix)) {
-        const target = proxyConfig[prefix]
+        const proxyURL = new URL(proxyConfig[prefix])
+        
+        const proxyPort = proxyURL.port
+        const target = `${proxyURL.protocol}//${proxyURL.hostname}${proxyPort ? ':' : null}${proxyPort}`
+        const proxyPathPrefix = proxyURL.pathname
 
-        ctx.url = url.replace(prefix, '')
+        ctx.url = `${proxyPathPrefix}${url.replace(prefix, '')}`
         proxyTarget = target
         
+        logger.info(`Proxy target: ${target}, request URL ${ctx.url}`)
         logger.info(`Catch a proxy request: ${prefix} => ${proxyTarget}`)
       }
     })
