@@ -21,7 +21,7 @@ const proxyMiddleware = () => {
         const proxyURL = new URL(proxyConfig[prefix])
         
         const proxyPort = proxyURL.port
-        const target = `${proxyURL.protocol}//${proxyURL.hostname}${proxyPort ? ':' : null}${proxyPort}`
+        const target = `${proxyURL.protocol}//${proxyURL.hostname}${proxyPort ? ':' : ''}${proxyPort}`
         const proxyPathPrefix = proxyURL.pathname
 
         ctx.url = `${proxyPathPrefix}${url.replace(prefix, '')}`
