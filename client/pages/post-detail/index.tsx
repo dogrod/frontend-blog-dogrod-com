@@ -14,6 +14,8 @@ interface StateTypes {
   isLoading: boolean
 }
 
+const PREFIX_CLASS = 'post-detail'
+
 class PostDetail extends React.Component<PropTypes, StateTypes> {
   constructor(props: PropTypes) {
     super(props)
@@ -58,9 +60,24 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
   }
 
   render() {
+    const { post } = this.state
+
+    const renderPostContent = (postData: BlogTypes.Post) => [
+      <div className={`${PREFIX_CLASS}__title`}>{postData.title}</div>,
+      <div className={`${PREFIX_CLASS}__category`}>{postData.category}</div>,
+      <div className={`${PREFIX_CLASS}__content`}>{postData.content}</div>,
+      <div className={`${PREFIX_CLASS}__tags`}>
+        {
+          postData.tags.map(tag => (<a>{tag}</a>))
+        }
+      </div>,
+    ]
+
     return (
-      <div>
-        Post Detail
+      <div className={PREFIX_CLASS}>
+        {
+          post ? renderPostContent(post) : null
+        }
       </div>
     )
   }
