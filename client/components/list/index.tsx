@@ -3,14 +3,10 @@ import './index.scss'
 
 const PREFIX_CLASS = 'list'
 
-class App extends React.Component {
-  render() {
-    return (
-      <ul className={PREFIX_CLASS}>
-        {this.props.children}
-      </ul>
-    )
-  }
-}
+const List: React.SFC = (props) => (
+  <ul className={PREFIX_CLASS}>
+    {props.children}
+  </ul>
+)
 
-export default App
+export default List
