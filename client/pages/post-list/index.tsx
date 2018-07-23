@@ -7,6 +7,7 @@ import BlogTypes from '@/types/blog'
 
 import http from '@/utils/http'
 import api from '@/api'
+import { convertTimeFormat } from '@/utils'
 
 import List from '@/components/list'
 import ListItem from '@/components/list/item'
@@ -65,12 +66,8 @@ class PostList extends React.Component<{}, StateTypes> {
     this.setState({ isLoading })
   }
 
-  convertTimeFormat(time: string) {
-    return new Date(time).toLocaleString('zh-cn', { month: 'long', day: 'numeric', timeZone: 'Asia/Shanghai'})
-  }
-
   render() {
-    const { state, convertTimeFormat } = this
+    const { state } = this
     const { list, isLoading } = state
 
     const renderList = () => {
