@@ -78,7 +78,7 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
           }
         </div>
         <div className={`${PREFIX_CLASS}__publish-time`}>发布于{convertTimeFormat(postData.publishAt)}</div>
-        <hr />
+        <hr className="divider" />
       </React.Fragment>
     )
 
