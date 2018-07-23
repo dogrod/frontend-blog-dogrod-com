@@ -5,6 +5,9 @@ import BlogTypes from '@/types/blog'
 
 import http from '@/utils/http'
 import api from '@/api'
+import { convertTimeFormat } from '@/utils'
+
+import './index.scss'
 
 interface PropTypes extends RouteComponentProps<{ slug: string }> {}
 
@@ -62,16 +65,22 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
   render() {
     const { post } = this.state
 
-    const renderPostContent = (postData: BlogTypes.Post) => [
-      <div className={`${PREFIX_CLASS}__title`}>{postData.title}</div>,
-      <div className={`${PREFIX_CLASS}__category`}>{postData.category}</div>,
-      <div className={`${PREFIX_CLASS}__content`}>{postData.content}</div>,
-      <div className={`${PREFIX_CLASS}__tags`}>
-        {
-          postData.tags.map(tag => (<a>{tag}</a>))
-        }
-      </div>,
-    ]
+    const renderPostContent = (postData: BlogTypes.Post) => (
+      <React.Fragment>
+        <div className={`${PREFIX_CLASS}__title`}>{postData.title}</div>
+        <div className={`${PREFIX_CLASS}__category`}>{postData.category}</div>
+        <div className={`${PREFIX_CLASS}__content`}>{postData.content}</div>
+        <div className={`${PREFIX_CLASS}__tags`}>
+          {
+            postData.tags.map(tag => 
+              <a key={tag} className={`${PREFIX_CLASS}__tag`}>{tag}</a>
+            )
+          }
+        </div>
+        <div className={`${PREFIX_CLASS}__publish-time`}>发布于{convertTimeFormat(postData.publishAt)}</div>
+        <hr />
+      </React.Fragment>
+    )
 
     return (
       <div className={PREFIX_CLASS}>

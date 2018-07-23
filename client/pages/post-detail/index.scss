@@ -1,0 +1,62 @@
+@import '~@/assets/styles/variables';
+
+.post-detail {
+  padding: 10px;
+
+  &__title,
+  &__category {
+    text-align: center;
+  }
+
+  &__title {
+    font-size: $font-size-extra-large;
+
+    letter-spacing: 1px;
+
+    @media screen and (max-width: 700px) {
+      font-size: $font-size-large;      
+    }
+  }
+
+  &__category,
+  &__publish-time {
+    color: $blue-light;
+  }
+
+  &__content {
+    font-size: $global-font-size;
+    padding: 10px 0;
+  }
+
+  &__tags {
+    padding-top: 10px;
+  }
+
+  &__tag {
+    padding: 5px 10px;
+    margin: 0 8px 8px 0;
+
+    cursor: pointer;
+    background: mix($black, $white, 5%);
+    border-radius: 3px;
+    transition: .2s;
+
+    &:hover {
+      background: mix($black, $white, 15%);
+    }
+  }
+
+  &__publish-time {
+    padding: 10px 0;
+    text-align: right;
+  }
+
+  hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid $blue-light;
+    margin: 1em 0;
+    padding: 0; 
+  }
+}
