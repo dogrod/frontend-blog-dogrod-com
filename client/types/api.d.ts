@@ -1,4 +1,5 @@
 import BlogTypes from './blog'
+import UserTypes from './user'
 
 // From https://github.com/Microsoft/TypeScript/issues/1940
 // declare should be optional on type aliases and interfaces.
@@ -27,4 +28,13 @@ export interface PostListResponse extends API.Response {
 
 export interface PostDetailResponse extends API.Response {
   result: BlogTypes.Post
+}
+
+export interface LogInResponse extends API.Response {
+  result: {
+    // JSON Web Token
+    token: UserTypes.Token
+
+    user: UserTypes.Info
+  }
 }

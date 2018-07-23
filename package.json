@@ -26,6 +26,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
+    "immutability-helper": "^2.7.1",
     "ip": "^1.1.5",
     "koa": "^2.5.1",
     "koa-better-http-proxy": "^0.2.4",
