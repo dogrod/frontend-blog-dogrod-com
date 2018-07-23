@@ -29,7 +29,11 @@ class Login extends React.Component<{}, StateTypes> {
     }
   }
 
-  // Handle input change event
+  /**
+   * Handle input change event
+   * @param value - current value
+   * @param key - key of current value in form
+   */
   handleChange = (value: string, key: string) => {
     const newState = update(this.state, {
       form: {
@@ -42,7 +46,10 @@ class Login extends React.Component<{}, StateTypes> {
     this.setState(newState)
   }
 
-  // Handle form submit event
+  /**
+   * Handle form submit event
+   * @param e - event payload
+   */
   handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
@@ -56,7 +63,11 @@ class Login extends React.Component<{}, StateTypes> {
     }
   }
 
-  // Submit login form data
+  /**
+   * Submit login form data
+   * @param data - data to submit
+   * @returns promise instance
+   */
   submitLoginForm = async (data: LoginForm) => {
     const url = api.login
     

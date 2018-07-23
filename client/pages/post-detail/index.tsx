@@ -45,7 +45,11 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
     }
   }
 
-  async fetchPostDetailData() {
+  /**
+   * fetch post detail data
+   * @returns promise instance
+   */
+  fetchPostDetailData = async () => {
     const { slug } = this.state
     const url = `${api.getPosts}/${slug}`
     
@@ -58,7 +62,11 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
     }
   }
 
-  setLoadingStatus(isLoading: boolean) {
+  /**
+   * set loading status
+   * @param isLoading - loading status
+   */
+  setLoadingStatus = (isLoading: boolean) => {
     this.setState({ isLoading })
   }
 

@@ -49,7 +49,11 @@ class PostList extends React.Component<{}, StateTypes> {
     }
   }
 
-  async fetchPostListData() {
+  /**
+   * fetch post list data
+   * @returns promise instance
+   */
+  fetchPostListData = async () => {
     const url = api.getPosts
     
     try {
@@ -62,6 +66,10 @@ class PostList extends React.Component<{}, StateTypes> {
     }
   }
 
+  /**
+   * set loading status
+   * @param isLoading - loading status
+   */
   setLoadingStatus(isLoading: boolean) {
     this.setState({ isLoading })
   }
