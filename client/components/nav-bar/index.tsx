@@ -45,7 +45,7 @@ class NavBar extends React.Component<{}, StateProps> {
       <div className={className}>
         <Link to="/login">登录</Link>
         /
-        <Link to="/login">注册</Link>
+        <Link to="/signup">注册</Link>
       </div>
     )
   }
