@@ -23,16 +23,16 @@ ul {
 }
 
 .app {
-  max-width: 700px;
+  max-width: 1000px;
   padding: 10px;
   margin: 10px auto 20px;
   position: relative;
 }
 
 .content {
-  padding: 30px 10px;
+  padding: 10px;
   
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 650px) {
     padding-top: 10px;
   }
 }

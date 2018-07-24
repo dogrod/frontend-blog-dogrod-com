@@ -1,50 +1,63 @@
 @import '~@/assets/styles/variables.scss';
 
-.nav-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5px 30px;
+.header {
+  padding: 0 50px;
 
   border-bottom: 1px solid #e6e6e6;
 
-  @media screen and (max-width: 700px) {
-    flex-direction: column;
-    padding: 10px 0;
-
-    border-color: transparent;
+  &__top-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &__logo img {
     height: 40px;
   }
 
-  &__nav-list {
+  &__nav-bar {
     margin: 0;
     padding: 0;
 
+    ul {
+      display: flex;
+      justify-content: space-between;
+    }
+
     li {
       display: inline-block;
-      padding: 20px 10px;
+      padding: 10px 20px;
+      margin: 0 5px;
+
+      width: 65px;
+      
+      text-align: center;
 
       a {
-        font-size: $font-size-large;
-
         padding: 5px 0;
-
-        border-bottom: 2px solid transparent;
+        line-height: 30px;
+        font-size: $font-size-large;
+        color: mix($blue, $white, 60%);
         transition: .2s;
         cursor: pointer;
         
         &:hover,
-        &.nav-list--active {
-          border-color: #2c3e50;
+        &.header--active {
+          color: $blue;
         }
       }
+    }
+  }
+}
 
-      @media screen and (max-width: 700px) {
-        padding: 10px;
-      }
+@media screen and (max-width: 650px) {
+  .header {
+    padding: 10px 0;
+    border-color: transparent;
+
+    &__top-bar {
+      display: block;
+      padding: 0 30px;
     }
   }
 }

@@ -1,5 +1,6 @@
 import * as React from 'react'
 import update from 'immutability-helper'
+import { RouteComponentProps } from 'react-router-dom'
 
 import http from '@/utils/http'
 import api from '@/api'
@@ -14,14 +15,16 @@ interface LoginForm {
   password: string
 }
 
+interface PropTypes extends RouteComponentProps<{}> {}
+
 interface StateTypes {
   form: LoginForm
 }
 
 const PREFIX_CLASS = 'login'
 
-class Login extends React.Component<{}, StateTypes> {
-  constructor(props: {}) {
+class Login extends React.Component<PropTypes, StateTypes> {
+  constructor(props: PropTypes) {
     super(props)
 
     this.state = {
@@ -59,8 +62,9 @@ class Login extends React.Component<{}, StateTypes> {
     try {
       const result: any = await this.submitLoginForm(this.state.form)
       
-      console.log(result)
       window.localStorage.setItem('JW_TOKEN', result.token)
+
+      this.props.history.push('/')
     } catch (error) {
       console.error(error)
     }
