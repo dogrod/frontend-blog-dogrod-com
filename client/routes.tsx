@@ -1,14 +1,14 @@
 import * as React from 'react'
 import { Route, RouteComponentProps } from 'react-router-dom'
 
-import NavBar from '@/components/nav-bar'
+import Header from '@/components/header'
 import PostList from './pages/post-list'
 import PostDetail from './pages/post-detail'
 import Tag from './pages/tag'
 
 const Routes: React.SFC<RouteComponentProps<{}>> = (props) => (
   <React.Fragment>
-    <NavBar />
+    <Header />
     <div className="content">
     <Route exact key="post-list" path={props.match.path} component={PostList} />,
     <Route key="post-detail" path={`${props.match.path}post/:slug`} component={PostDetail} />
