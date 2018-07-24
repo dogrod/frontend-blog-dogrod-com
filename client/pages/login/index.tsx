@@ -4,6 +4,9 @@ import update from 'immutability-helper'
 import http from '@/utils/http'
 import api from '@/api'
 
+import Form from '@/components/form'
+import FormItem from '@/components/form/item'
+
 import './index.scss'
 
 interface LoginForm {
@@ -88,23 +91,17 @@ class Login extends React.Component<{}, StateTypes> {
       <div className={PREFIX_CLASS}>
         <h2>登录</h2>
         <hr className="divider" />
-        <form onSubmit={e => handleSubmit(e)}>
-          <div className={`${PREFIX_CLASS}__row`}>
-            <label>
-              用户名：
-              <input type="text" value={form.username} onChange={e => handleChange(e.target.value, 'username')} />
-            </label>
-          </div>
-          <div className={`${PREFIX_CLASS}__row`}>
-            <label>
-              密码：
-              <input type="password" value={form.password} onChange={e => handleChange(e.target.value, 'password')} />
-            </label>
-          </div>
-          <div className={`${PREFIX_CLASS}__row`}>
+        <Form onSubmit={e => handleSubmit(e)}>
+          <FormItem label="用户名">
+            <input type="text" value={form.username} onChange={e => handleChange(e.target.value, 'username')} />
+          </FormItem>
+          <FormItem label="密码">
+            <input type="password" value={form.password} onChange={e => handleChange(e.target.value, 'password')} />
+          </FormItem>
+          <FormItem>
             <input type="submit" value="登录" />
-          </div>
-        </form>
+          </FormItem>
+        </Form>
       </div>
     )
   }

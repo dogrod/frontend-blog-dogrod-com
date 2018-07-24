@@ -1,0 +1,22 @@
+.form-item {
+  display: flex;
+  margin-bottom: 20px;
+
+  &__label {
+    width: 33%;
+    text-align: right;
+
+    &::after {
+      content: ':';
+      margin: 0 5px 0 3px;
+    }
+  }
+
+  &__control-wrapper {
+    flex-grow: 1;
+
+    &--offset {
+      margin-left: 33%;
+    }
+  }
+}
