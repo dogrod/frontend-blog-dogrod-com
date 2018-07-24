@@ -1,9 +1,9 @@
 import * as React from 'react'
-import { BrowserRouter as Router, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 
-import NavBar from '@/components/nav-bar'
+import Login from './pages/login'
 
-import routes from './routes'
+import Routes from './routes'
 import '@/assets/styles/common.scss'
 
 class App extends React.Component {
@@ -11,12 +11,11 @@ class App extends React.Component {
     return (
       <Router>
         <div className="app">
-          <NavBar />
-          <div className="content">
-            <Switch>
-              {routes}
-            </Switch>
-          </div>
+          <Switch>
+            <Route key="login" path="/login" component={Login} />
+            <Route key="root" path="/" component={Routes} />
+            <Redirect key="not-found" to="/" />
+          </Switch>
         </div>
       </Router>
     )
