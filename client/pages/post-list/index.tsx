@@ -7,7 +7,7 @@ import BlogTypes from '@/types/blog'
 
 import http from '@/utils/http'
 import api from '@/api'
-import { convertTimeFormat } from '@/utils'
+import { convertTimeFormat, setTitle } from '@/utils'
 
 import List from '@/components/list'
 import ListItem from '@/components/list/item'
@@ -32,6 +32,7 @@ class PostList extends React.Component<{}, StateTypes> {
   }
 
   async componentDidMount() {
+    setTitle('无敌筋斗雷 x 不唠嗑')
     // Start loading status
     this.setLoadingStatus(true)
 

@@ -5,7 +5,7 @@ import BlogTypes from '@/types/blog'
 
 import http from '@/utils/http'
 import api from '@/api'
-import { convertTimeFormat } from '@/utils'
+import { convertTimeFormat, setTitle } from '@/utils'
 
 import './index.scss'
 
@@ -34,6 +34,8 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
 
     try {
       const post = await this.fetchPostDetailData()
+
+      setTitle(post.title)      
 
       this.setState({
         post

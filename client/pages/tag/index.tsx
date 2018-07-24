@@ -1,7 +1,13 @@
 import * as React from 'react'
 
+import { setTitle } from '@/utils'
+
 class Tag extends React.Component {
-  public render() {
+  componentDidMount() {
+    setTitle('标签')
+  }
+
+  render() {
     return (
       <div>
         Tag

@@ -4,6 +4,7 @@ import { RouteComponentProps } from 'react-router-dom'
 
 import http from '@/utils/http'
 import api from '@/api'
+import { setTitle } from '@/utils'
 
 import Form from '@/components/form'
 import FormItem from '@/components/form/item'
@@ -33,6 +34,10 @@ class Login extends React.Component<PropTypes, StateTypes> {
         password: '',
       },
     }
+  }
+
+  componentDidMount() {
+    setTitle('登录')
   }
 
   /**

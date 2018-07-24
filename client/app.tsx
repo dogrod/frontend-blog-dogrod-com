@@ -8,7 +8,7 @@ import Routes from './routes'
 import '@/assets/styles/common.scss'
 
 class App extends React.Component {
-  public render() {
+  render() {
     return (
       <Router>
         <div className="app">
