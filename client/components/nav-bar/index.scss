@@ -5,24 +5,41 @@
 
   border-bottom: 1px solid #e6e6e6;
 
-  &__top-bar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  &__meta-bar {
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+
+    position: relative;
+
+    padding: 0 30px;
   }
 
   &__logo img {
     height: 40px;
   }
 
+  &__user {
+    position: absolute;
+    right: 10px;
+    bottom: 20px;
+    color: $blue-light;
+    
+    a {
+      margin: 5px;
+      color: $blue-light;
+    }
+  }
+
   &__nav-bar {
+    position: relative;
     margin: 0;
     padding: 0;
 
-    ul {
-      display: flex;
-      justify-content: space-between;
-    }
+    // ul {
+    //   display: flex;
+    //   justify-content: space-between;
+    // }
 
     li {
       display: inline-block;
@@ -35,9 +52,9 @@
 
       a {
         padding: 5px 0;
-        line-height: 30px;
+        line-height: 40px;
         font-size: $font-size-large;
-        color: mix($blue, $white, 60%);
+        color: $blue-light;
         transition: .2s;
         cursor: pointer;
         
@@ -55,9 +72,12 @@
     padding: 10px 0;
     border-color: transparent;
 
-    &__top-bar {
+    &__meta-bar {
       display: block;
-      padding: 0 30px;
+    }
+
+    &__user {
+      bottom: 70px;
     }
   }
 }
