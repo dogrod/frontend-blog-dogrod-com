@@ -26,6 +26,9 @@ declare namespace Blog {
     author: Author
     tags: string[]
     category: string
+
+    likes: number
+    comments: number
   }
 }
 
