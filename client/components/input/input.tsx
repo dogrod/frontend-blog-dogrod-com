@@ -57,12 +57,6 @@ class Input extends React.Component<PropTypes, StateTypes> {
 
   getNativeLikeAttributes = () => omit(this.props, ['size', 'className', 'label'])
 
-  renderWrapper = (
-    label: React.ReactNode,
-    input: React.ReactNode,
-    underline: React.ReactNode,
-  ) => (<div className={this.getClassName()}>{label}{input}{underline}</div>)
-
   renderLabel = (label?: string) => label ? <label className={`${PREFIX_CLASS}__label`} htmlFor={this.id}>{label}</label> : null
 
   renderInputElement = () => (
@@ -76,14 +70,34 @@ class Input extends React.Component<PropTypes, StateTypes> {
 
   renderUnderline = () => <div className={`${PREFIX_CLASS}__underline`}><hr/><hr/></div>
 
-  render() {
-    const { label } = this.props
+  renderTextInput = () => (
+    <div className={this.getClassName()}>
+      {this.renderLabel(this.props.label)}
+      {this.renderInputElement()}
+      {this.renderUnderline()}
+      {}
+    </div>
+  )
 
-    return this.renderWrapper(
-      this.renderLabel(label),
-      this.renderInputElement(),
-      this.renderUnderline()
-    )
+  renderButtonInput = () => (
+    <input {...this.getNativeLikeAttributes()} className={this.getClassName()} />
+  )
+
+  render() {
+    const { type } = this.props
+
+    let element = null
+
+    switch (type) {
+      case 'button':
+      case 'submit':
+        element = this.renderButtonInput()
+        break
+      default:
+        element = this.renderTextInput()
+    }
+
+    return element
   }
 }
 
