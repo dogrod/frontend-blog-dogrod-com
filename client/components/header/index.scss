@@ -1,28 +1,32 @@
 @import '~@/assets/styles/variables.scss';
 
 .header {
+  display: flex;
+  height: 80px;
   padding: 0 50px;
 
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 1px solid $gray-light;
+  box-shadow: 0 1px 1px 0 rgba(116, 129, 141, 0.1);
 
   &__meta-bar {
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
-
     position: relative;
+    display: flex;
+    align-items: center;
 
     padding: 0 30px;
   }
 
-  &__logo img {
-    height: 40px;
+  &__logo{
+    display: inline-block;
+    
+    img {
+      height: 40px;
+    }
   }
 
   &__user {
     position: absolute;
     right: 10px;
-    bottom: 20px;
     color: $blue-light;
     
     a {
@@ -33,13 +37,16 @@
 
   &__nav-bar {
     position: relative;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+
     margin: 0;
     padding: 0;
 
-    // ul {
-    //   display: flex;
-    //   justify-content: space-between;
-    // }
+    ul {
+      width: 100%;
+    }
 
     li {
       display: inline-block;
@@ -69,11 +76,18 @@
 
 @media screen and (max-width: 650px) {
   .header {
+    display: block;
     padding: 10px 0;
+
     border-color: transparent;
 
     &__meta-bar {
       display: block;
+    }
+
+    &__nav-bar ul {
+      display: flex;
+      justify-content: space-between;
     }
 
     &__user {
