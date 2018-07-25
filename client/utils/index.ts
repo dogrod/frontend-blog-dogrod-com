@@ -18,3 +18,16 @@ export const setTitle = (title: string) => {
 
   document.title = title.includes(SITE_TITLE) ? title : `${title} | ${SITE_TITLE}`
 }
+
+
+let lastId = 0
+
+/**
+ * Generate a unique ID
+ * @param prefix - prefix of id
+ * @returns UID
+ */
+export const generateUID = (prefix?: string) => {
+  lastId++
+  return `${prefix}${lastId}`
+}

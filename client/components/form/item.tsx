@@ -17,7 +17,7 @@ const renderLabel = (label?: string) => {
   ) : null
 }
 
-const renderChildren = (children: React.ReactNode, offset: boolean) => {
+const renderChildren = (children: React.ReactNode, offset: boolean = false) => {
   const className = classNames({
     [`${PREFIX_CLASS}__control-wrapper`]: true,
     [`${PREFIX_CLASS}__control-wrapper--offset`]: offset,
@@ -35,7 +35,7 @@ const renderChildren = (children: React.ReactNode, offset: boolean) => {
 const FormItem: React.SFC<PropTypes> = props => (
   <div className={PREFIX_CLASS}>
     {renderLabel(props.label)}
-    {renderChildren(props.children, !props.label)}
+    {renderChildren(props.children)}
   </div>
 )
 

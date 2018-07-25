@@ -11,9 +11,21 @@ body {
   font-weight: $global-font-weight;;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 a, a:active {
   color: $blue;
   text-decoration: none;
+}
+
+input,
+input:focus,
+button,
+button:focus {
+  border: none;
+  outline: none;
 }
 
 ul {
