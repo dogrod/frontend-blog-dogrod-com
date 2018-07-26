@@ -87,7 +87,7 @@ class Login extends React.Component<PropTypes, StateTypes> {
     try {
       const response: any = await http.post(url, data)
 
-      return response.result
+      return response
     } catch (error) {
       throw error
     }

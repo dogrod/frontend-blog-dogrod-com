@@ -61,7 +61,7 @@ class PostList extends React.Component<{}, StateTypes> {
       // FIXME: Fix conflict between axios response & axios response interceptors
       const response: any = await http.get(url)
 
-      return response.result.posts
+      return response.posts
     } catch (error) {
       throw error
     }
