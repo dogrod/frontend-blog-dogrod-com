@@ -8,7 +8,7 @@ import { setTitle } from '@/utils'
 
 import Form from '@/components/form'
 import FormItem from '@/components/form/item'
-import Input, { InputSize } from '@/components/input'
+import TextField, { TextFieldSize } from '@/components/text-field'
 
 import './index.scss'
 
@@ -103,23 +103,25 @@ class Login extends React.Component<PropTypes, StateTypes> {
         <hr className="divider" />
         <Form onSubmit={e => handleSubmit(e)}>
           <FormItem>
-            <Input
+            <TextField
               type="text"
               label="用户名"
               placeholder="请输入用户名"
               value={form.username}
+              size={TextFieldSize.LARGE}
               onChange={e => handleChange(e.target.value, 'username')}/>
           </FormItem>
           <FormItem>
-            <Input
+            <TextField
               type="password"
               label="密码"
               placeholder="请输入密码"
               value={form.password}
+              size={TextFieldSize.LARGE}
               onChange={e => handleChange(e.target.value, 'password')} />
           </FormItem>
           <FormItem>
-            <Input type="submit" value="登录" size={InputSize.SMALL} />
+            <input type="submit" value="登录" />
           </FormItem>
         </Form>
       </div>

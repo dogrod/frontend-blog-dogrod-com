@@ -1,6 +1,6 @@
 @import '~@/assets/styles/variables.scss';
 
-.input {
+.text-field {
   display: inline-block;
   position: relative;
 
@@ -49,8 +49,8 @@
   }
 }
 
-.input--active {
-  .input {
+.text-field--active {
+  .text-field {
     &__label {
       color: $blue-highlight;
       transform: scale(0.75) translate(0, -28px);

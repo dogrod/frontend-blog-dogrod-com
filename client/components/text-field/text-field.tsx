@@ -2,19 +2,19 @@ import * as React from 'react'
 import classNames from 'classnames'
 import omit from 'omit.js'
 
-import Omit from '@/types/utils/omit'
+import Omit from '@/types/utils/Omit'
 import { generateUID } from '@/utils'
 
-import './input.scss'
+import './text-field.scss'
 
-export enum InputSize {
+export enum TextFieldSize {
   DEFAULT = 'DEFAULT',
   SMALL = 'SMALL',
   LARGE = 'LARGE',
 }
 
 interface PropTypes extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
-  size?: InputSize
+  size?: TextFieldSize
   label?: string
 }
 
@@ -22,7 +22,7 @@ interface StateTypes {
   isFocusing: boolean
 }
 
-const PREFIX_CLASS = 'input'
+const PREFIX_CLASS = 'text-field'
 
 class Input extends React.Component<PropTypes, StateTypes> {
   id?: string
@@ -30,7 +30,7 @@ class Input extends React.Component<PropTypes, StateTypes> {
   constructor(props: {}) {
     super(props)
 
-    this.id = generateUID('input-c')
+    this.id = generateUID('text-field-c')
     this.state = {
       isFocusing: false
     }
@@ -48,8 +48,8 @@ class Input extends React.Component<PropTypes, StateTypes> {
     return classNames(
       PREFIX_CLASS,
       {
-        [`${PREFIX_CLASS}--small`]: size === InputSize.SMALL,
-        [`${PREFIX_CLASS}--large`]: size === InputSize.LARGE,
+        [`${PREFIX_CLASS}--small`]: size === TextFieldSize.SMALL,
+        [`${PREFIX_CLASS}--large`]: size === TextFieldSize.LARGE,
         [`${PREFIX_CLASS}--active`]: this.state.isFocusing || value,
       }
     )
@@ -70,7 +70,7 @@ class Input extends React.Component<PropTypes, StateTypes> {
 
   renderUnderline = () => <div className={`${PREFIX_CLASS}__underline`}><hr/><hr/></div>
 
-  renderTextInput = () => (
+  renderTextField = () => (
     <div className={this.getClassName()}>
       {this.renderLabel(this.props.label)}
       {this.renderInputElement()}
@@ -79,25 +79,8 @@ class Input extends React.Component<PropTypes, StateTypes> {
     </div>
   )
 
-  renderButtonInput = () => (
-    <input {...this.getNativeLikeAttributes()} className={this.getClassName()} />
-  )
-
   render() {
-    const { type } = this.props
-
-    let element = null
-
-    switch (type) {
-      case 'button':
-      case 'submit':
-        element = this.renderButtonInput()
-        break
-      default:
-        element = this.renderTextInput()
-    }
-
-    return element
+    return this.renderTextField()
   }
 }
 
