@@ -1,5 +1,6 @@
 @import '~@/assets/styles/variables.scss';
 
+// normal
 .text-field {
   display: inline-block;
   position: relative;
@@ -10,7 +11,6 @@
   &__label {
     position: absolute;
     bottom: 14px;
-    width: 100%;
     cursor: text;
     z-index: 1;
     transform: scale(1) translate(0, 0);
@@ -20,6 +20,7 @@
 
   &__control {
     height: 100%;
+    width: 100%;
     z-index: 1;
 
     &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -47,21 +48,41 @@
       }
     }
   }
-}
 
-.text-field--active {
-  .text-field {
-    &__label {
-      color: $blue-highlight;
-      transform: scale(0.75) translate(0, -28px);
-    }
-
-    &__control::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-      opacity: 1;
-    }
-
-    &__underline :last-child {
-      transform: scaleX(1);
+  // active
+  &.text-field--active {
+    .text-field {
+      &__label {
+        color: $blue-highlight;
+        transform: scale(0.75) translate(0, -28px);
+      }
+  
+      &__control::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        opacity: 1;
+      }
+  
+      &__underline :last-child {
+        transform: scaleX(1);
+      }
     }
   }
+}
+
+// small
+.text-field--small {
+  width: 192px;
+  height: 36px;
+
+  &.text-field--active {
+    .text-field {
+      &__label {
+        transform: scale(0.75) translate(0, -21px);
+      }
+    }
+  }
+}
+
+// large
+.text-field--large {
+  width: 100%;
 }

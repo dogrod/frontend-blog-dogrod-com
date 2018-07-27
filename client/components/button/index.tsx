@@ -4,6 +4,13 @@ import omit from 'omit.js'
 
 interface PropState extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: ButtonSize
+  theme?: ButtonTheme
+}
+
+export enum ButtonTheme {
+  DEFAULT = 'DEFAULT',
+  PRIMARY = 'PRIMARY',
+  SECONDARY = 'SECONDARY',
 }
 
 export enum ButtonSize {
@@ -20,13 +27,15 @@ class Button extends React.Component<PropState> {
   }
 
   getClassName = () => {
-    const { size } = this.props
+    const { size, theme } = this.props
 
     return classNames(
       PREFIX_CLASS,
       {
         [`${PREFIX_CLASS}--small`]: size === ButtonSize.SMALL,
         [`${PREFIX_CLASS}--large`]: size === ButtonSize.LARGE,
+        [`${PREFIX_CLASS}--primary`]: theme === ButtonTheme.PRIMARY,
+        [`${PREFIX_CLASS}--secondary`]: theme === ButtonTheme.SECONDARY,
       },
       this.props.className,
     )
