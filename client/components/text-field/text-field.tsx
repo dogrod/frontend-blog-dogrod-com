@@ -7,12 +7,6 @@ import { generateUID } from '@/utils'
 
 import './text-field.scss'
 
-export enum TextFieldSize {
-  DEFAULT = 'DEFAULT',
-  SMALL = 'SMALL',
-  LARGE = 'LARGE',
-}
-
 interface PropTypes extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   size?: TextFieldSize
   label?: string
@@ -20,6 +14,12 @@ interface PropTypes extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 's
 
 interface StateTypes {
   isFocusing: boolean
+}
+
+export enum TextFieldSize {
+  DEFAULT = 'DEFAULT',
+  SMALL = 'SMALL',
+  LARGE = 'LARGE',
 }
 
 const PREFIX_CLASS = 'text-field'
@@ -51,11 +51,12 @@ class Input extends React.Component<PropTypes, StateTypes> {
         [`${PREFIX_CLASS}--small`]: size === TextFieldSize.SMALL,
         [`${PREFIX_CLASS}--large`]: size === TextFieldSize.LARGE,
         [`${PREFIX_CLASS}--active`]: this.state.isFocusing || value,
-      }
+      },
+      this.props.className,
     )
   }
 
-  getNativeLikeAttributes = () => omit(this.props, ['size', 'className', 'label'])
+  getNativeLikeAttributes = () => omit(this.props, ['size', 'className', 'label', 'children'])
 
   renderLabel = (label?: string) => label ? <label className={`${PREFIX_CLASS}__label`} htmlFor={this.id}>{label}</label> : null
 
