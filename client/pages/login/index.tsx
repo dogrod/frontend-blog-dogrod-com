@@ -10,6 +10,7 @@ import Form from '@/components/form'
 import FormItem from '@/components/form/item'
 import TextField, { TextFieldSize } from '@/components/text-field'
 import Button from '@/components/button'
+import { UserConsumer, UserAction, UserActionType } from '@/context/user'
 
 import './index.scss'
 
@@ -27,6 +28,8 @@ interface StateTypes {
 const PREFIX_CLASS = 'login'
 
 class Login extends React.Component<PropTypes, StateTypes> {
+  dispatch: (action: UserAction) => void
+
   constructor(props: PropTypes) {
     super(props)
 
@@ -69,6 +72,16 @@ class Login extends React.Component<PropTypes, StateTypes> {
     try {
       const result: any = await this.submitLoginForm(this.state.form)
       
+      const { user } = result
+
+      this.dispatch({
+        type: UserActionType.LOGIN,
+        payload: {
+          username: user.username,
+          email: user.email,
+        }
+      })
+
       window.localStorage.setItem('JW_TOKEN', result.token)
 
       this.props.history.push('/')
@@ -124,6 +137,12 @@ class Login extends React.Component<PropTypes, StateTypes> {
           <FormItem>
             <Button type="submit">登录</Button>
           </FormItem>
+          <UserConsumer>{
+            ({ dispatch }) => {
+              this.dispatch = dispatch
+              return null
+            }
+          }</UserConsumer>
         </Form>
       </div>
     )

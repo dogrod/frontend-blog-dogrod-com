@@ -2,35 +2,15 @@ import * as React from 'react'
 import classNames from 'classnames'
 import { Link } from 'react-router-dom'
 
+import { UserConsumer, UserProfile } from '@/context/user'
+
 import logo from '@/assets/images/icon_d.svg'
 import './index.scss'
 
-interface StateProps {
-  isLoggedIn: boolean
-  profile: {
-    username: string
-    email: string
-  }
-}
-
 const PREFIX_CLASS = 'header'
 
-class NavBar extends React.Component<{}, StateProps> {
-  constructor(props: {}) {
-    super(props)
-
-    this.state = {
-      isLoggedIn: false,
-      profile: {
-        username: '',
-        email: '',
-      }
-    }
-  }
-
-  renderProfileOrLogin() {
-    const { isLoggedIn, profile } = this.state
-
+class NavBar extends React.Component {
+  renderProfileOrLogin(isLoggedIn: boolean, profile: UserProfile) {
     const className = classNames({
       [`${PREFIX_CLASS}__user`]: true,
       [`${PREFIX_CLASS}__logged`]: isLoggedIn,
@@ -74,7 +54,7 @@ class NavBar extends React.Component<{}, StateProps> {
             <a href="//www.github.com/dogrod" target="_blank">GIT HUB</a>
           </li>
         </ul>
-        {this.renderProfileOrLogin()}
+        <UserConsumer>{({ isLoggedIn, profile }) => { return this.renderProfileOrLogin(isLoggedIn, profile)}}</UserConsumer>
       </div>
     )
   }
