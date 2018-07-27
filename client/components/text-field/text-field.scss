@@ -72,6 +72,7 @@
 .text-field--small {
   width: 192px;
   height: 36px;
+  font-size: $font-size-small;
 
   &.text-field--active {
     .text-field {

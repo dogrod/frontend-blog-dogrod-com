@@ -1,0 +1,26 @@
+@import '~@/assets/styles/variables.scss';
+
+// normal
+.button {
+  padding: 8px 24px;
+
+  border: 1px solid $blue;
+  border-radius: 20px;
+  transition: all .2s;
+
+  &:hover {
+    color: $white;
+    background-color: $blue;
+  }
+}
+
+// small
+.button--small {
+  padding: 6px 18px;
+  font-size: $font-size-small;
+}
+
+// large
+.button--large {
+  width: 100%;
+}
