@@ -9,6 +9,7 @@ import { setTitle } from '@/utils'
 import Form from '@/components/form'
 import FormItem from '@/components/form/item'
 import TextField, { TextFieldSize } from '@/components/text-field'
+import Button from '@/components/button'
 
 import './index.scss'
 
@@ -121,7 +122,7 @@ class Login extends React.Component<PropTypes, StateTypes> {
               onChange={e => handleChange(e.target.value, 'password')} />
           </FormItem>
           <FormItem>
-            <input type="submit" value="登录" />
+            <Button type="submit">登录</Button>
           </FormItem>
         </Form>
       </div>
