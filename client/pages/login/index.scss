@@ -1,7 +1,10 @@
 .login {
-  padding: 0 50px;
-  margin: 80px auto;
+  padding: 50px;
+  margin: 30px auto;
+
+  min-height: 100vh;
   max-width: 400px;
+  
   text-align: center;
 
   &__form {

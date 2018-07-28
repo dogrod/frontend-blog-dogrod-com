@@ -12,6 +12,7 @@ import TextField, { TextFieldSize } from '@/components/text-field'
 import Button, { ButtonSize } from '@/components/button'
 import { UserConsumer, UserAction, UserActionType } from '@/context/user'
 import Logo from '@/components/logo'
+import SeaWave from '@/components/sea-wave'
 
 import './index.scss'
 import { LogoSize } from '@/components/logo/logo';
@@ -145,6 +146,7 @@ class Login extends React.Component<PropTypes, StateTypes> {
             }
           }</UserConsumer>
         </Form>
+        <SeaWave />
       </div>
     )
   }
