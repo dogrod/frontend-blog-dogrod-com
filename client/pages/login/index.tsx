@@ -9,8 +9,9 @@ import { setTitle } from '@/utils'
 import Form from '@/components/form'
 import FormItem from '@/components/form/item'
 import TextField, { TextFieldSize } from '@/components/text-field'
-import Button from '@/components/button'
+import Button, { ButtonSize } from '@/components/button'
 import { UserConsumer, UserAction, UserActionType } from '@/context/user'
+import Logo from '@/components/logo'
 
 import './index.scss'
 
@@ -113,9 +114,8 @@ class Login extends React.Component<PropTypes, StateTypes> {
 
     return (
       <div className={PREFIX_CLASS}>
-        <h2>登录</h2>
-        <hr className="divider" />
-        <Form onSubmit={e => handleSubmit(e)}>
+        <Logo />
+        <Form className={`${PREFIX_CLASS}__form`} onSubmit={e => handleSubmit(e)}>
           <FormItem>
             <TextField
               type="text"
@@ -134,8 +134,8 @@ class Login extends React.Component<PropTypes, StateTypes> {
               size={TextFieldSize.LARGE}
               onChange={e => handleChange(e.target.value, 'password')} />
           </FormItem>
-          <FormItem>
-            <Button type="submit">登录</Button>
+          <FormItem className={`${PREFIX_CLASS}__submit`}>
+            <Button type="submit" size={ButtonSize.LARGE}>登录</Button>
           </FormItem>
           <UserConsumer>{
             ({ dispatch }) => {

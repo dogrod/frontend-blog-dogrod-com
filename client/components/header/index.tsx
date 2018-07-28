@@ -3,8 +3,8 @@ import classNames from 'classnames'
 import { Link } from 'react-router-dom'
 
 import { UserConsumer, UserProfile } from '@/context/user'
+import Logo from '@/components/logo'
 
-import logo from '@/assets/images/icon_d.svg'
 import './index.scss'
 
 const PREFIX_CLASS = 'header'
@@ -19,7 +19,7 @@ class NavBar extends React.Component {
 
     return isLoggedIn ? (
       <div className={className}>
-        <a>{profile.username}</a>
+        {profile.username}
       </div>
     ) : (
       <div className={className}>
@@ -33,9 +33,7 @@ class NavBar extends React.Component {
   renderTopBar() {
     return (
       <div className={`${PREFIX_CLASS}__meta-bar`}>
-        <Link to="/" className={`${PREFIX_CLASS}__logo`}>
-          <img src={logo} />
-        </Link>
+        <Logo />
       </div>
     )
   }
