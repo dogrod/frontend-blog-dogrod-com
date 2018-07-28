@@ -5,6 +5,7 @@ import './item.scss'
 
 interface PropTypes {
   label?: string
+  className?: string
 }
 
 const PREFIX_CLASS = 'form-item'
@@ -32,8 +33,10 @@ const renderChildren = (children: React.ReactNode, offset: boolean = false) => {
   )
 }
 
+const getClassName = (className?: string) => classNames(PREFIX_CLASS, className)
+
 const FormItem: React.SFC<PropTypes> = props => (
-  <div className={PREFIX_CLASS}>
+  <div className={getClassName(props.className)}>
     {renderLabel(props.label)}
     {renderChildren(props.children)}
   </div>
