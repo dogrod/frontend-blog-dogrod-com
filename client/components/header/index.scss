@@ -81,8 +81,10 @@
   .header {
     display: block;
     padding: 10px 0;
+    height: 120px;
 
     border-color: transparent;
+    box-shadow: initial;
 
     &__meta-bar {
       display: block;
