@@ -55,6 +55,8 @@ export class UserProvider extends React.Component<{}, StateTypes> {
           profile: action.payload,
         }
       case UserActionType.LOGOUT:
+        window.localStorage.removeItem('JW_TOKEN')
+
         return {
           ...state,
           isLoggedIn: false,
