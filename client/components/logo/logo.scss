@@ -1,8 +1,18 @@
 .logo {
   display: inline-block;
-  width: 40px;
+  width: 30px;
 
   img {
     width: 100%;
   }
+}
+
+// large size
+.logo--large {
+  width: 40px;
+}
+
+// small size
+.logo--small {
+  width: 20px;
 }

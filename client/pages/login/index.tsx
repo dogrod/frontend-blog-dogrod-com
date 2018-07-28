@@ -14,6 +14,7 @@ import { UserConsumer, UserAction, UserActionType } from '@/context/user'
 import Logo from '@/components/logo'
 
 import './index.scss'
+import { LogoSize } from '@/components/logo/logo';
 
 interface LoginForm {
   username: string
@@ -114,7 +115,7 @@ class Login extends React.Component<PropTypes, StateTypes> {
 
     return (
       <div className={PREFIX_CLASS}>
-        <Logo />
+        <Logo size={LogoSize.LARGE} />
         <Form className={`${PREFIX_CLASS}__form`} onSubmit={e => handleSubmit(e)}>
           <FormItem>
             <TextField
