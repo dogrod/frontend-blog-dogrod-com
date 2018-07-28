@@ -41,12 +41,14 @@ ul {
   position: relative;
 }
 
+.content-wrapper {
+  margin: 0;
+  padding: 0;
+}
+
 .content {
-  padding: 10px 50px;
-  
-  @media screen and (max-width: 650px) {
-    padding: 0;
-  }
+  margin: 10px auto;
+  max-width: 1000px;
 }
 
 .divider {

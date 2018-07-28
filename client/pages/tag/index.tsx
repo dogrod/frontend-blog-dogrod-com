@@ -2,6 +2,8 @@ import * as React from 'react'
 
 import { setTitle } from '@/utils'
 
+const PREFIX_CLASS = 'tag'
+
 class Tag extends React.Component {
   componentDidMount() {
     setTitle('标签')
@@ -9,7 +11,7 @@ class Tag extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className={`${PREFIX_CLASS} content`}>
         Tag
       </div>
     )

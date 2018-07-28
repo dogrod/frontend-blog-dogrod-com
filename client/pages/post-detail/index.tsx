@@ -93,7 +93,7 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
     )
 
     return (
-      <div className={PREFIX_CLASS}>
+      <div className={`${PREFIX_CLASS} content`}>
         {
           post ? renderPostContent(post) : null
         }
