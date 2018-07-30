@@ -3,6 +3,12 @@ import Koa from 'koa'
 
 import Logger from '../utils/logger'
 
+declare module 'koa' {
+  interface Context {
+    http: any
+  }
+}
+
 interface ExtraAxiosRequestConfig {
   _requestStartTimeStamp: number
 }
