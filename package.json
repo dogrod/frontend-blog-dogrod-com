@@ -9,7 +9,7 @@
     "start:server:prod": "NODE_ENV=production pm2 start pm2.json",
     "build": "NODE_ENV=production rm -rf dist && ./node_modules/.bin/webpack --config ./config/webpack.config.prod.js",
     "upload-bundle": "node scripts/upload-bundle.js",
-    "deploy": "NODE_ENV=production npm run build && npm run upload-bundle && npm run start:server:prod"
+    "deploy": "NODE_ENV=production npm run build && npm run upload-bundle"
   },
   "main": "server/index.js",
   "repository": {
