@@ -7,7 +7,8 @@
     "start": "NODE_ENV=development node scripts/start-dev.js",
     "start:server": "NODE_ENV=production nodemon server/index.js",
     "build": "NODE_ENV=production rm -rf dist && ./node_modules/.bin/webpack --config ./config/webpack.config.prod.js",
-    "server": "NODE_ENV=production npm run build && pm2 start pm2.json"
+    "server": "NODE_ENV=production npm run build && pm2 start pm2.json",
+    "upload-bundle": "node scripts/upload-bundle.js"
   },
   "main": "server/index.js",
   "repository": {
@@ -40,6 +41,7 @@
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "ts-node": "^6.0.3",
+    "upyun": "^3.3.4",
     "winston": "^2.4.2"
   },
   "devDependencies": {

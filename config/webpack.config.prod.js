@@ -1,12 +1,17 @@
 // Webpack config in production environment
+const fs = require('fs')
+const path = require('path')
 const webpack = require('webpack')
 
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const config = require('./webpack.config.base')()
+const upyunConfig = require(path.resolve(fs.realpathSync(process.cwd()), 'upyun.config.js'))
 
-config.output.publicPath = '/'
+config.output.publicPath = upyunConfig
+  ? `${upyunConfig.baseUrl}${upyunConfig.remotePathPrefix}/`
+  : '/'
 
 // Difference with dev environment
 config.output.filename = '[name].[hash:7].js'
