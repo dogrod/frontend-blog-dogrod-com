@@ -2,7 +2,7 @@ import * as React from 'react'
 import classNames from 'classnames'
 import omit from 'omit.js'
 
-import Omit from '@/types/utils/Omit'
+import Omit from '@/types/utils/omit'
 import { generateUID } from '@/utils'
 
 import './text-field.scss'
