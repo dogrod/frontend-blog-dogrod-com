@@ -32,3 +32,6 @@ dev-*.*
 
 # bundle files
 /dist
+
+# log files
+*.log
