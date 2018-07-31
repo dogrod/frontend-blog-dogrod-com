@@ -1,13 +1,26 @@
 import * as winston from 'winston'
+import { IS_DEV } from './env'
 
 const createWinstonInstance = (namespace: string) => {
-  return new winston.Logger({
-    transports: [
-      new winston.transports.Console({
-          colorize: true,
-          label: namespace,
+  const transports: any[] = [
+    new winston.transports.Console({
+      colorize: true,
+      label: namespace,
+    }),
+  ]
+
+  if (!IS_DEV) {
+    transports.push(
+      new winston.transports.File({
+        name: 'info-file',
+        filename: 'winston-info.log',
+        level: 'info'
       })
-    ]
+    )
+  }
+
+  return new winston.Logger({
+    transports,
   })
 }
 
