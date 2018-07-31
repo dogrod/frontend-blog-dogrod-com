@@ -34,9 +34,9 @@ yarn start
 
 ## Upyun Config
 
-> Upload bundle file to Upyun for bootstrap static files.
+> Upload bundle files to Upyun for bootstrap static files.
 
-1. Copy `upyun.config.example.js` and rename to `upyun.config.js`
+1. Duplicate `upyun.config.example.js` and rename to `upyun.config.js`
 2. Replace variables to your own.
 
 ### Deployment
