@@ -47,6 +47,7 @@ ul {
 }
 
 .content {
+  padding: 0 50px;
   margin: 10px auto;
   max-width: 1000px;
 }
@@ -58,4 +59,10 @@ ul {
   border-top: 1px solid $blue-light;
   margin: 1em 0;
   padding: 0; 
+}
+
+@media screen and (max-width: 650px) {
+  .content {
+    padding: 0;
+  }
 }
