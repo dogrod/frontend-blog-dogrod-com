@@ -40,7 +40,7 @@ class NavBar extends React.Component {
     )
   }
 
-  renderTopBar() {
+  renderTopBar = () => {
     return (
       <div className={`${PREFIX_CLASS}__meta-bar`}>
         <Logo />
@@ -48,7 +48,7 @@ class NavBar extends React.Component {
     )
   }
 
-  renderNavBar() {
+  renderNavBar = () => {
     return (
       <div className={`${PREFIX_CLASS}__nav-bar`}>
         <ul>
@@ -70,11 +70,17 @@ class NavBar extends React.Component {
     )
   }
 
+  renderElement = () => (
+    <div className={PREFIX_CLASS}>
+      {this.renderTopBar()}
+      {this.renderNavBar()}
+    </div>
+  )
+
   render() {
     return (
-      <header className={PREFIX_CLASS}>
-        {this.renderTopBar()}
-        {this.renderNavBar()}
+      <header className={`${PREFIX_CLASS}__wrapper`}>
+        {this.renderElement()}
       </header>
     )
   }
