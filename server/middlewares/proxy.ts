@@ -14,7 +14,11 @@ const proxyMiddleware = () => {
     const url = ctx.url
     let proxyTarget = ''
 
-    const proxyConfig = appConfig.forward
+    const proxyConfig = appConfig.forward || appConfig.proxy
+
+    if (!proxyConfig) {
+      throw new Error('Proxy config does not exist!')
+    }
 
     Object.keys(proxyConfig).forEach((prefix: string) => {
       if (url.startsWith(prefix)) {
