@@ -3,8 +3,9 @@ import { RouteComponentProps } from 'react-router'
 
 import BlogTypes from '@/types/blog'
 
-import http from '@/utils/http'
 import api from '@/api'
+import http from '@/utils/http'
+import marked from '@/utils/marked'
 import { convertTimeFormat, setTitle } from '@/utils'
 
 import './index.scss'
@@ -72,14 +73,25 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
     this.setState({ isLoading })
   }
 
+  convertMarkdownContent = (content: string) => marked(content)
+
   render() {
     const { post } = this.state
+
+    const renderMarkedContent = (content: string) => (
+      <div
+        className={`${PREFIX_CLASS}__content markdown`}
+        dangerouslySetInnerHTML={{
+          __html: this.convertMarkdownContent(content)
+        }}
+      />
+    )
 
     const renderPostContent = (postData: BlogTypes.Post) => (
       <React.Fragment>
         <div className={`${PREFIX_CLASS}__title`}>{postData.title}</div>
         <div className={`${PREFIX_CLASS}__category`}>{postData.category}</div>
-        <div className={`${PREFIX_CLASS}__content`}>{postData.content}</div>
+        {renderMarkedContent(postData.content)}
         <div className={`${PREFIX_CLASS}__tags`}>
           {
             postData.tags.map(tag => 

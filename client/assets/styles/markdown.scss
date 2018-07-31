@@ -1,0 +1,83 @@
+.markdown {
+  // quote block
+  blockquote {
+    border-left: 6px solid #ddd;
+    margin: 0;
+    padding: 15px;
+    padding-left: 25px;
+    background: #f7f7f7;
+    margin-bottom: 25px;
+  }
+
+  // code field
+  code {
+    padding: 2px 4px;
+    background-color: #f6f6f6;
+    border: none;
+    color: #657b83;
+    font-size: 12px;
+
+    &::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 2px;
+      background-color: #666;
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: 2px;
+      background-color: #ddd;
+    }
+  }
+
+  // code block
+  pre {
+    margin: 30px 10px;
+    padding: 30px;
+    overflow: auto;
+
+    white-space: pre;
+    word-wrap: normal;
+    word-break: break-word!important;
+    word-break: break-all;
+    
+    color: #657b83;
+    font-size: 13px;
+    -webkit-text-size-adjust: none;
+    
+    background: #222;
+    border-radius: 10px;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+
+    code {
+      background: transparent;
+      color: #eee;
+    }
+
+    @media screen and (max-width: 700px) {
+      margin: 0;
+    }
+  }
+
+  // list block
+  ol,
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  // link field
+  a:any-link {
+    color: #657b83;
+    margin: 0 5px;
+    text-decoration: underline;
+  }
+
+  // image block
+  img {
+    margin: 0 auto;
+    display: block;
+  }
+}
