@@ -4,7 +4,7 @@
 
 ### Coding
 
-- Reconstruct project
+- Reconstruct project in custom construction instead of CRA's
 
 ### Performance
 
