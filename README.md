@@ -19,9 +19,9 @@
   - [ ] Comment modules (and back-end support)
   - [ ] i18n
 
-## Server Config
+## Application Config
 
-1. Create `server.config.js` file under root directory
+1. Create `app.config.js` file under root directory
 2. Config `port` and `forward`, export as a commonjs module
 3. Run
 ```
@@ -32,9 +32,16 @@ or
 yarn start
 ```
 
+## Upyun Config
+
+> Upload bundle file to Upyun for bootstrap static files.
+
+1. Copy `upyun.config.example.js` and rename to `upyun.config.js`
+2. Replace variables to your own.
+
 ### Deployment
 - docker-pm2
-  1. Create `server.config.js` and config
+  1. Create `app.config.js` and config
   2. Create `pm2.json` and config
   3. Build image
   ```
