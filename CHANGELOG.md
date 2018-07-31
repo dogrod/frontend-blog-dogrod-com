@@ -4,7 +4,7 @@
 
 ### Coding
 
-- Reconstruct project
+- Reconstruct project in custom construction instead of CRA's
 
 ### Performance
 
@@ -13,6 +13,7 @@
 ### Feature
 
 - User login and logout
+- Bug fix
 
 ---
 
@@ -26,3 +27,7 @@
 ### Feature
 
 - Basic blog list/detail rendering (Only display)
+- Import `highlight.js` to highlight code block
+- Markdown stylesheet optimization
+- Redirect not found route to home page
+- Bug fix
