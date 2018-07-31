@@ -10,8 +10,8 @@
   - [ ] Code splitting
   - [x] Node.js server-side log
   - [ ] Unit test
-  - [ ] SPA-Node.js intelligence development environment
-  - [ ] Custom project architecture (include webpack configuration, paths, and e.t.c.)
+  - [x] SPA-Node.js intelligence development environment
+  - [x] Custom project architecture (include webpack configuration, paths, and e.t.c.)
 
 - Feature
   - [x] Basic content rendering
@@ -22,7 +22,7 @@
 ## Server Config
 
 1. Create `server.config.js` file under root directory
-2. Config `port` and `proxy`, export as a commonjs module
+2. Config `port` and `forward`, export as a commonjs module
 3. Run
 ```
 npm start
