@@ -1,12 +1,14 @@
 import * as React from 'react'
 import { RouteComponentProps } from 'react-router'
 
-import BlogTypes from '@/types/blog'
+import Divider from '@/components/divider'
 
 import api from '@/api'
 import http from '@/utils/http'
 import marked from '@/utils/marked'
 import { convertTimeFormat, setTitle } from '@/utils'
+
+import BlogTypes from '@/types/blog'
 
 import './index.scss'
 
@@ -100,7 +102,7 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
           }
         </div>
         <div className={`${PREFIX_CLASS}__publish-time`}>发布于{convertTimeFormat(postData.publishAt)}</div>
-        <hr className="divider" />
+        <Divider />
       </React.Fragment>
     )
 
