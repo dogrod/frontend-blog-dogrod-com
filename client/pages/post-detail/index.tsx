@@ -28,7 +28,7 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
 
     this.state = {
       slug: props.match.params.slug,
-      isLoading: false
+      isLoading: false,
     }
   }
 
@@ -75,11 +75,19 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
     this.setState({ isLoading })
   }
 
+  /**
+   * Convert markdown string to html string
+   * @param content - markdown string
+   * @returns html string
+   */
   convertMarkdownContent = (content: string) => marked(content)
 
-  render() {
-    const { post } = this.state
-
+  /**
+   * Render post
+   * @param postData - post JSON data
+   * @returns JSX Elements
+   */
+  renderPost(postData: BlogTypes.Post) {
     const renderMarkedContent = (content: string) => (
       <div
         className={`${PREFIX_CLASS}__content markdown`}
@@ -89,27 +97,43 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
       />
     )
 
-    const renderPostContent = (postData: BlogTypes.Post) => (
+    const renderTags = (tags: string[]) => (
+      <div className={`${PREFIX_CLASS}__tags`}>
+        {
+          tags.map(tag => 
+            <a key={tag} className={`${PREFIX_CLASS}__tag`}>{tag}</a>
+          )
+        }
+      </div>
+    )
+
+    const renderBottomInfo = (publishTime: string) => (
+      <div className={`${PREFIX_CLASS}__bottom-info`}>
+        <div className={`${PREFIX_CLASS}__publish-time`}>发布于{convertTimeFormat(publishTime)}</div>
+      </div>
+    )
+
+    return (
       <React.Fragment>
         <div className={`${PREFIX_CLASS}__title`}>{postData.title}</div>
         <div className={`${PREFIX_CLASS}__category`}>{postData.category}</div>
         {renderMarkedContent(postData.content)}
-        <div className={`${PREFIX_CLASS}__tags`}>
-          {
-            postData.tags.map(tag => 
-              <a key={tag} className={`${PREFIX_CLASS}__tag`}>{tag}</a>
-            )
-          }
-        </div>
-        <div className={`${PREFIX_CLASS}__publish-time`}>发布于{convertTimeFormat(postData.publishAt)}</div>
+        {renderTags(postData.tags)}
+        {renderBottomInfo(postData.publishAt)}
         <Divider />
       </React.Fragment>
     )
+  }
+
+  render() {
+    const { post, isLoading } = this.state
 
     return (
       <div className={`${PREFIX_CLASS} content`}>
         {
-          post ? renderPostContent(post) : null
+          isLoading
+            ? 'Loading...'
+            : post ? this.renderPost(post) : null
         }
       </div>
     )
