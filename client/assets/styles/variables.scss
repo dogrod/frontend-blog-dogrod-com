@@ -17,6 +17,7 @@ $pink: #E54973;
 $blue: #2C3E50;
 $blue-highlight: #4B84F4;
 $blue-light: mix($white, $blue);
+$blue-extra-light: mix($blue, $white, 15);
 
 // Font-size
 //-------------------------------
