@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { RouteComponentProps } from 'react-router'
 
+import Icon from '@/components/icon'
 import Divider from '@/components/divider'
 
 import api from '@/api'
@@ -11,6 +12,12 @@ import { convertTimeFormat, setTitle } from '@/utils'
 import BlogTypes from '@/types/blog'
 
 import './index.scss'
+
+declare module 'react' {
+  interface SVGAttributes<T> {
+    ['xlink:href']?: string
+  }
+}
 
 interface PropTypes extends RouteComponentProps<{ slug: string }> {}
 
@@ -88,28 +95,46 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
    * @returns JSX Elements
    */
   renderPost(postData: BlogTypes.Post) {
-    const renderMarkedContent = (content: string) => (
+    const renderMarkedContent = () => (
       <div
         className={`${PREFIX_CLASS}__content markdown`}
         dangerouslySetInnerHTML={{
-          __html: this.convertMarkdownContent(content)
+          __html: this.convertMarkdownContent(postData.content)
         }}
       />
     )
 
-    const renderTags = (tags: string[]) => (
+    const renderTags = () => (
       <div className={`${PREFIX_CLASS}__tags`}>
         {
-          tags.map(tag => 
+          postData.tags.map(tag => 
             <a key={tag} className={`${PREFIX_CLASS}__tag`}>{tag}</a>
           )
         }
       </div>
     )
 
-    const renderBottomInfo = (publishTime: string) => (
+    const renderBottomInfo = () => (
       <div className={`${PREFIX_CLASS}__bottom-info`}>
-        <div className={`${PREFIX_CLASS}__publish-time`}>发布于{convertTimeFormat(publishTime)}</div>
+        <div className={`${PREFIX_CLASS}__publish-time`}>发布于{convertTimeFormat(postData.publishAt)}</div>
+        <div className={`${PREFIX_CLASS}__actions`}>
+          <div className={`${PREFIX_CLASS}__likes-summary`}>
+            <div className={`${PREFIX_CLASS}__action-icon`}>
+              <Icon name="like-simple" />
+            </div>
+            <div className={`${PREFIX_CLASS}__action-count`}>
+              {postData.likes}
+            </div>
+          </div>
+          <div className={`${PREFIX_CLASS}__comments-summary`}>
+            <div className={`${PREFIX_CLASS}__action-icon`}>
+              <Icon name="comment" />
+            </div>
+            <div className={`${PREFIX_CLASS}__action-count`}>
+              {postData.comments}
+            </div>
+          </div>
+        </div>
       </div>
     )
 
@@ -117,9 +142,9 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
       <React.Fragment>
         <div className={`${PREFIX_CLASS}__title`}>{postData.title}</div>
         <div className={`${PREFIX_CLASS}__category`}>{postData.category}</div>
-        {renderMarkedContent(postData.content)}
-        {renderTags(postData.tags)}
-        {renderBottomInfo(postData.publishAt)}
+        {renderMarkedContent()}
+        {renderTags()}
+        {renderBottomInfo()}
         <Divider />
       </React.Fragment>
     )

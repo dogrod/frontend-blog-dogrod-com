@@ -46,8 +46,33 @@
     }
   }
 
-  &__publish-time {
+  &__bottom-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
     padding-top: 10px;
+  }
+
+  &__publish-time {
     text-align: right;
+  }
+
+  &__actions {
+    > * {
+      display: inline-block;
+      margin-right: 20px;
+    }
+  }
+
+  &__action-icon {
+    display: inline-block;
+    margin-right: 5px;
+    font-size: $font-size-extra-large;
+  }
+
+  &__action-count {
+    display: inline-block;
+    color: $blue-light;
   }
 }
