@@ -28,6 +28,14 @@ class CheckLogin extends React.Component {
       
     } catch (error) {
       console.error('An error occurred when verify user token:', error)
+
+      this.dispatch({
+        type: UserActionType.EXPIRE,
+        payload: {
+          username: '',
+          email: '',
+        }
+      })
     }
   }
 

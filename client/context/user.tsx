@@ -19,6 +19,7 @@ export interface UserAction {
 export enum UserActionType {
   LOGIN = 'LOGIN',
   LOGOUT = 'LOGOUT',
+  EXPIRE = 'EXPIRE',
 }
 
 const getDefaultProfile = () => { return { username: '', email: '' }}
@@ -54,6 +55,7 @@ export class UserProvider extends React.Component<{}, StateTypes> {
           isLoggedIn: true,
           profile: action.payload,
         }
+      case UserActionType.EXPIRE:
       case UserActionType.LOGOUT:
         window.localStorage.removeItem('JW_TOKEN')
 
