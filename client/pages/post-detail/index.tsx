@@ -154,7 +154,7 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
     const { post, isLoading } = this.state
 
     return (
-      <div className={`${PREFIX_CLASS} content`}>
+      <div className={PREFIX_CLASS}>
         {
           isLoading
             ? 'Loading...'
