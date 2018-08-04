@@ -64,7 +64,17 @@
 
     > * {
       display: inline-block;
-      margin-right: 20px;
+      margin-right: 25px;
+    }
+  }
+
+  &__likes-summary {
+    cursor: pointer;
+    transform: scale(1);
+    transition: all .3s;
+
+    &:hover {
+      transform: scale(1.2);
     }
   }
 
