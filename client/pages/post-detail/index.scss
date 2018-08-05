@@ -68,13 +68,23 @@
     }
   }
 
-  &__likes-summary {
+  &__likes-summary,
+  &__comments-summary {
     cursor: pointer;
     transform: scale(1);
     transition: all .3s;
 
     &:hover {
       transform: scale(1.2);
+    }
+  }
+
+  &__action--active {
+    color: $blue-highlight;
+    transform: scale(1.5) !important;
+
+    .post-detail__action-count {
+      color: $blue-highlight;
     }
   }
 

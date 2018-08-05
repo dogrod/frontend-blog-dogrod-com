@@ -1,4 +1,5 @@
 import * as React from 'react'
+import classNames from 'classnames'
 import update from 'immutability-helper'
 import { RouteComponentProps } from 'react-router'
 
@@ -27,6 +28,7 @@ interface StateTypes {
   slug: string
   isLoading: boolean
   disableLike: boolean
+  activeLike: boolean
 }
 
 const PREFIX_CLASS = 'post-detail'
@@ -39,6 +41,7 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
       slug: props.match.params.slug,
       isLoading: false,
       disableLike: false,
+      activeLike: false,
     }
   }
 
@@ -81,6 +84,8 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
       const likeCount = result.likes
 
       this.setLikeCount(likeCount)
+
+      await this.triggerLikeSuccess()
     } catch (error) {
       console.error(error)
     } finally {
@@ -136,6 +141,18 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
     this.setState(newState)
   }
 
+  triggerLikeSuccess = async () => {
+    this.setState({ activeLike: true })
+
+    const promise = new Promise((resolve) => window.setTimeout(() => {
+      this.setState({ activeLike: false })
+
+      return resolve()
+    }, 300))
+
+    return promise
+  }
+
   /**
    * Convert markdown string to html string
    * @param content - markdown string
@@ -173,7 +190,12 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
         <div className={`${PREFIX_CLASS}__publish-time`}>发布于{convertTimeFormat(postData.publishAt)}</div>
         <div className={`${PREFIX_CLASS}__actions`}>
           <div
-            className={`${PREFIX_CLASS}__likes-summary`}
+            className={classNames(
+              `${PREFIX_CLASS}__likes-summary`,
+              {
+                [`${PREFIX_CLASS}__action--active`]: this.state.activeLike,
+              },
+            )}
             onClick={() => this.handleClickLike()}
           >
             <div className={`${PREFIX_CLASS}__action-icon`}>
