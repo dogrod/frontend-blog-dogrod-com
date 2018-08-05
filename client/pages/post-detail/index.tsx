@@ -1,4 +1,5 @@
 import * as React from 'react'
+import update from 'immutability-helper'
 import { RouteComponentProps } from 'react-router'
 
 import Icon from '@/components/icon'
@@ -25,6 +26,7 @@ interface StateTypes {
   post?: BlogTypes.Post
   slug: string
   isLoading: boolean
+  disableLike: boolean
 }
 
 const PREFIX_CLASS = 'post-detail'
@@ -36,6 +38,7 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
     this.state = {
       slug: props.match.params.slug,
       isLoading: false,
+      disableLike: false,
     }
   }
 
@@ -54,6 +57,34 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
       console.error(error)
     } finally {
       this.setLoadingStatus(false)
+    }
+  }
+
+  /**
+   * click like button event
+   */
+  handleClickLike = async () => {
+    const { slug, disableLike} = this.state
+
+    if (disableLike) return
+
+    const url = `${api.getPosts}/${slug}/like`
+    const data = {
+      increment: 1,
+    }
+    console.log('like')
+    this.setDisableLike(true)
+
+    try {
+      const result: any = await http.post(url, data)
+
+      const likeCount = result.likes
+
+      this.setLikeCount(likeCount)
+    } catch (error) {
+      console.error(error)
+    } finally {
+      this.setDisableLike(false)
     }
   }
 
@@ -80,6 +111,29 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
    */
   setLoadingStatus = (isLoading: boolean) => {
     this.setState({ isLoading })
+  }
+
+  /**
+   * set disable like
+   * @param disableLike - disable like
+   */
+  setDisableLike = (disableLike: boolean) => {
+    this.setState({ disableLike })
+  }
+
+  /**
+   * set like count of post
+   */
+  setLikeCount = (likes: number) => {
+    const newState = update(this.state, {
+      post: {
+        $merge: {
+          likes,
+        }
+      }
+    })
+
+    this.setState(newState)
   }
 
   /**
@@ -118,7 +172,10 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
       <div className={`${PREFIX_CLASS}__bottom-info`}>
         <div className={`${PREFIX_CLASS}__publish-time`}>发布于{convertTimeFormat(postData.publishAt)}</div>
         <div className={`${PREFIX_CLASS}__actions`}>
-          <div className={`${PREFIX_CLASS}__likes-summary`}>
+          <div
+            className={`${PREFIX_CLASS}__likes-summary`}
+            onClick={() => this.handleClickLike()}
+          >
             <div className={`${PREFIX_CLASS}__action-icon`}>
               <Icon name="like-simple" />
             </div>
