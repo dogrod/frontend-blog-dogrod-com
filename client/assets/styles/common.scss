@@ -6,6 +6,7 @@ body {
   
   color: $blue;
   font-size: $global-font-size;
+  background-color: $gray-light;
   font-family: $global-font-family;
   line-height: $global-line-height;
   font-weight: $global-font-weight;
@@ -48,8 +49,6 @@ ul {
   padding: 50px;
   width: 100%;
   min-height: calc(100vh - 80px);
-
-  background-color: $gray-light;
 }
 
 @media screen and (max-width: 650px) {
