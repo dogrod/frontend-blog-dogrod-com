@@ -2,7 +2,7 @@ import * as React from 'react'
 import classNames from 'classnames'
 import { Link } from 'react-router-dom'
 
-import logo from '@/assets/images/icon_d.svg'
+import Icon from '@/components/icon'
 
 import './logo.scss'
 
@@ -28,7 +28,7 @@ const getClassName = (size?: LogoSize) => classNames(
 
 const Logo: React.SFC<PropTypes> = (props) => (
   <Link to="/" className={getClassName(props.size)}>
-    <img src={logo} />
+    <Icon name="d" />
   </Link>
 )
 
