@@ -11,7 +11,7 @@ $global-line-height: 1.5;
 //-------------------------------
 $black: #333;
 $white: #FFF;
-$gray-light: #e6e6e6;
+$gray-light: mix($black, $white, 3);
 $red: #D44539;
 $pink: #E54973;
 $green: #86CE9F;
