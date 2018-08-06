@@ -69,7 +69,9 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
   handleClickLike = async () => {
     const { slug, disableLike} = this.state
 
-    if (disableLike) return
+    if (disableLike) {
+      return
+    }
 
     const url = `${api.getPosts}/${slug}/like`
     const data = {
