@@ -75,7 +75,7 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
     const data = {
       increment: 1,
     }
-    console.log('like')
+
     this.setDisableLike(true)
 
     try {
