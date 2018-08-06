@@ -2,14 +2,15 @@
 
 .post-list {
   &__publish-time {
-    font-size: $font-size-large;
-
     flex-grow: 0;
+    padding-top: 5px;
+
     width: 120px;
     min-width: 120px;
-
+    
     color: $blue-light;
     letter-spacing: 1px;
+    font-size: $font-size-large;
 
     @media screen and (max-width: 650px) {
       font-size: $font-size-small;
