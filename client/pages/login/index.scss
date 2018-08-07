@@ -1,11 +1,12 @@
 .login {
-  padding: 50px;
-  margin: 30px auto;
+  padding-top: 100px;
+  margin: 0 auto;
 
   min-height: 100vh;
-  max-width: 400px;
+  max-width: 350px;
   
   text-align: center;
+  overflow: hidden;
 
   &__form {
     margin: 50px 20px 0;
