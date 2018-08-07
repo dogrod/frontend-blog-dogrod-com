@@ -2,10 +2,20 @@
 
 .post-list {
   width: 100%;
+  max-width: 1000px;
+
+  h1 {
+    line-height: 1;
+    margin: 0;
+  }
+
+  p {
+    margin: 1em 0 0;
+  }
 
   &__item {
     display: flex;
-    padding: 10px;
+    padding: 1em;
 
     @media screen and (max-width: 650px) {
       padding-top: 10px;
@@ -32,7 +42,7 @@
     }
   }
 
-  &__content {
+  &__description {
     flex-grow: 1;
     width: auto;
     overflow: hidden;
@@ -65,14 +75,12 @@
     }
   }
 
-  &__summary {
-    font-size: $font-size-medium;
-
+  &__content {
     position: relative;
-    padding-bottom: 20px;
     
-    color: $blue-light;
     text-align: left;
+    color: $blue-light;
+    font-size: $font-size-medium;
 
     // fix markdown style
     blockquote,
@@ -87,25 +95,31 @@
     li {
       text-align: left;
     }
-    
-    &__view {
-      font-size: $font-size-small;
-
-      position: absolute;
-      right: 0;
-      bottom: 0;
-
-      a {
-        border-bottom: 1px dashed transparent;
-        transition: .3s;
-
-        &:hover {
-          border-color: #2c3e50;
-        }
-      }
-    }
 
     @media screen and (max-width: 650px) {
+      display: none;
+    }
+  }
+
+  &__read-more {
+    font-size: $font-size-small;
+    text-align: end;
+
+    a {
+      border-bottom: 1px dashed transparent;
+      transition: .3s;
+
+      &:hover {
+        border-color: #2c3e50;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .post-list{
+    &__content,
+    &__read-more {
       display: none;
     }
   }

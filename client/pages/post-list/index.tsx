@@ -88,20 +88,21 @@ class PostList extends React.Component<{}, StateTypes> {
         <div className={`${PREFIX_CLASS}__publish-time`}>
           {convertTimeFormat(item.publishAt)}
         </div>
-        <div className={`${PREFIX_CLASS}__content`}>
-          <div className={`${PREFIX_CLASS}__title`}>
+        <div className={`${PREFIX_CLASS}__description`}>
+          <h1 className={`${PREFIX_CLASS}__title`}>
             <Link to={url}>
               {item.title}
             </Link>
-          </div>
-          <div className={`${PREFIX_CLASS}__summary`}>
-            <div dangerouslySetInnerHTML={{__html: item.content}} />
-            <span className={`${PREFIX_CLASS}__summary__view`}>
-              <Link to={url}>
-                查看全文
-              </Link>
-            </span>
-          </div>
+          </h1>
+          <p
+            className={`${PREFIX_CLASS}__content`}
+            dangerouslySetInnerHTML={{__html: item.content}}
+          />
+          <p className={`${PREFIX_CLASS}__read-more`}>
+            <Link to={url}>
+              查看全文
+            </Link>
+          </p>
         </div>
       </div>
     )
