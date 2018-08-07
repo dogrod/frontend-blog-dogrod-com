@@ -13,6 +13,7 @@ import Button, { ButtonSize } from '@/components/button'
 import { UserConsumer, UserAction, UserActionType } from '@/context/user'
 import Logo from '@/components/logo'
 import SeaWave from '@/components/sea-wave'
+import Card from '@/components/card'
 
 import './index.scss'
 import { LogoSize } from '@/components/logo/logo';
@@ -116,36 +117,38 @@ class Login extends React.Component<PropTypes, StateTypes> {
 
     return (
       <div className={PREFIX_CLASS}>
-        <Logo size={LogoSize.LARGE} />
-        <Form className={`${PREFIX_CLASS}__form`} onSubmit={e => handleSubmit(e)}>
-          <FormItem>
-            <TextField
-              type="text"
-              label="用户名"
-              placeholder="请输入用户名"
-              value={form.username}
-              size={TextFieldSize.LARGE}
-              onChange={e => handleChange(e.target.value, 'username')}/>
-          </FormItem>
-          <FormItem>
-            <TextField
-              type="password"
-              label="密码"
-              placeholder="请输入密码"
-              value={form.password}
-              size={TextFieldSize.LARGE}
-              onChange={e => handleChange(e.target.value, 'password')} />
-          </FormItem>
-          <FormItem className={`${PREFIX_CLASS}__submit`}>
-            <Button type="submit" size={ButtonSize.LARGE}>登录</Button>
-          </FormItem>
-          <UserConsumer>{
-            ({ dispatch }) => {
-              this.dispatch = dispatch
-              return null
-            }
-          }</UserConsumer>
-        </Form>
+        <Card>
+          <Logo size={LogoSize.LARGE} />
+          <Form className={`${PREFIX_CLASS}__form`} onSubmit={e => handleSubmit(e)}>
+            <FormItem>
+              <TextField
+                type="text"
+                label="用户名"
+                placeholder="请输入用户名"
+                value={form.username}
+                size={TextFieldSize.LARGE}
+                onChange={e => handleChange(e.target.value, 'username')}/>
+            </FormItem>
+            <FormItem>
+              <TextField
+                type="password"
+                label="密码"
+                placeholder="请输入密码"
+                value={form.password}
+                size={TextFieldSize.LARGE}
+                onChange={e => handleChange(e.target.value, 'password')} />
+            </FormItem>
+            <FormItem className={`${PREFIX_CLASS}__submit`}>
+              <Button type="submit" size={ButtonSize.LARGE}>登录</Button>
+            </FormItem>
+            <UserConsumer>
+              {({ dispatch }) => {
+                this.dispatch = dispatch
+                return null
+              }}
+            </UserConsumer>
+          </Form>
+        </Card>
         <SeaWave />
       </div>
     )

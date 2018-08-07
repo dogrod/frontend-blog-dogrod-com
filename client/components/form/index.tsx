@@ -13,7 +13,12 @@ const PREFIX_CLASS = 'form'
 const getClassName = (className?: string) => classNames(PREFIX_CLASS, className)
 
 const Form: React.SFC<PropTypes> = (props) => (
-  <form className={getClassName(props.className)} onSubmit={e => props.onSubmit && props.onSubmit(e)}>{props.children}</form>
+  <form
+    className={getClassName(props.className)}
+    onSubmit={(e) => props.onSubmit && props.onSubmit(e)}
+  >
+    {props.children}
+  </form>
 )
 
 export default Form

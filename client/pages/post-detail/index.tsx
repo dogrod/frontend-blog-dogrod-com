@@ -4,7 +4,6 @@ import update from 'immutability-helper'
 import { RouteComponentProps } from 'react-router'
 
 import Icon from '@/components/icon'
-import Divider from '@/components/divider'
 import Card from '@/components/card'
 
 import api from '@/api'
