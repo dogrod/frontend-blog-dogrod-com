@@ -1,12 +1,25 @@
 @import '~@/assets/styles/variables';
 
 .post-list {
+  width: 100%;
+
+  &__item {
+    display: flex;
+    padding: 10px;
+
+    @media screen and (max-width: 650px) {
+      padding-top: 10px;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
   &__publish-time {
     flex-grow: 0;
     padding-top: 5px;
 
-    width: 120px;
-    min-width: 120px;
+    width: 100px;
+    min-width: 100px;
     
     color: $blue-light;
     letter-spacing: 1px;
@@ -16,8 +29,6 @@
       font-size: $font-size-small;
       
       margin-top: 2px;
-      width: 100px;
-      min-width: 100px;
     }
   }
 

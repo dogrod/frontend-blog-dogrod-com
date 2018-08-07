@@ -11,12 +11,13 @@ import { convertTimeFormat, setTitle } from '@/utils'
 
 import List from '@/components/list'
 import ListItem from '@/components/list/item'
+import Card from '@/components/card'
 
 import './index.scss'
 
 interface StateTypes {
   list: BlogTypes.Post[],
-  isLoading: Boolean,
+  isLoading: boolean,
 }
 
 const PREFIX_CLASS = 'post-list'
@@ -85,24 +86,28 @@ class PostList extends React.Component<{}, StateTypes> {
 
         return (
           <ListItem key={item.id}>
-            <div className={`${PREFIX_CLASS}__publish-time`}>
-              {convertTimeFormat(item.publishAt)}
-            </div>
-            <div className={`${PREFIX_CLASS}__content`}>
-              <div className={`${PREFIX_CLASS}__title`}>
-                <Link to={url}>
-                  {item.title}
-                </Link>
+            <Card>
+              <div className={`${PREFIX_CLASS}__item`}>
+                <div className={`${PREFIX_CLASS}__publish-time`}>
+                  {convertTimeFormat(item.publishAt)}
+                </div>
+                <div className={`${PREFIX_CLASS}__content`}>
+                  <div className={`${PREFIX_CLASS}__title`}>
+                    <Link to={url}>
+                      {item.title}
+                    </Link>
+                  </div>
+                  <div className={`${PREFIX_CLASS}__summary`}>
+                    <div dangerouslySetInnerHTML={{__html: item.content}} />
+                    <span className={`${PREFIX_CLASS}__summary__view`}>
+                      <Link to={url}>
+                        查看全文
+                      </Link>
+                    </span>
+                  </div>
+                </div>
               </div>
-              <div className={`${PREFIX_CLASS}__summary`}>
-                <div dangerouslySetInnerHTML={{__html: item.content}} />
-                <span className={`${PREFIX_CLASS}__summary__view`}>
-                  <Link to={url}>
-                    查看全文
-                  </Link>
-                </span>
-              </div>
-            </div>
+            </Card>
           </ListItem>
         )
       })

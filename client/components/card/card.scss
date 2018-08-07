@@ -6,9 +6,9 @@
   transition: box-shadow .2s;
   border-radius: 6px;
   background-color: $white;
-  box-shadow: 0 6px 16px rgba(0,0,0,0);
+  box-shadow: 0 3px 7px -1px rgba(0, 0, 0, 0.1);
 
   &:hover {
-    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+    box-shadow: 0 3px 7px -1px rgba(0, 0, 0, 0.2);
   }
 }
