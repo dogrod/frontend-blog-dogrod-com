@@ -76,42 +76,57 @@ class PostList extends React.Component<{}, StateTypes> {
     this.setState({ isLoading })
   }
 
+  /**
+   * render post content inside <Card></Card>
+   * @param item - post item
+   */
+  renderPostContent = (item: BlogTypes.Post) => {
+    const url = `/post/${item.slug}`
+
+    return (
+      <div className={`${PREFIX_CLASS}__item`}>
+        <div className={`${PREFIX_CLASS}__publish-time`}>
+          {convertTimeFormat(item.publishAt)}
+        </div>
+        <div className={`${PREFIX_CLASS}__content`}>
+          <div className={`${PREFIX_CLASS}__title`}>
+            <Link to={url}>
+              {item.title}
+            </Link>
+          </div>
+          <div className={`${PREFIX_CLASS}__summary`}>
+            <div dangerouslySetInnerHTML={{__html: item.content}} />
+            <span className={`${PREFIX_CLASS}__summary__view`}>
+              <Link to={url}>
+                查看全文
+              </Link>
+            </span>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  /**
+   * render post list
+   * @param list - post list data
+   */
+  renderList = (list: BlogTypes.Post[]) => {
+    const { renderPostContent } = this
+    return list.map((item) => {
+      return (
+        <ListItem key={item.id}>
+          <Card>
+            {renderPostContent(item)}
+          </Card>
+        </ListItem>
+      )
+    })
+  }
+
   render() {
     const { state } = this
     const { list, isLoading } = state
-
-    const renderList = () => {
-      return list.map((item) => {
-        const url = `/post/${item.slug}`
-
-        return (
-          <ListItem key={item.id}>
-            <Card>
-              <div className={`${PREFIX_CLASS}__item`}>
-                <div className={`${PREFIX_CLASS}__publish-time`}>
-                  {convertTimeFormat(item.publishAt)}
-                </div>
-                <div className={`${PREFIX_CLASS}__content`}>
-                  <div className={`${PREFIX_CLASS}__title`}>
-                    <Link to={url}>
-                      {item.title}
-                    </Link>
-                  </div>
-                  <div className={`${PREFIX_CLASS}__summary`}>
-                    <div dangerouslySetInnerHTML={{__html: item.content}} />
-                    <span className={`${PREFIX_CLASS}__summary__view`}>
-                      <Link to={url}>
-                        查看全文
-                      </Link>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </Card>
-          </ListItem>
-        )
-      })
-    }
 
     return (
       <div className={PREFIX_CLASS}>
@@ -120,7 +135,7 @@ class PostList extends React.Component<{}, StateTypes> {
             ? 'Loading...'
             : (
               <List>
-                {renderList()}
+                {this.renderList(list)}
               </List>
             )
         }
