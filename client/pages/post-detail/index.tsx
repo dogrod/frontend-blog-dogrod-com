@@ -5,6 +5,7 @@ import { RouteComponentProps } from 'react-router'
 
 import Icon from '@/components/icon'
 import Divider from '@/components/divider'
+import Card from '@/components/card'
 
 import api from '@/api'
 import http from '@/utils/http'
@@ -220,14 +221,13 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
     )
 
     return (
-      <React.Fragment>
+      <Card>
         <div className={`${PREFIX_CLASS}__title`}>{postData.title}</div>
         <div className={`${PREFIX_CLASS}__category`}>{postData.category}</div>
         {renderMarkedContent()}
         {renderTags()}
         {renderBottomInfo()}
-        <Divider />
-      </React.Fragment>
+      </Card>
     )
   }
 

@@ -15,12 +15,11 @@
 
   &__item {
     display: flex;
-    padding: 1em;
 
     @media screen and (max-width: 650px) {
-      padding-top: 10px;
-      padding-left: 0;
-      padding-right: 0;
+      // padding-top: 10px;
+      // padding-left: 0;
+      // padding-right: 0;
     }
   }
 
