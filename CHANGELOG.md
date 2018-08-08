@@ -10,6 +10,10 @@
 
 - Upload bundle file to [Upyun](https://upyun.com) CDN service after build
 
+### 💄 Style
+
+- Switch to Card UI
+
 ### Feature
 
 - User login and logout
