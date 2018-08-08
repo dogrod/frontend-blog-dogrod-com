@@ -15,17 +15,10 @@
 
   &__item {
     display: flex;
-
-    @media screen and (max-width: 650px) {
-      // padding-top: 10px;
-      // padding-left: 0;
-      // padding-right: 0;
-    }
   }
 
   &__publish-time {
     flex-grow: 0;
-    padding-top: 5px;
 
     width: 100px;
     min-width: 100px;
