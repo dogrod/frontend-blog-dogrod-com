@@ -35,18 +35,6 @@ const getDefaultState = () => {
 const UserContext = React.createContext(getDefaultState())
 
 export class UserProvider extends React.Component<{}, StateTypes> {
-  constructor(props: {}) {
-    super(props)
-
-    this.state = {
-      isLoggedIn: false,
-      profile: getDefaultProfile(),
-      dispatch: (action: UserAction) => {
-        this.setState(state => UserProvider.reducer(state, action))
-      }
-    }
-  }
-
   static reducer = (state: StateTypes, action: UserAction) => {
     switch (action.type) {
       case UserActionType.LOGIN:
@@ -66,6 +54,18 @@ export class UserProvider extends React.Component<{}, StateTypes> {
         }
       default:
         return state
+    }
+  }
+
+  constructor(props: {}) {
+    super(props)
+
+    this.state = {
+      isLoggedIn: false,
+      profile: getDefaultProfile(),
+      dispatch: (action: UserAction) => {
+        this.setState((state) => UserProvider.reducer(state, action))
+      }
     }
   }
 
