@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 
-import Login from './pages/login'
-import Signup from './pages/signup'
+import Login from './pages/user/login'
+import Signup from './pages/user/signup'
 import { UserProvider } from './context/user'
 import CheckLogin from '@/services/check-login'
 
