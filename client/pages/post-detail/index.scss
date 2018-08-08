@@ -1,8 +1,12 @@
 @import '~@/assets/styles/variables';
 
 .post-detail {
-  width: 100%;
-  max-width: 1000px;
+  padding: 15px;
+
+  &__wrapper {
+    width: 100%;
+    max-width: 1000px;
+  }
 
   &__title,
   &__category {
@@ -11,12 +15,7 @@
 
   &__title {
     font-size: $font-size-extra-large;
-
     letter-spacing: 1px;
-
-    @media screen and (max-width: 650px) {
-      font-size: $font-size-large;      
-    }
   }
 
   &__category,
@@ -65,7 +64,10 @@
 
     > * {
       display: inline-block;
-      margin-right: 25px;
+
+      &:not(:last-child) {
+        margin-right: 25px;
+      }
     }
   }
 
@@ -99,4 +101,14 @@
     display: inline-block;
     color: $blue-light;
   }
+}
+
+@media screen and (max-width: 650px) {
+  .post-detail {
+    padding: 0;
+
+    &__title {
+      font-size: $font-size-large;
+    }
+  }    
 }

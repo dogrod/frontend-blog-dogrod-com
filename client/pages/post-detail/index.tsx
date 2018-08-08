@@ -146,11 +146,14 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
   triggerLikeSuccess = async () => {
     this.setState({ activeLike: true })
 
-    const promise = new Promise((resolve) => window.setTimeout(() => {
-      this.setState({ activeLike: false })
+    const promise = new Promise((resolve) => window.setTimeout(
+      () => {
+        this.setState({ activeLike: false })
 
-      return resolve()
-    }, 300))
+        return resolve()
+      },
+      300
+    ))
 
     return promise
   }
@@ -180,7 +183,7 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
     const renderTags = () => (
       <div className={`${PREFIX_CLASS}__tags`}>
         {
-          postData.tags.map(tag => 
+          postData.tags.map((tag) => 
             <a key={tag} className={`${PREFIX_CLASS}__tag`}>{tag}</a>
           )
         }
@@ -220,26 +223,28 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
     )
 
     return (
-      <Card>
-        <div className={`${PREFIX_CLASS}__title`}>{postData.title}</div>
+      <div className={PREFIX_CLASS}>
+        <h1 className={`${PREFIX_CLASS}__title`}>{postData.title}</h1>
         <div className={`${PREFIX_CLASS}__category`}>{postData.category}</div>
         {renderMarkedContent()}
         {renderTags()}
         {renderBottomInfo()}
-      </Card>
+      </div>
     )
   }
-
+  
   render() {
     const { post, isLoading } = this.state
-
+    
     return (
-      <div className={PREFIX_CLASS}>
+      <div className={`${PREFIX_CLASS}__wrapper`}>
+        <Card>
         {
           isLoading
-            ? 'Loading...'
-            : post ? this.renderPost(post) : null
+          ? 'Loading...'
+          : post ? this.renderPost(post) : null
         }
+        </Card>
       </div>
     )
   }
