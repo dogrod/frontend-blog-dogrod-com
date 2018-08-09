@@ -8,6 +8,7 @@
     "start:server": "NODE_ENV=production nodemon server/index.js",
     "start:server:prod": "NODE_ENV=production pm2 start pm2.json",
     "build": "NODE_ENV=production rm -rf dist && ./node_modules/.bin/webpack --config ./config/webpack.config.prod.js",
+    "analyze": "ANALYZE=true npm run build",
     "upload-bundle": "node scripts/upload-bundle.js",
     "deploy": "NODE_ENV=production npm run build && npm run upload-bundle"
   },
@@ -45,6 +46,7 @@
     "react-router-dom": "^4.2.2",
     "ts-node": "^6.0.3",
     "upyun": "^3.3.4",
+    "webpack-visualizer-plugin": "^0.1.11",
     "winston": "^2.4.2"
   },
   "devDependencies": {

@@ -42,4 +42,12 @@ config.module.rules.push({
   use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
 })
 
+// Switch analyze mode
+const ANALYZE_MODE = process.env.ANALYZE
+if (ANALYZE_MODE) {
+  const Visualizer = require('webpack-visualizer-plugin')
+
+  config.plugins.push(new Visualizer())
+}
+
 module.exports = config
