@@ -9,6 +9,7 @@
 ### Performance
 
 - Upload bundle file to [Upyun](https://upyun.com) CDN service after build
+- Code spliting via react-loadable
 
 ### 💄 Style
 
