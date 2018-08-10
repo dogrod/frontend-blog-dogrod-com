@@ -7,9 +7,7 @@ const paths = require('./paths')
 
 module.exports = () => {
   return {
-    entry: {
-      index: './client/index.tsx',
-    },
+    entry: ['./client/index.tsx'],
     output: {
       filename: '[name].[hash:8].js',
       chunkFilename: '[name].[hash:8].bundle.js',
