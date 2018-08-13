@@ -1,18 +1,20 @@
-FROM keymetrics/pm2:latest-alpine
+FROM node:8
 
 # Bundle APP files
 RUN mkdir -p /home/service
 WORKDIR /home/service
 COPY . /home/service
 
+# Install PM2
+RUN yarn global add pm2
+
 # Install app dependencies
-ENV NPM_CONFIG_LOGLEVEL warn
-RUN npm install
+RUN yarn install
 
 # Show current folder structure in logs
 RUN ls
 
-RUN npm run deploy
+RUN yarn run deploy
 
 EXPOSE 4000
-CMD ["pm2-docker", "start", "pm2.json"]
+CMD ["pm2-runtime", "pm2.json"]

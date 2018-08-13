@@ -8,9 +8,9 @@
     "start:server": "cross-env NODE_ENV=development nodemon server/index.js",
     "start:server:prod": "cross-env NODE_ENV=production pm2 start pm2.json",
     "build": "cross-env NODE_ENV=production rm -rf dist && ./node_modules/.bin/webpack --config ./config/webpack.config.prod.js",
-    "analyze": "cross-env ANALYZE=true npm run build",
+    "analyze": "cross-env ANALYZE=true yarn run build",
     "upload-bundle": "node scripts/upload-bundle.js",
-    "deploy": "cross-env NODE_ENV=production npm run build && npm run upload-bundle"
+    "deploy": "cross-env NODE_ENV=production yarn run build && yarn run upload-bundle"
   },
   "main": "server/index.js",
   "repository": {
