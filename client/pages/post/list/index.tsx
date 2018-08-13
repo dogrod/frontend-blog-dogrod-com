@@ -133,7 +133,7 @@ class PostList extends React.Component<{}, StateTypes> {
       <div className={PREFIX_CLASS}>
         {
           isLoading
-            ? 'Loading...'
+            ? <Card>Loading...</Card>
             : (
               <List>
                 {this.renderList(list)}
