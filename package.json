@@ -1,5 +1,5 @@
 {
-  "name": "blog_dogrod_com",
+  "name": "frontend-blog-dogrod-com",
   "version": "0.2.0",
   "private": true,
   "description": "> My own blog project. > > [> Dokodemo Door](http://blog.dogrod.com)",
@@ -15,7 +15,7 @@
   "main": "server/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dogrod/blog_dogrod_com.git"
+    "url": "git+https://github.com/dogrod/frontend-blog-dogrod-com.git"
   },
   "keywords": [
     "blog"
@@ -23,9 +23,9 @@
   "author": "dogrod <rodrickjue@hotmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dogrod/blog_dogrod_com/issues"
+    "url": "https://github.com/dogrod/frontend-blog-dogrod-com/issues"
   },
-  "homepage": "https://github.com/dogrod/blog_dogrod_com#readme",
+  "homepage": "https://github.com/dogrod/frontend-blog-dogrod-com#readme",
   "dependencies": {
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
