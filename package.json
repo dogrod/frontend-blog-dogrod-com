@@ -4,13 +4,13 @@
   "private": true,
   "description": "> My own blog project. > > [> Dokodemo Door](http://blog.dogrod.com)",
   "scripts": {
-    "start": "NODE_ENV=development node scripts/start-dev.js",
-    "start:server": "NODE_ENV=production nodemon server/index.js",
-    "start:server:prod": "NODE_ENV=production pm2 start pm2.json",
-    "build": "NODE_ENV=production rm -rf dist && ./node_modules/.bin/webpack --config ./config/webpack.config.prod.js",
-    "analyze": "ANALYZE=true npm run build",
+    "start": "cross-env NODE_ENV=development node scripts/start-dev.js",
+    "start:server": "cross-env NODE_ENV=development nodemon server/index.js",
+    "start:server:prod": "cross-env NODE_ENV=production pm2 start pm2.json",
+    "build": "cross-env NODE_ENV=production rm -rf dist && ./node_modules/.bin/webpack --config ./config/webpack.config.prod.js",
+    "analyze": "cross-env ANALYZE=true npm run build",
     "upload-bundle": "node scripts/upload-bundle.js",
-    "deploy": "NODE_ENV=production npm run build && npm run upload-bundle"
+    "deploy": "cross-env NODE_ENV=production npm run build && npm run upload-bundle"
   },
   "main": "server/index.js",
   "repository": {
@@ -70,6 +70,7 @@
     "babel-preset-stage-1": "^6.24.1",
     "case-sensitive-paths-webpack-plugin": "^2.1.2",
     "connect-history-api-fallback": "^1.5.0",
+    "cross-env": "^5.2.0",
     "css-loader": "^0.28.11",
     "html-webpack-plugin": "^3.2.0",
     "koa-connect": "^2.0.1",
