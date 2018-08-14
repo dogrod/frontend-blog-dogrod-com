@@ -15,6 +15,7 @@
 
   &__item {
     display: flex;
+    padding-top: 10px;
   }
 
   &__publish-time {
@@ -113,6 +114,10 @@
 
 @media screen and (max-width: 650px) {
   .post-list{
+    &__item {
+      padding: 0;
+    }
+
     &__content,
     &__read-more {
       display: none;
