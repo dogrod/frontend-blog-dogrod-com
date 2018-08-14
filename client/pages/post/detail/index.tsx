@@ -29,6 +29,7 @@ interface StateTypes {
   isLoading: boolean
   disableLike: boolean
   activeLike: boolean
+  successLike: boolean
 }
 
 const PREFIX_CLASS = 'post-detail'
@@ -42,7 +43,8 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
       isLoading: false,
       disableLike: false,
       activeLike: false,
-    }
+      successLike: false,
+}
   }
 
   async componentDidMount() {
@@ -144,7 +146,10 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
   }
 
   triggerLikeSuccess = async () => {
-    this.setState({ activeLike: true })
+    this.setState({
+      activeLike: true,
+      successLike: true,
+    })
 
     const promise = new Promise((resolve) => window.setTimeout(
       () => {
@@ -199,6 +204,7 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
               `${PREFIX_CLASS}__likes-summary`,
               {
                 [`${PREFIX_CLASS}__action--active`]: this.state.activeLike,
+                [`${PREFIX_CLASS}__action--highlight`]: this.state.successLike,
               },
             )}
             onClick={() => this.handleClickLike()}

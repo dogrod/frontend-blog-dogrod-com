@@ -91,6 +91,14 @@
     }
   }
 
+  &__action--highlight {
+    color: $blue-highlight;
+
+    .post-detail__action-count {
+      color: $blue-highlight;
+    }
+    }
+
   &__action-icon {
     display: inline-block;
     margin-right: 5px;
