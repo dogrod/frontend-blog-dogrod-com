@@ -45,7 +45,7 @@ export class UserProvider extends React.Component<{}, StateTypes> {
         }
       case UserActionType.EXPIRE:
       case UserActionType.LOGOUT:
-        window.localStorage.removeItem('JW_TOKEN')
+        window.localStorage.removeItem('DR_JW_TOKEN')
 
         return {
           ...state,

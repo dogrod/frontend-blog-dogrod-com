@@ -86,7 +86,7 @@ class Login extends React.Component<PropTypes, StateTypes> {
         }
       })
 
-      window.localStorage.setItem('JW_TOKEN', result.token)
+      window.localStorage.setItem('DR_JW_TOKEN', result.token)
 
       this.props.history.push('/')
     } catch (error) {

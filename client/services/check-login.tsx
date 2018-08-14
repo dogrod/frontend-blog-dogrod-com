@@ -9,9 +9,11 @@ class CheckLogin extends React.Component {
   dispatch: (action: UserAction) => void
   
   async componentDidMount() {
-    const token = window.localStorage.getItem('JW_TOKEN')
+    const token = window.localStorage.getItem('DR_JW_TOKEN')
     
-    if (!token) return
+    if (!token) {
+      return
+    }
     
     this.token = token
 
