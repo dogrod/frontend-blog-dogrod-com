@@ -44,7 +44,7 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
       disableLike: false,
       activeLike: false,
       successLike: false,
-}
+    }
   }
 
   async componentDidMount() {
@@ -53,11 +53,14 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
     try {
       const post = await this.fetchPostDetailData()
 
-      setTitle(post.title)      
+      setTitle(post.title)
 
       this.setState({
         post
       })
+
+      const localSuccessLike = window.localStorage.getItem(`DR_SUCCESS_LIKE_${this.state.slug}`)
+      this.setSuccessLike(!!JSON.parse(localSuccessLike || ''))
     } catch (error) {
       console.error(error)
     } finally {
@@ -90,6 +93,9 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
       this.setLikeCount(likeCount)
 
       await this.triggerLikeSuccess()
+
+      this.setSuccessLike(true)
+      this.cacheSuccessLikeStatus(slug)
     } catch (error) {
       console.error(error)
     } finally {
@@ -132,6 +138,7 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
 
   /**
    * set like count of post
+   * @param likes - likes of post
    */
   setLikeCount = (likes: number) => {
     const newState = update(this.state, {
@@ -145,10 +152,20 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
     this.setState(newState)
   }
 
+  /**
+   * Set success like
+   * @param successLike - success like status
+   */
+  setSuccessLike = (successLike: boolean) => {
+    this.setState({ successLike })
+  }
+
+  /**
+   * Trigger like success status after like action succeed
+   */
   triggerLikeSuccess = async () => {
     this.setState({
       activeLike: true,
-      successLike: true,
     })
 
     const promise = new Promise((resolve) => window.setTimeout(
@@ -161,6 +178,14 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
     ))
 
     return promise
+  }
+
+  /**
+   * Cache success like status in local storage
+   * @param slug - post slug
+   */
+  cacheSuccessLikeStatus = (slug: string) => {
+    window.localStorage.setItem(`DR_SUCCESS_LIKE_${slug}`, '1')
   }
 
   /**
