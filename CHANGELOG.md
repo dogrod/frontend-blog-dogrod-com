@@ -9,7 +9,8 @@
 ### Performance
 
 - Upload bundle file to [Upyun](https://upyun.com) CDN service after build
-- Code spliting via react-loadable
+- Code spliting via [react-loadable](https://github.com/jamiebuilds/react-loadable)
+- Spliting common chunks via [webpack split chunks plugin](https://webpack.js.org/plugins/split-chunks-plugin/)
 
 ### 💄 Style
 
