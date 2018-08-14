@@ -45,9 +45,9 @@ config.module.rules.push({
 // Switch analyze mode
 const ANALYZE_MODE = process.env.ANALYZE
 if (ANALYZE_MODE) {
-  const Visualizer = require('webpack-visualizer-plugin')
+  const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
-  config.plugins.push(new Visualizer())
+  config.plugins.push(new BundleAnalyzerPlugin())
 }
 
 module.exports = config
