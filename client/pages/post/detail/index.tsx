@@ -60,7 +60,7 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
       })
 
       const localSuccessLike = window.localStorage.getItem(`DR_SUCCESS_LIKE_${this.state.slug}`)
-      this.setSuccessLike(!!JSON.parse(localSuccessLike || ''))
+      this.setSuccessLike(localSuccessLike === '1')
     } catch (error) {
       console.error(error)
     } finally {
