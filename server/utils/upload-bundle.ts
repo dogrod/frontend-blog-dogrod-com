@@ -14,7 +14,7 @@ const defaultOptions = {
 
 const config: any = require(path.resolve(fs.realpathSync(process.cwd()), 'upyun.config.js'))
 
-const options = Object.assign({}, defaultOptions, config)
+const options = {...defaultOptions, ...config}
 
 const { service, operator, password } = options
 
@@ -25,7 +25,7 @@ const upyunClient = new Upyun.Client(upyunService)
 const recursivePath = (dir: string, callback: (localPath: string) => void) => {
   logger.debug(`Recursive path @ ${dir}`)
 
-  fs.readdirSync(dir).forEach(file => {
+  fs.readdirSync(dir).forEach((file) => {
     const filePath = path.join(dir, file)
     if (options.ignore.includes(file)) {
       logger.info(`Ignored path: ${filePath}`)
@@ -53,7 +53,7 @@ const upload = async (localPath: string) => {
       throw new Error(`Upload to upyun failed: ${localPath} ===> ${remotePath}`)
     }
     
-    logger.info(`√ Uploaded. Detail: ${localPath} ===> ${remotePath}`)
+    logger.info(`✨ File uploaded. Local: ${localPath} ===> Remote: ${remotePath}`)
   } catch (error) {
     logger.error(error.message)
   }
