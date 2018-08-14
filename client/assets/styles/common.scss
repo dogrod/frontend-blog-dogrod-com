@@ -54,5 +54,6 @@ ul {
 @media screen and (max-width: 650px) {
   .content {
     padding: 20px 10px;
+    min-height: calc(100vh - 120px);
   }
 }
