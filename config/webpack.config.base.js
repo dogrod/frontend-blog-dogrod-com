@@ -78,8 +78,20 @@ module.exports = () => {
         filename: 'index.html',
         template: paths.htmlTemplate,
         inject: true,
-        chunks: ['index'],
+        chunks: ['index', 'vendors'],
       }),
-    ]
+    ],
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          vendors: {
+            test: /[\\/]node_modules[\\/]/,
+            chunks: 'all',
+            priority: 1,
+            name: 'vendors'
+          }
+        }
+      },
+    },
   }
 }
