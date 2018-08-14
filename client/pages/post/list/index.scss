@@ -20,17 +20,20 @@
   &__publish-time {
     flex-grow: 0;
 
-    width: 100px;
-    min-width: 100px;
+    width: 120px;
+    min-width: 120px;
+    height: 28px;
+    line-height: 28px;
     
     color: $blue-light;
     letter-spacing: 1px;
     font-size: $font-size-large;
 
     @media screen and (max-width: 650px) {
-      font-size: $font-size-small;
+      width: 100px;
+      min-width: 100px;
       
-      margin-top: 2px;
+      font-size: $font-size-small;
     }
   }
 
