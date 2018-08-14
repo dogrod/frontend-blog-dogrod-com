@@ -83,12 +83,12 @@ module.exports = () => {
     ],
     optimization: {
       splitChunks: {
+        chunks: 'async',
+        name: 'vendors',
         cacheGroups: {
           vendors: {
             test: /[\\/]node_modules[\\/]/,
-            chunks: 'all',
             priority: 1,
-            name: 'vendors'
           }
         }
       },
