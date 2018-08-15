@@ -1,4 +1,5 @@
 import * as React from 'react'
+import classNames from 'classnames'
 
 import Card from '@/components/card'
 
@@ -14,7 +15,12 @@ const PREFIX_CLASS = 'loading'
 
 const Loading: React.SFC<PropTypes> = (props) => {
   const renderLoadingContent = () => (
-    <div className={PREFIX_CLASS}>
+    <div
+      className={classNames(
+        PREFIX_CLASS,
+        { [`${PREFIX_CLASS}--follow`]: props.follow }
+      )}
+    >
       <Card>
         {props.error
           ? '出错啦 (⇀‸↼‶)'

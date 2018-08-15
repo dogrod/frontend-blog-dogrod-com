@@ -18,6 +18,7 @@
 }
 
 // Without wrapper, which is following document flow
-.loading {
+.loading--follow {
   width: 100%;
+  text-align: center;
 }
