@@ -89,11 +89,11 @@ class PostList extends React.Component<{}, StateTypes> {
           {convertTimeFormat(item.publishAt)}
         </div>
         <div className={`${PREFIX_CLASS}__description`}>
-          <h1 className={`${PREFIX_CLASS}__title`}>
+          <div className={`${PREFIX_CLASS}__title`}>
             <Link to={url}>
               {item.title}
             </Link>
-          </h1>
+          </div>
           <p
             className={`${PREFIX_CLASS}__content`}
             dangerouslySetInnerHTML={{__html: item.content}}
