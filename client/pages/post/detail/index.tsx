@@ -33,6 +33,7 @@ interface StateTypes {
 }
 
 const PREFIX_CLASS = 'post-detail'
+const CACHE_KEY = 'DRCacheSuccessLike'
 
 class PostDetail extends React.Component<PropTypes, StateTypes> {
   constructor(props: PropTypes) {
@@ -59,8 +60,11 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
         post
       })
 
-      const localSuccessLike = window.localStorage.getItem(`DR_SUCCESS_LIKE_${this.state.slug}`)
-      this.setSuccessLike(localSuccessLike === '1')
+      const localCache = window.localStorage.getItem(CACHE_KEY)
+      if (localCache) {
+        const cacheObject = JSON.parse(localCache)
+        this.setSuccessLike(cacheObject[this.state.slug] === '1')
+      }
     } catch (error) {
       console.error(error)
     } finally {
@@ -185,7 +189,11 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
    * @param slug - post slug
    */
   cacheSuccessLikeStatus = (slug: string) => {
-    window.localStorage.setItem(`DR_SUCCESS_LIKE_${slug}`, '1')
+    const cacheObjectString = window.localStorage.getItem(CACHE_KEY)
+    const cacheObject = cacheObjectString ? JSON.parse(cacheObjectString) : {}
+
+    const newCacheObject =  {...cacheObject, ...{ [slug]: '1' }}
+    window.localStorage.setItem(CACHE_KEY, JSON.stringify(newCacheObject))
   }
 
   /**
