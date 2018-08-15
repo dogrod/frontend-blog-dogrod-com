@@ -12,12 +12,16 @@ import { convertTimeFormat, setTitle } from '@/utils'
 import List from '@/components/list'
 import ListItem from '@/components/list/item'
 import Card from '@/components/card'
+import Loading from '@/components/loading'
 
 import './index.scss'
 
 interface StateTypes {
   list: BlogTypes.Post[],
   isLoading: boolean,
+  page: number
+  pageSize: number
+  tag: string | null
 }
 
 const PREFIX_CLASS = 'post-list'
@@ -29,13 +33,14 @@ class PostList extends React.Component<{}, StateTypes> {
     this.state = {
       list: [],
       isLoading: false,
+      page: 0,
+      pageSize: 15,
+      tag: null,
     }
   }
 
   async componentDidMount() {
     setTitle('无敌筋斗雷 x 不唠嗑')
-    // Start loading status
-    this.setLoadingStatus(true)
 
     try {
       const list = await this.fetchPostListData()
@@ -45,9 +50,6 @@ class PostList extends React.Component<{}, StateTypes> {
       })
     } catch (error) {
       console.error(error)
-    } finally {
-      // End loading status
-      this.setLoadingStatus(false)
     }
   }
 
@@ -56,15 +58,28 @@ class PostList extends React.Component<{}, StateTypes> {
    * @returns promise instance
    */
   fetchPostListData = async () => {
+    const { page, pageSize, tag } = this.state
+    
     const url = api.getPosts
+    const params = {
+      page: page + 1,
+      pageSize,
+      tag,
+    }
+
+    // Start loading status
+    this.setLoadingStatus(true)
     
     try {
       // FIXME: Fix conflict between axios response & axios response interceptors
-      const response: any = await http.get(url)
+      const response: any = await http.get(url, { params })
 
       return response.posts
     } catch (error) {
       throw error
+    } finally {
+      // End loading status
+      this.setLoadingStatus(false)
     }
   }
 
@@ -131,14 +146,13 @@ class PostList extends React.Component<{}, StateTypes> {
 
     return (
       <div className={PREFIX_CLASS}>
+        <List>
+          {this.renderList(list)}
+        </List>
         {
           isLoading
-            ? <Card>Loading...</Card>
-            : (
-              <List>
-                {this.renderList(list)}
-              </List>
-            )
+            ? <Loading follow={true} />
+            : null
         }
       </div>
     )

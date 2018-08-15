@@ -5,6 +5,7 @@ import { RouteComponentProps } from 'react-router'
 
 import Icon from '@/components/icon'
 import Card from '@/components/card'
+import Loading from '@/components/loading'
 
 import api from '@/api'
 import http from '@/utils/http'
@@ -271,19 +272,20 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
       </div>
     )
   }
-  
+
   render() {
     const { post, isLoading } = this.state
     
     return (
       <div className={`${PREFIX_CLASS}__wrapper`}>
-        <Card>
-        {
-          isLoading
-          ? 'Loading...'
-          : post ? this.renderPost(post) : null
+        {isLoading
+          ? <Loading />
+          : (
+            <Card>
+              {post ? this.renderPost(post) : null}
+            </Card>
+          )
         }
-        </Card>
       </div>
     )
   }
