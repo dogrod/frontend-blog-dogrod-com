@@ -29,13 +29,17 @@ app.use(httpMiddleware)
 app.use(proxyMiddleware())
 
 app.listen(port, () => {
-  if (!isDev) return
+  if (!isDev) {
+    return
+  }
+
+  const currentIP = ip.address()
 
   logger.info(`
     > Koa server ready on port ${port}
-    > You can access it via http://localhost:${port} or http://${ip.address()}:${port}
+    > You can access it via http://localhost:${port} or http://${currentIP}:${port}
   `)
 
   /* tslint:disable-next-line */
-  require('react-dev-utils/openBrowser')(`http://localhost:${port}`);
+  require('react-dev-utils/openBrowser')(`http://${currentIP}:${port}`);
 })

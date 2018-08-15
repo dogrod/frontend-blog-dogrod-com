@@ -58,8 +58,10 @@ export default (filter = REG_DEFAULT_FILTER) => {
 
     // If NODE_ENV is development, retrieving page from webpack-serve
     if (isDev) {
+      const ip = require('ip')
+      const currentIP = ip.address()
       const webpackServePort = parseInt(appConfig.port, 10) + 100 || 9101
-      const INDEX_PATH = `http://localhost:${webpackServePort}/index.html`
+      const INDEX_PATH = `http://${currentIP}:${webpackServePort}/index.html`
       
       logger.info(`Retrieving page from webpack serve --> ${INDEX_PATH}`)
       return axios.get(INDEX_PATH)
