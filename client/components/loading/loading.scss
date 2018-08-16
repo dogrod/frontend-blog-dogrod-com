@@ -1,7 +1,6 @@
-.loading {
-  text-align: center;
-  white-space: nowrap;
-}
+@import '~@/assets/styles/variables';
+
+$blue-blur: rgba(170, 177, 185, .7);
 
 // Loading element with wrapper
 .loading__wrapper {
@@ -14,15 +13,19 @@
   z-index: 2018;
   
   .loading {
+    padding: 10px 20px;
+
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
+    color: $black;
+    border-radius: 10px;
+    background-color: $blue-blur;
     user-select: none;
+    text-align: center;
+    white-space: nowrap;
   }
 }
 
-// Without wrapper, which is following document flow
-.loading--follow {
-  width: 100%;
-}
