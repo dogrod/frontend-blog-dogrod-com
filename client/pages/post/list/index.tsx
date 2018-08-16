@@ -1,6 +1,8 @@
 import * as React from 'react'
 // import { AxiosResponse } from 'axios'
 import { Link } from 'react-router-dom'
+import { TransitionMotion, spring, presets, TransitionPlainStyle } from 'react-motion'
+import omit from 'omit.js'
 
 // import { PostListResponse } from '@/types/api'
 import BlogTypes from '@/types/blog'
@@ -79,7 +81,7 @@ class PostList extends React.Component<{}, StateTypes> {
       throw error
     } finally {
       // End loading status
-      this.setLoadingStatus(false)
+      // this.setLoadingStatus(false)
     }
   }
 
@@ -87,8 +89,56 @@ class PostList extends React.Component<{}, StateTypes> {
    * set loading status
    * @param isLoading - loading status
    */
-  setLoadingStatus(isLoading: boolean) {
+  setLoadingStatus = (isLoading: boolean) => {
     this.setState({ isLoading })
+  }
+
+  /**
+   * get default style for transition motion
+   */
+  getDefaultStyle = () => {
+    return this.state.list.map(post => ({
+      key: post.slug,
+      data: post,
+      style: {
+        translateY: -100,
+        opacity: 1,
+      },
+    }))
+  }
+
+  // get style
+  getStyles = () => {
+    return this.state.list.map(post => {
+      return {
+        key: post.slug,
+        data: post,
+        style: {
+          translateY: spring(0, presets.gentle),
+          opacity: spring(1, presets.gentle),
+        }
+      }
+    })
+  }
+
+  /**
+   * before enter
+   */
+  willEnter() {
+    return {
+      translateY: -50,
+      opacity: 0,
+    }
+  }
+
+  /**
+   * before leave
+   */
+  willLeave() {
+    return {
+      translateY: spring(-100,presets.gentle),
+      opacity: spring(0),
+    }
   }
 
   /**
@@ -124,34 +174,57 @@ class PostList extends React.Component<{}, StateTypes> {
   }
 
   /**
-   * render post list
-   * @param list - post list data
+   * render motion styled item
+   * @param item - item data
    */
-  renderList = (list: BlogTypes.Post[]) => {
+  renderStyledItem = (item: TransitionPlainStyle) => {
     const { renderPostContent } = this
-    return list.map((item) => {
-      return (
-        <ListItem key={item.id}>
-          <Card>
-            {renderPostContent(item)}
-          </Card>
-        </ListItem>
-      )
-    })
+    const post: BlogTypes.Post = item.data
+    const { style } = item
+
+    return (
+      <ListItem
+        key={post.id}
+        style={{
+          ...omit(style, ['translateY', 'scaleY']),
+          transform: `translate(0, ${style.translateY}px)`,
+        }}
+      >
+        <Card>
+          {renderPostContent(post)}
+        </Card>
+      </ListItem>
+    )
   }
 
   render() {
-    const { state } = this
-    const { list, isLoading } = state
+    const {
+      state,
+      getDefaultStyle,
+      getStyles,
+      willEnter,
+      willLeave,
+      renderStyledItem,
+    } = this
+    const { isLoading } = state
 
     return (
       <div className={PREFIX_CLASS}>
-        <List>
-          {this.renderList(list)}
-        </List>
+        <TransitionMotion
+          defaultStyles={getDefaultStyle()}
+          styles={getStyles()}
+          willEnter={willEnter}
+          willLeave={willLeave}
+        >
+        {styles => (
+          <List>
+            {styles.map((item) => renderStyledItem(item))}
+          </List>
+        )}
+        </TransitionMotion>
         {
           isLoading
-            ? <Loading follow={true} />
+            ? <Loading />
             : null
         }
       </div>
