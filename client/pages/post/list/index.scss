@@ -4,11 +4,6 @@
   width: 100%;
   max-width: 1000px;
 
-  h1 {
-    line-height: 1;
-    margin: 0;
-  }
-
   p {
     margin: 1em 0 0;
   }
@@ -45,21 +40,21 @@
   }
 
   &__title {
-    text-align: left;
     cursor: pointer;
+    text-align: left;
+    line-height: 28px;
     transition: .3s;
     
     a {
-      font-size: $font-size-extra-large;
-
-      display: inline-block;
+      display: block;
       width: 100%;
-      overflow: hidden;
-
-      white-space: nowrap;
-      text-overflow: ellipsis;
+      
+      font-size: $font-size-extra-large;
       font-weight: 400;
       letter-spacing: 1px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
       
       &:hover {
         color: $pink;
