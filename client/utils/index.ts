@@ -3,7 +3,11 @@
  * @param timeString - time string
  * @returns localized time
  */
-export const convertTimeFormat = (timeString: string) => {
+export const convertTimeFormat = (timeString?: string) => {
+  if (!timeString) {
+    return
+  }
+
   return new Date(timeString).toLocaleString('zh-cn', { month: 'long', day: 'numeric', timeZone: 'Asia/Shanghai'})
 }
 
@@ -14,11 +18,12 @@ const SITE_TITLE = '无敌筋斗雷'
  * @param title - title
  */
 export const setTitle = (title: string) => {
-  if (typeof document.title === 'undefined') return
+  if (typeof document.title === 'undefined') {
+    return
+  }
 
   document.title = title.includes(SITE_TITLE) ? title : `${title} | ${SITE_TITLE}`
 }
-
 
 let lastId = 0
 

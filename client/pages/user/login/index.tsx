@@ -1,6 +1,6 @@
 import * as React from 'react'
-import update from 'immutability-helper'
 import { RouteComponentProps } from 'react-router-dom'
+import Immutable from 'immutable'
 
 import http from '@/utils/http'
 import api from '@/api'
@@ -16,12 +16,9 @@ import SeaWave from '@/components/sea-wave'
 import Card from '@/components/card'
 
 import './index.scss'
-import { LogoSize } from '@/components/logo/logo';
+import { LogoSize } from '@/components/logo/logo'
 
-interface LoginForm {
-  username: string
-  password: string
-}
+interface LoginForm extends Immutable.Map<string, string> {}
 
 interface PropTypes extends RouteComponentProps<{}> {}
 
@@ -37,11 +34,13 @@ class Login extends React.Component<PropTypes, StateTypes> {
   constructor(props: PropTypes) {
     super(props)
 
+    const form = Immutable.Map({
+      username: '',
+      password: '',
+    })
+
     this.state = {
-      form: {
-        username: '',
-        password: '',
-      },
+      form,
     }
   }
 
@@ -55,13 +54,9 @@ class Login extends React.Component<PropTypes, StateTypes> {
    * @param key - key of current value in form
    */
   handleChange = (value: string, key: string) => {
-    const newState = update(this.state, {
-      form: {
-        $merge: {
-          [key]: value
-        }
-      }
-    })
+    const newState = {
+      form: this.state.form.set(key, value)
+    }
 
     this.setState(newState)
   }
@@ -125,18 +120,20 @@ class Login extends React.Component<PropTypes, StateTypes> {
                 type="text"
                 label="用户名"
                 placeholder="请输入用户名"
-                value={form.username}
+                value={form.get('username')}
                 size={TextFieldSize.LARGE}
-                onChange={e => handleChange(e.target.value, 'username')}/>
+                onChange={e => handleChange(e.target.value, 'username')}
+              />
             </FormItem>
             <FormItem>
               <TextField
                 type="password"
                 label="密码"
                 placeholder="请输入密码"
-                value={form.password}
+                value={form.get('password')}
                 size={TextFieldSize.LARGE}
-                onChange={e => handleChange(e.target.value, 'password')} />
+                onChange={e => handleChange(e.target.value, 'password')}
+              />
             </FormItem>
             <FormItem className={`${PREFIX_CLASS}__submit`}>
               <Button type="submit" size={ButtonSize.LARGE}>登录</Button>

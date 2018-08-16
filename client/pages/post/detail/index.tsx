@@ -1,7 +1,7 @@
 import * as React from 'react'
 import classNames from 'classnames'
-import update from 'immutability-helper'
 import { RouteComponentProps } from 'react-router'
+import Immutable from 'immutable'
 
 import Icon from '@/components/icon'
 import Card from '@/components/card'
@@ -12,8 +12,6 @@ import http from '@/utils/http'
 import marked from '@/utils/marked'
 import { convertTimeFormat, setTitle } from '@/utils'
 
-import BlogTypes from '@/types/blog'
-
 import './index.scss'
 
 declare module 'react' {
@@ -22,10 +20,12 @@ declare module 'react' {
   }
 }
 
+type PostType = Immutable.Map<string, any>
+
 interface PropTypes extends RouteComponentProps<{ slug: string }> {}
 
 interface StateTypes {
-  post?: BlogTypes.Post
+  post?: PostType
   slug: string
   isLoading: boolean
   disableLike: boolean
@@ -58,7 +58,7 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
       setTitle(post.title)
 
       this.setState({
-        post
+        post: Immutable.Map(post)
       })
 
       const localCache = window.localStorage.getItem(CACHE_KEY)
@@ -146,13 +146,13 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
    * @param likes - likes of post
    */
   setLikeCount = (likes: number) => {
-    const newState = update(this.state, {
-      post: {
-        $merge: {
-          likes,
-        }
-      }
-    })
+    if (!this.state.post) {
+      return
+    }
+
+    const newState = {
+      post: this.state.post.set('likes', likes)
+    }
 
     this.setState(newState)
   }
@@ -206,15 +206,15 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
 
   /**
    * Render post
-   * @param postData - post JSON data
+   * @param postData - post Map
    * @returns JSX Elements
    */
-  renderPost(postData: BlogTypes.Post) {
+  renderPost(postData: PostType) {
     const renderMarkedContent = () => (
       <div
         className={`${PREFIX_CLASS}__content markdown`}
         dangerouslySetInnerHTML={{
-          __html: this.convertMarkdownContent(postData.content)
+          __html: this.convertMarkdownContent(postData.get('content') || '')
         }}
       />
     )
@@ -222,7 +222,7 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
     const renderTags = () => (
       <div className={`${PREFIX_CLASS}__tags`}>
         {
-          postData.tags.map((tag) => 
+          postData.get('tags').map((tag: string) => 
             <a key={tag} className={`${PREFIX_CLASS}__tag`}>{tag}</a>
           )
         }
@@ -231,7 +231,7 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
 
     const renderBottomInfo = () => (
       <div className={`${PREFIX_CLASS}__bottom-info`}>
-        <div className={`${PREFIX_CLASS}__publish-time`}>发布于{convertTimeFormat(postData.publishAt)}</div>
+        <div className={`${PREFIX_CLASS}__publish-time`}>发布于{convertTimeFormat(postData.get('publishAt'))}</div>
         <div className={`${PREFIX_CLASS}__actions`}>
           <div
             className={classNames(
@@ -247,7 +247,7 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
               <Icon name="like-simple" />
             </div>
             <div className={`${PREFIX_CLASS}__action-count`}>
-              {postData.likes}
+              {postData.get('likes')}
             </div>
           </div>
           <div className={`${PREFIX_CLASS}__comments-summary`}>
@@ -255,7 +255,7 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
               <Icon name="comment" />
             </div>
             <div className={`${PREFIX_CLASS}__action-count`}>
-              {postData.comments}
+              {postData.get('comments')}
             </div>
           </div>
         </div>
@@ -264,8 +264,8 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
 
     return (
       <div className={PREFIX_CLASS}>
-        <h1 className={`${PREFIX_CLASS}__title`}>{postData.title}</h1>
-        <div className={`${PREFIX_CLASS}__category`}>{postData.category}</div>
+        <h1 className={`${PREFIX_CLASS}__title`}>{postData.get('title')}</h1>
+        <div className={`${PREFIX_CLASS}__category`}>{postData.get('category')}</div>
         {renderMarkedContent()}
         {renderTags()}
         {renderBottomInfo()}
@@ -280,11 +280,11 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
       <div className={`${PREFIX_CLASS}__wrapper`}>
         {isLoading
           ? <Loading />
-          : (
+          : post ? (
             <Card>
-              {post ? this.renderPost(post) : null}
+              {this.renderPost(post)}
             </Card>
-          )
+          ) : null
         }
       </div>
     )

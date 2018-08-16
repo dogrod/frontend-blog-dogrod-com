@@ -3,7 +3,7 @@ import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { TransitionMotion, spring, presets, TransitionPlainStyle } from 'react-motion'
 import omit from 'omit.js'
-import update from 'immutability-helper'
+import Immutable from 'immutable'
 
 // import { PostListResponse } from '@/types/api'
 import BlogTypes from '@/types/blog'
@@ -20,7 +20,7 @@ import Loading from '@/components/loading'
 import './index.scss'
 
 interface StateTypes {
-  list: BlogTypes.Post[],
+  list: Immutable.List<BlogTypes.Post>,
   isLoading: boolean,
   page: number
   pageSize: number
@@ -35,7 +35,7 @@ class PostList extends React.Component<{}, StateTypes> {
     super(props)
 
     this.state = {
-      list: [],
+      list: Immutable.List([]),
       isLoading: false,
       page: 0,
       pageSize: 15,
@@ -76,7 +76,7 @@ class PostList extends React.Component<{}, StateTypes> {
       const response: any = await http.get(url, { params })
 
       const list = response.posts
-      this.pushPostList(list)
+      this.mergePostList(list)
       this.setPageNumber(response.page)
     } catch (error) {
       console.error(error)
@@ -96,28 +96,20 @@ class PostList extends React.Component<{}, StateTypes> {
 
   /**
    * set page number
-   * @param pageNumber - page number
+   * @param page - page number
    */
-  setPageNumber = (pageNumber: number) => {
-    const newState = update(this.state, {
-      page: {
-        $set: pageNumber,
-      }
-    })
-
-    this.setState(newState)
+  setPageNumber = (page: number) => {
+    this.setState({ page })
   }
 
   /**
    * Push new item to post list
    * @param newList - new post items
    */
-  pushPostList = (newList: BlogTypes.Post[]) => {
-    const newState = update(this.state, {
-      list: {
-        $push: newList
-      }
-    })
+  mergePostList = (newList: BlogTypes.Post[]) => {
+    const newState = {
+      list: this.state.list.merge(newList)
+    }
 
     this.setState(newState)
   }
@@ -133,7 +125,7 @@ class PostList extends React.Component<{}, StateTypes> {
         translateY: -100,
         opacity: 1,
       },
-    }))
+    })).toArray()
   }
 
   /**
@@ -149,7 +141,7 @@ class PostList extends React.Component<{}, StateTypes> {
           opacity: spring(1, presets.gentle),
         }
       }
-    })
+    }).toArray()
   }
 
   /**
