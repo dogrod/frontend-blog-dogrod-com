@@ -1,28 +1,27 @@
 import * as React from 'react'
+import { createPortal } from 'react-dom'
 
 import './loading.scss'
 
-interface PropTypes {
-  error?: boolean
-}
-
 const PREFIX_CLASS = 'loading'
 
-const Loading: React.SFC<PropTypes> = (props) => {
-  const renderLoadingContent = () => (
-    <div className={PREFIX_CLASS}>
-      {props.error
-        ? '出错啦 (⇀‸↼‶)'
-        : props.children || '正在努力加载中 ((⃘ ̂͘₎o̮₍ ̂͘ )⃘)'
-      }
-    </div>
-  )
-  
-  return (
-    <div className={`${PREFIX_CLASS}__wrapper`}>
-      {renderLoadingContent()}
-    </div>
-  )
+class Loading extends React.Component {
+  render() {
+    const renderLoadingContent = () => (
+      <div className={PREFIX_CLASS}>
+        {this.props.children || '正在努力加载中 ((⃘ ̂͘₎o̮₍ ̂͘ )⃘)'}
+      </div>
+    )
+    
+    return createPortal(
+      (
+        <div className={`${PREFIX_CLASS}__wrapper`} id="loading">
+          {renderLoadingContent()}
+        </div>
+      ),
+      document.body,
+    )
+  }
 }
 
 export default Loading
