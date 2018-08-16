@@ -3,6 +3,7 @@ import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { TransitionMotion, spring, presets, TransitionPlainStyle } from 'react-motion'
 import omit from 'omit.js'
+import update from 'immutability-helper'
 
 // import { PostListResponse } from '@/types/api'
 import BlogTypes from '@/types/blog'
@@ -24,6 +25,7 @@ interface StateTypes {
   page: number
   pageSize: number
   tag: string | null
+  loadable: boolean
 }
 
 const PREFIX_CLASS = 'post-list'
@@ -38,29 +40,26 @@ class PostList extends React.Component<{}, StateTypes> {
       page: 0,
       pageSize: 15,
       tag: null,
+      loadable: true,
     }
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     setTitle('无敌筋斗雷 x 不唠嗑')
-
-    try {
-      const list = await this.fetchPostListData()
-
-      this.setState({
-        list
-      })
-    } catch (error) {
-      console.error(error)
-    }
+    
+    this.fetchPostList()
   }
 
   /**
    * fetch post list data
    * @returns promise instance
    */
-  fetchPostListData = async () => {
-    const { page, pageSize, tag } = this.state
+  fetchPostList = async () => {
+    const { page, pageSize, tag, loadable, isLoading } = this.state
+
+    if (isLoading || !loadable) {
+      return
+    }
     
     const url = api.getPosts
     const params = {
@@ -76,9 +75,11 @@ class PostList extends React.Component<{}, StateTypes> {
       // FIXME: Fix conflict between axios response & axios response interceptors
       const response: any = await http.get(url, { params })
 
-      return response.posts
+      const list = response.posts
+      this.pushPostList(list)
+      this.setPageNumber(response.page)
     } catch (error) {
-      throw error
+      console.error(error)
     } finally {
       // End loading status
       this.setLoadingStatus(false)
@@ -91,6 +92,34 @@ class PostList extends React.Component<{}, StateTypes> {
    */
   setLoadingStatus = (isLoading: boolean) => {
     this.setState({ isLoading })
+  }
+
+  /**
+   * set page number
+   * @param pageNumber - page number
+   */
+  setPageNumber = (pageNumber: number) => {
+    const newState = update(this.state, {
+      page: {
+        $set: pageNumber,
+      }
+    })
+
+    this.setState(newState)
+  }
+
+  /**
+   * Push new item to post list
+   * @param newList - new post items
+   */
+  pushPostList = (newList: BlogTypes.Post[]) => {
+    const newState = update(this.state, {
+      list: {
+        $push: newList
+      }
+    })
+
+    this.setState(newState)
   }
 
   /**
@@ -107,7 +136,9 @@ class PostList extends React.Component<{}, StateTypes> {
     }))
   }
 
-  // get style
+  /**
+   * get style
+   */
   getStyles = () => {
     return this.state.list.map(post => {
       return {
