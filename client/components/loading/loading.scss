@@ -1,6 +1,6 @@
 @import '~@/assets/styles/variables';
 
-$blue-blur: rgba(170, 177, 185, .7);
+$blue-blur: rgba(230, 231, 234, .8);
 
 // Loading element with wrapper
 .loading__wrapper {
@@ -22,7 +22,7 @@ $blue-blur: rgba(170, 177, 185, .7);
 
     color: $black;
     border-radius: 10px;
-    background-color: $blue-blur;
+    background-color: $blue-extra-light;
     user-select: none;
     text-align: center;
     white-space: nowrap;

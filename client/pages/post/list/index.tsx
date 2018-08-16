@@ -81,7 +81,7 @@ class PostList extends React.Component<{}, StateTypes> {
       throw error
     } finally {
       // End loading status
-      // this.setLoadingStatus(false)
+      this.setLoadingStatus(false)
     }
   }
 
