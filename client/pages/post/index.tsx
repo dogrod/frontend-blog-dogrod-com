@@ -5,10 +5,12 @@ import Header from '@/components/header'
 
 import DynamicLoad from '@/services/dynamic-load'
 
+import './index.scss'
+
 const Routes: React.SFC<RouteComponentProps<{}>> = (props) => (
   <React.Fragment>
     <Header />
-    <div className="content">
+    <div className="post">
       <Route
         exact={true}
         key="post-list"
@@ -28,7 +30,7 @@ const Routes: React.SFC<RouteComponentProps<{}>> = (props) => (
       <Route
         key="tags"
         path={`${props.match.path}tags`}
-        component={DynamicLoad(() => import('@/pages/tag'))}
+        component={DynamicLoad(() => import('@/pages/post/tag'))}
       />
     </div>
   </React.Fragment>

@@ -1,0 +1,14 @@
+.post {
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+  width: 100%;
+  min-height: calc(100vh - 80px);
+}
+
+@media screen and (max-width: 650px) {
+  .post {
+    padding: 25px 15px;
+    min-height: calc(100vh - 120px);
+  }
+}

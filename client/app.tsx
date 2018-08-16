@@ -5,7 +5,7 @@ import { UserProvider } from './context/user'
 import CheckLogin from '@/services/check-login'
 import DynamicLoad from '@/services/dynamic-load'
 
-import Routes from './routes'
+import Post from '@/pages/post'
 import '@/assets/styles/common.scss'
 
 class App extends React.Component {
@@ -14,7 +14,6 @@ class App extends React.Component {
       <UserProvider>
         <CheckLogin />
         <Router>
-          <div className="app">
             <Switch>
               <Route
                 key="login"
@@ -27,13 +26,12 @@ class App extends React.Component {
                 component={DynamicLoad(() => import('@/pages/user/signup'))}
               />
               <Route
-                key="root"
+                key="post"
                 path="/"
-                component={Routes}
+                component={Post}
               />
               <Redirect key="not-found" to="/" />
             </Switch>
-          </div>
         </Router>
       </UserProvider>
     )
