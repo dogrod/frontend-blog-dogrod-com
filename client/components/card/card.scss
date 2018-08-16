@@ -1,7 +1,7 @@
 @import '~@/assets/styles/variables';
 
 .card {
-  padding: 1em;
+  padding: 1.5em;
   margin-bottom: 30px;
 
   transition: box-shadow .2s;
@@ -11,5 +11,11 @@
 
   &:hover {
     box-shadow: 0 3px 7px -1px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .card {
+    padding: 1em;
   }
 }
