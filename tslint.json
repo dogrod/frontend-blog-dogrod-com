@@ -10,6 +10,7 @@
           "arguments",
           "statements"
       ],
+      "arrow-parens": false,
       "ban": false,
       "class-name": true,
       "comment-format": [
