@@ -2,12 +2,21 @@ import * as React from 'react'
 
 import './card.scss'
 
+interface PropTypes extends React.HTMLAttributes<HTMLDivElement> {}
+
 const PREFIX_CLASS = 'card'
 
-const Card: React.SFC = (props) => (
-  <div className={PREFIX_CLASS}>
-    {props.children}
-  </div>
-)
+const Card: React.SFC<PropTypes> = (props) => {
+  const elementProps = {
+    ...props,
+    className: PREFIX_CLASS,
+  }
+  
+  return (
+    <div {...elementProps}>
+      {props.children}
+    </div>
+  )
+}
 
 export default Card
