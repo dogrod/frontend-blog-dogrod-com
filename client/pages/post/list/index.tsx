@@ -209,7 +209,8 @@ class PostList extends React.Component<{}, StateTypes> {
       <ListItem
         key={post.id}
         style={{
-          ...omit(style, ['translateY', 'scaleY']),
+          ...omit(style, ['translateY']),
+          WebkitTransform: `translate(0, ${style.translateY}px)`,
           transform: `translate(0, ${style.translateY}px)`,
         }}
       >
