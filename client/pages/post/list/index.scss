@@ -55,9 +55,10 @@
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
+      transition: color .2s;
       
       &:hover {
-        color: $pink;
+        color: $blue-highlight;
       }
 
       @media screen and (max-width: 650px) {
@@ -98,10 +99,11 @@
 
     a {
       border-bottom: 1px dashed transparent;
-      transition: .3s;
+      transition: .2s;
 
       &:hover {
-        border-color: #2c3e50;
+        color: $blue-highlight;
+        border-color: $blue-highlight;
       }
     }
   }
