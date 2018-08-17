@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.2.1
+
+### Coding
+
+- Import immutable.js to use immutable data
+
+### Feature
+
+- Add animation for @PostList @PostDetail @Loading components, support by [react-motion](https://github.com/chenglou/react-motion)
+
 ## 0.2 - Buzz!
 
 ### Coding
