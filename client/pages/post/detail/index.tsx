@@ -2,6 +2,7 @@ import * as React from 'react'
 import classNames from 'classnames'
 import { RouteComponentProps } from 'react-router'
 import Immutable from 'immutable'
+import { Motion, spring, presets } from 'react-motion'
 
 import Icon from '@/components/icon'
 import Card from '@/components/card'
@@ -203,6 +204,26 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
    * @returns html string
    */
   convertMarkdownContent = (content: string) => marked(content)
+  
+  /**
+   * get default style for transition motion
+   */
+  getDefaultStyles() {
+    return {
+      translateX: 50,
+      opacity: 1,
+    }
+  }
+
+  /**
+   * get style
+   */
+  getStyles() {
+    return {
+      translateX: spring(0, presets.gentle),
+      opacity: spring(1, presets.gentle),
+    }
+  }
 
   /**
    * Render post
@@ -210,6 +231,8 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
    * @returns JSX Elements
    */
   renderPost(postData: PostType) {
+    const { getDefaultStyles, getStyles } = this
+
     const renderMarkedContent = () => (
       <div
         className={`${PREFIX_CLASS}__content markdown`}
@@ -263,13 +286,28 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
     )
 
     return (
-      <div className={PREFIX_CLASS}>
-        <h1 className={`${PREFIX_CLASS}__title`}>{postData.get('title')}</h1>
-        <div className={`${PREFIX_CLASS}__category`}>{postData.get('category')}</div>
-        {renderMarkedContent()}
-        {renderTags()}
-        {renderBottomInfo()}
-      </div>
+      <Motion
+        defaultStyle={getDefaultStyles()}
+        style={getStyles()}
+      >
+        {style => 
+          <Card
+            style={{
+              opacity: style.opacity,
+              WebkitTransform: `translate(${style.translateX}px, 0)`,
+              transform: `translate(${style.translateX}px, 0)`,
+            }}
+          >
+            <div className={PREFIX_CLASS}>
+              <h1 className={`${PREFIX_CLASS}__title`}>{postData.get('title')}</h1>
+              <div className={`${PREFIX_CLASS}__category`}>{postData.get('category')}</div>
+              {renderMarkedContent()}
+              {renderTags()}
+              {renderBottomInfo()}
+            </div>
+          </Card>
+        }
+      </Motion>
     )
   }
 
@@ -280,11 +318,7 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
       <div className={`${PREFIX_CLASS}__wrapper`}>
         {isLoading
           ? <Loading />
-          : post ? (
-            <Card>
-              {this.renderPost(post)}
-            </Card>
-          ) : null
+          : post ? this.renderPost(post) : null
         }
       </div>
     )
