@@ -122,7 +122,7 @@ class PostList extends React.Component<{}, StateTypes> {
       key: post.slug,
       data: post,
       style: {
-        translateY: -100,
+        translateX: 50,
         opacity: 1,
       },
     })).toArray()
@@ -137,7 +137,7 @@ class PostList extends React.Component<{}, StateTypes> {
         key: post.slug,
         data: post,
         style: {
-          translateY: spring(0, presets.gentle),
+          translateX: spring(0, presets.gentle),
           opacity: spring(1, presets.gentle),
         }
       }
@@ -149,7 +149,7 @@ class PostList extends React.Component<{}, StateTypes> {
    */
   willEnter() {
     return {
-      translateY: -50,
+      translateX: 50,
       opacity: 0,
     }
   }
@@ -159,7 +159,7 @@ class PostList extends React.Component<{}, StateTypes> {
    */
   willLeave() {
     return {
-      translateY: spring(-100,presets.gentle),
+      translateX: spring(50,presets.gentle),
       opacity: spring(0),
     }
   }
@@ -209,9 +209,9 @@ class PostList extends React.Component<{}, StateTypes> {
       <ListItem
         key={post.id}
         style={{
-          ...omit(style, ['translateY']),
-          WebkitTransform: `translate(0, ${style.translateY}px)`,
-          transform: `translate(0, ${style.translateY}px)`,
+          ...omit(style, ['translateX']),
+          WebkitTransform: `translate(${style.translateX}px, 0)`,
+          transform: `translate(${style.translateX}px, 0)`,
         }}
       >
         <Card>
