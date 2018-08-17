@@ -117,7 +117,7 @@ class PostList extends React.Component<{}, StateTypes> {
   /**
    * get default style for transition motion
    */
-  getDefaultStyle = () => {
+  getDefaultStyles = () => {
     return this.state.list.map(post => ({
       key: post.slug,
       data: post,
@@ -224,7 +224,7 @@ class PostList extends React.Component<{}, StateTypes> {
   render() {
     const {
       state,
-      getDefaultStyle,
+      getDefaultStyles,
       getStyles,
       willEnter,
       willLeave,
@@ -235,7 +235,7 @@ class PostList extends React.Component<{}, StateTypes> {
     return (
       <div className={PREFIX_CLASS}>
         <TransitionMotion
-          defaultStyles={getDefaultStyle()}
+          defaultStyles={getDefaultStyles()}
           styles={getStyles()}
           willEnter={willEnter}
           willLeave={willLeave}
