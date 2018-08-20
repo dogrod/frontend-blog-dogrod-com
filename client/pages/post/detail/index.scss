@@ -1,7 +1,7 @@
 @import '~@/assets/styles/variables';
 
 .post-detail {
-  padding: 15px;
+  padding: 30px;
 
   &__wrapper {
     width: 100%;
@@ -11,6 +11,10 @@
   &__title,
   &__category {
     text-align: center;
+  }
+
+  &__cover-image {
+    margin: 30px 0 10px;
   }
 
   &__title {
@@ -117,7 +121,7 @@
 
 @media screen and (max-width: 650px) {
   .post-detail {
-    padding: 0;
+    padding: 15px;
 
     &__title {
       font-size: $font-size-large;
