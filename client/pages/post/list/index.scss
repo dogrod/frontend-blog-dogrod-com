@@ -121,6 +121,8 @@
 
 @media screen and (max-width: 650px) {
   .post-list{
+    padding: 30px 15px;
+
     &__item {
       flex-direction: column;
     }
