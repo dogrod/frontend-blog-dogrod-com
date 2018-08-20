@@ -298,7 +298,7 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
               <h1 className={`${PREFIX_CLASS}__title`}>{postData.get('title')}</h1>
               <div className={`${PREFIX_CLASS}__category`}>{postData.getIn(['category', 'title'])}</div>
               <div className={`${PREFIX_CLASS}__cover-image`}>
-                <img src={postData.get('coverImage')} />
+                <img src={`${postData.get('coverImage')}!/format/webp`} />
               </div>
               {renderMarkedContent()}
               {renderTags()}

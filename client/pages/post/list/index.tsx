@@ -174,7 +174,7 @@ class PostList extends React.Component<{}, StateTypes> {
     return (
       <div className={`${PREFIX_CLASS}__item`}>
         <div className={`${PREFIX_CLASS}__cover-image`}>
-          <img className={`${PREFIX_CLASS}__cover-image`} src={`${item.coverImage}!thumbnail`} />
+          <img className={`${PREFIX_CLASS}__cover-image`} src={`${item.coverImage}!/sq/300`} />
         </div>
         {/* <div className={`${PREFIX_CLASS}__publish-time`}>
           {convertTimeFormat(item.publishAt)}
