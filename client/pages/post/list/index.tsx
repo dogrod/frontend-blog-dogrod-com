@@ -174,11 +174,8 @@ class PostList extends React.Component<{}, StateTypes> {
     return (
       <Card className={`${PREFIX_CLASS}__item`}>
         <div className={`${PREFIX_CLASS}__cover-image`}>
-          <img className={`${PREFIX_CLASS}__cover-image`} src={`${item.coverImage}!/sq/300`} />
+          <img src={`${item.coverImage}!/fh/300`} />
         </div>
-        {/* <div className={`${PREFIX_CLASS}__publish-time`}>
-          {convertTimeFormat(item.publishAt)}
-        </div> */}
         <div className={`${PREFIX_CLASS}__description`}>
           <div className={`${PREFIX_CLASS}__title`}>
             <Link to={url}>
