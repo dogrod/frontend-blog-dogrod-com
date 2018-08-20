@@ -103,7 +103,7 @@ class PostList extends React.Component<{}, StateTypes> {
   }
 
   /**
-   * Push new item to post list
+   * Merge new item to post list
    * @param newList - new post items
    */
   mergePostList = (newList: BlogTypes.Post[]) => {
