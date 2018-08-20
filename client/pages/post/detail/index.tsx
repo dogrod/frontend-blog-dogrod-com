@@ -288,22 +288,21 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
       >
         {style => 
           <Card
+            className={PREFIX_CLASS}
             style={{
               opacity: style.opacity,
               WebkitTransform: `translate(${style.translateX}px, 0)`,
               transform: `translate(${style.translateX}px, 0)`,
             }}
           >
-            <div className={PREFIX_CLASS}>
-              <h1 className={`${PREFIX_CLASS}__title`}>{postData.get('title')}</h1>
-              <div className={`${PREFIX_CLASS}__category`}>{postData.getIn(['category', 'title'])}</div>
-              <div className={`${PREFIX_CLASS}__cover-image`}>
-                <img src={`${postData.get('coverImage')}!/format/webp`} />
-              </div>
-              {renderMarkedContent()}
-              {renderTags()}
-              {renderBottomInfo()}
+            <div className={`${PREFIX_CLASS}__cover-image`}>
+              <img src={`${postData.get('coverImage')}!/format/webp`} />
             </div>
+            <h1 className={`${PREFIX_CLASS}__title`}>{postData.get('title')}</h1>
+            <div className={`${PREFIX_CLASS}__category`}>{postData.getIn(['category', 'title'])}</div>
+            {renderMarkedContent()}
+            {renderTags()}
+            {renderBottomInfo()}
           </Card>
         }
       </Motion>

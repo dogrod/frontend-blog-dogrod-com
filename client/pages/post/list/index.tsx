@@ -172,7 +172,7 @@ class PostList extends React.Component<{}, StateTypes> {
     const url = `/post/${item.slug}`
 
     return (
-      <div className={`${PREFIX_CLASS}__item`}>
+      <Card className={`${PREFIX_CLASS}__item`}>
         <div className={`${PREFIX_CLASS}__cover-image`}>
           <img className={`${PREFIX_CLASS}__cover-image`} src={`${item.coverImage}!/sq/300`} />
         </div>
@@ -201,7 +201,7 @@ class PostList extends React.Component<{}, StateTypes> {
             </Link>
           </p>
         </div>
-      </div>
+      </Card>
     )
   }
 
@@ -224,9 +224,7 @@ class PostList extends React.Component<{}, StateTypes> {
           marginBottom: '30px',
         }}
       >
-        <Card>
-          {renderPostContent(post)}
-        </Card>
+        {renderPostContent(post)}
       </ListItem>
     )
   }
