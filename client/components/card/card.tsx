@@ -9,7 +9,7 @@ const PREFIX_CLASS = 'card'
 const Card: React.SFC<PropTypes> = (props) => {
   const elementProps = {
     ...props,
-    className: PREFIX_CLASS,
+    className: `${PREFIX_CLASS} ${props.className}`,
   }
   
   return (
