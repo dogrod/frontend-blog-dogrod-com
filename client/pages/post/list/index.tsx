@@ -173,20 +173,29 @@ class PostList extends React.Component<{}, StateTypes> {
 
     return (
       <div className={`${PREFIX_CLASS}__item`}>
-        <div className={`${PREFIX_CLASS}__publish-time`}>
-          {convertTimeFormat(item.publishAt)}
+        <div className={`${PREFIX_CLASS}__cover-image`}>
+          <img className={`${PREFIX_CLASS}__cover-image`} src={`${item.coverImage}!thumbnail`} />
         </div>
+        {/* <div className={`${PREFIX_CLASS}__publish-time`}>
+          {convertTimeFormat(item.publishAt)}
+        </div> */}
         <div className={`${PREFIX_CLASS}__description`}>
           <div className={`${PREFIX_CLASS}__title`}>
             <Link to={url}>
               {item.title}
             </Link>
           </div>
+          <p className={`${PREFIX_CLASS}__category`}>
+            {item.category.title}
+          </p>
           <p
             className={`${PREFIX_CLASS}__content`}
             dangerouslySetInnerHTML={{__html: item.content}}
           />
           <p className={`${PREFIX_CLASS}__read-more`}>
+            <a className={`${PREFIX_CLASS}__publish-time`}>
+              发布于{convertTimeFormat(item.publishAt)}
+            </a>
             <Link to={url}>
               查看全文
             </Link>
@@ -212,6 +221,7 @@ class PostList extends React.Component<{}, StateTypes> {
           ...omit(style, ['translateX']),
           WebkitTransform: `translate(${style.translateX}px, 0)`,
           transform: `translate(${style.translateX}px, 0)`,
+          marginBottom: '30px',
         }}
       >
         <Card>

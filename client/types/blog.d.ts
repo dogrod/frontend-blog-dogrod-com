@@ -22,10 +22,11 @@ declare namespace Blog {
     slug: string
     publishAt: string
     content: string
-
+    
     author: Author
     tags: string[]
-    category: string
+    category: Category
+    coverImage: string
 
     likes: number
     comments: number

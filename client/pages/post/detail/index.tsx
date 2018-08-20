@@ -254,7 +254,9 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
 
     const renderBottomInfo = () => (
       <div className={`${PREFIX_CLASS}__bottom-info`}>
-        <div className={`${PREFIX_CLASS}__publish-time`}>发布于{convertTimeFormat(postData.get('publishAt'))}</div>
+        <div className={`${PREFIX_CLASS}__publish-time`}>
+          发布于{convertTimeFormat(postData.get('publishAt'))}
+        </div>
         <div className={`${PREFIX_CLASS}__actions`}>
           <div
             className={classNames(
@@ -300,7 +302,7 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
           >
             <div className={PREFIX_CLASS}>
               <h1 className={`${PREFIX_CLASS}__title`}>{postData.get('title')}</h1>
-              <div className={`${PREFIX_CLASS}__category`}>{postData.get('category')}</div>
+              <div className={`${PREFIX_CLASS}__category`}>{postData.getIn(['category', 'title'])}</div>
               {renderMarkedContent()}
               {renderTags()}
               {renderBottomInfo()}
