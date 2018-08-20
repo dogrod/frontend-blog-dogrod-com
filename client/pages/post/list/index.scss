@@ -10,8 +10,6 @@
   }
 
   &__cover-image {
-    flex-grow: 0;
-
     position: relative;
 
     width: 200px;
@@ -20,11 +18,12 @@
 
     img {
       position: absolute;
+      top: 50%;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translate(-50%, -50%);
 
       height: 100%;
-      width: auto;
+      width: 100%;
 
       object-fit: cover;
     }
@@ -91,10 +90,6 @@
     li {
       text-align: left;
     }
-
-    @media screen and (max-width: 650px) {
-      display: none;
-    }
   }
 
   &__read-more {
@@ -123,10 +118,18 @@
 @media screen and (max-width: 650px) {
   .post-list{
     &__item {
-      padding: 0;
+      flex-direction: column;
     }
 
-    &__content,
+    &__cover-image {
+      height: 200px;
+      width: 100%;
+
+      img {
+        height: auto;
+      }
+    }
+
     &__read-more {
       display: none;
     }

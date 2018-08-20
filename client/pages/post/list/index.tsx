@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { TransitionMotion, spring, presets, TransitionPlainStyle } from 'react-motion'
 import omit from 'omit.js'
 import Immutable from 'immutable'
+import { RouteComponentProps } from 'react-router-dom'
 
 // import { PostListResponse } from '@/types/api'
 import BlogTypes from '@/types/blog'
@@ -19,6 +20,8 @@ import Loading from '@/components/loading'
 
 import './index.scss'
 
+interface PropTypes extends RouteComponentProps<{}> {}
+
 interface StateTypes {
   list: Immutable.List<BlogTypes.Post>,
   isLoading: boolean,
@@ -30,8 +33,10 @@ interface StateTypes {
 
 const PREFIX_CLASS = 'post-list'
 
-class PostList extends React.Component<{}, StateTypes> {
-  constructor(props: {}) {
+class PostList extends React.Component<PropTypes, StateTypes> {
+  clientWidth: number
+
+  constructor(props: PropTypes) {
     super(props)
 
     this.state = {
@@ -46,8 +51,23 @@ class PostList extends React.Component<{}, StateTypes> {
 
   componentDidMount() {
     setTitle('无敌筋斗雷 x 不唠嗑')
+
+    this.clientWidth = window.innerWidth
+    console.log(this.clientWidth)
     
     this.fetchPostList()
+  }
+
+  /**
+   * click post item event, only work when client width is larger than 650 pixels
+   * @param slug - slug of post
+   */
+  handleClickPostItem = (slug: string) => {
+    if (this.clientWidth > 650) {
+      return
+    }
+
+    this.props.history.push(`/post/${slug}`)
   }
 
   /**
@@ -169,10 +189,11 @@ class PostList extends React.Component<{}, StateTypes> {
    * @param item - post item
    */
   renderPostContent = (item: BlogTypes.Post) => {
+    const { handleClickPostItem } = this
     const url = `/post/${item.slug}`
 
     return (
-      <Card className={`${PREFIX_CLASS}__item`}>
+      <Card className={`${PREFIX_CLASS}__item`} onClick={() => handleClickPostItem(item.slug)}>
         <div className={`${PREFIX_CLASS}__cover-image`}>
           <img src={`${item.coverImage}!/fh/300`} />
         </div>
