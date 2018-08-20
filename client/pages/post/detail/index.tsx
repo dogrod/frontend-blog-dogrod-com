@@ -15,12 +15,6 @@ import { convertTimeFormat, setTitle } from '@/utils'
 
 import './index.scss'
 
-declare module 'react' {
-  interface SVGAttributes<T> {
-    ['xlink:href']?: string
-  }
-}
-
 type PostType = Immutable.Map<string, any>
 
 interface PropTypes extends RouteComponentProps<{ slug: string }> {}
