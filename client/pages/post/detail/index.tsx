@@ -282,44 +282,46 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
     )
 
     return (
-      <Motion
-        defaultStyle={getDefaultStyles()}
-        style={getStyles()}
+      <div
+        className={`${PREFIX_CLASS}__wrapper`}
+        style={{
+          backgroundImage: `url(${postData.get('coverImage')}!/format/webp)`,
+        }}
       >
-        {style => 
-          <Card
-            className={PREFIX_CLASS}
-            style={{
-              opacity: style.opacity,
-              WebkitTransform: `translate(${style.translateX}px, 0)`,
-              transform: `translate(${style.translateX}px, 0)`,
-            }}
-          >
-            <div className={`${PREFIX_CLASS}__cover-image`}>
-              <img src={`${postData.get('coverImage')}!/format/webp`} />
-            </div>
-            <h1 className={`${PREFIX_CLASS}__title`}>{postData.get('title')}</h1>
-            <div className={`${PREFIX_CLASS}__category`}>{postData.getIn(['category', 'title'])}</div>
-            {renderMarkedContent()}
-            {renderTags()}
-            {renderBottomInfo()}
-          </Card>
-        }
-      </Motion>
+        {/* <div className={`${PREFIX_CLASS}__cover-image`}>
+          <img src={`${postData.get('coverImage')}!/format/webp`} />
+        </div> */}
+        <Motion
+          defaultStyle={getDefaultStyles()}
+          style={getStyles()}
+        >
+          {style => 
+            <Card
+              className={PREFIX_CLASS}
+              style={{
+                opacity: style.opacity,
+                WebkitTransform: `translate(${style.translateX}px, 0)`,
+                transform: `translate(${style.translateX}px, 0)`,
+              }}
+            >
+              <h1 className={`${PREFIX_CLASS}__title`}>{postData.get('title')}</h1>
+              <div className={`${PREFIX_CLASS}__category`}>{postData.getIn(['category', 'title'])}</div>
+              {renderMarkedContent()}
+              {renderTags()}
+              {renderBottomInfo()}
+            </Card>
+          }
+        </Motion>
+      </div>
     )
   }
 
   render() {
     const { post, isLoading } = this.state
     
-    return (
-      <div className={`${PREFIX_CLASS}__wrapper`}>
-        {isLoading
+    return isLoading
           ? <Loading />
           : post ? this.renderPost(post) : null
-        }
-      </div>
-    )
   }
 }
 

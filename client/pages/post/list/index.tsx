@@ -53,7 +53,6 @@ class PostList extends React.Component<PropTypes, StateTypes> {
     setTitle('无敌筋斗雷 x 不唠嗑')
 
     this.clientWidth = window.innerWidth
-    console.log(this.clientWidth)
     
     this.fetchPostList()
   }

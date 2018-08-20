@@ -2,10 +2,18 @@
 
 .post-detail {
   padding: 30px;
+  margin: 200px auto 100px;
+
+  width: 100%;
+  max-width: 1000px;
 
   &__wrapper {
-    width: 100%;
-    max-width: 1000px;
+    padding: 50px;
+    position: relative;
+    overflow: hidden;
+
+    background-repeat: no-repeat;
+    background-size: 100% auto;
   }
 
   &__title,
@@ -118,6 +126,11 @@
 @media screen and (max-width: 650px) {
   .post-detail {
     padding: 15px;
+    margin: 50px auto;
+
+    &__wrapper {
+
+    }
 
     &__title {
       font-size: $font-size-large;

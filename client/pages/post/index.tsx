@@ -10,29 +10,27 @@ import './index.scss'
 const Routes: React.SFC<RouteComponentProps<{}>> = (props) => (
   <React.Fragment>
     <Header />
-    <div className="post">
-      <Route
-        exact={true}
-        key="post-list"
-        path={props.match.path}
-        component={DynamicLoad(() => import('@/pages/post/list'))}
-      />
-      <Route
-        key="post-detail"
-        path={`${props.match.path}post/:slug`}
-        component={DynamicLoad(() => import('@/pages/post/detail'))}
-      />
-      <Route
-        key="tag"
-        path={`${props.match.path}tags/:tagName`}
-        component={DynamicLoad(() => import('@/pages/post/list'))}
-      />
-      <Route
-        key="tags"
-        path={`${props.match.path}tags`}
-        component={DynamicLoad(() => import('@/pages/post/tag'))}
-      />
-    </div>
+    <Route
+      exact={true}
+      key="post-list"
+      path={props.match.path}
+      component={DynamicLoad(() => import('@/pages/post/list'))}
+    />
+    <Route
+      key="post-detail"
+      path={`${props.match.path}post/:slug`}
+      component={DynamicLoad(() => import('@/pages/post/detail'))}
+    />
+    <Route
+      key="tag"
+      path={`${props.match.path}tags/:tagName`}
+      component={DynamicLoad(() => import('@/pages/post/list'))}
+    />
+    <Route
+      key="tags"
+      path={`${props.match.path}tags`}
+      component={DynamicLoad(() => import('@/pages/post/tag'))}
+    />
   </React.Fragment>
 )
 

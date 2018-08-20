@@ -1,12 +1,16 @@
 @import '~@/assets/styles/variables';
 
 .post-list {
-  width: 100%;
-  max-width: 1000px;
+  padding: 50px;
 
   &__item {
     display: flex;
     text-align: left;
+
+    margin: 0 auto;
+
+    width: 100%;
+    max-width: 1000px;
   }
 
   &__cover-image {

@@ -1,6 +1,8 @@
 @import '~@/assets/styles/variables.scss';
 
 .header__wrapper {
+  position: relative;
+  z-index: 208;
   background-color: $white;
   box-shadow: 0 3px 7px -1px rgba(0, 0, 0, 0.1);
 }
