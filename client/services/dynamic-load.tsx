@@ -4,13 +4,23 @@ import Loadable from 'react-loadable'
 
 type LoaderType = any
 
+const CLASSNAME = 'dynamic-load'
+
 const Loading: React.SFC<Loadable.LoadingComponentProps> = props => {
   if (props.error) {
-    return <div>加载发生错误 (´・Å・`)<button onClick={props.retry}>点击重试</button></div>
+    return (
+      <div className={CLASSNAME}>
+        加载发生错误 (´・Å・`)<button onClick={props.retry}>点击重试</button>
+      </div>
+    )
   } else if (props.timedOut) {
-    return <div>加载时间过长 (|||ﾟдﾟ) <button onClick={props.retry}>点击重试</button></div>
+    return (
+      <div className={CLASSNAME}>
+        加载时间过长 (|||ﾟдﾟ) <button onClick={props.retry}>点击重试</button>
+      </div>
+    )
   } else if (props.pastDelay) {
-    return <div>在正努力加载中 d(`･∀･)b</div>
+    return <div className={CLASSNAME}>在正努力加载中 d(`･∀･)b</div>
   } else {
     return null
   }
