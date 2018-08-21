@@ -285,7 +285,7 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
       <div
         className={`${PREFIX_CLASS}__wrapper`}
         style={{
-          backgroundImage: `url(${postData.get('coverImage')}!/format/webp)`,
+          backgroundImage: `url(${postData.get('coverImage')})`,
         }}
       >
         {/* <div className={`${PREFIX_CLASS}__cover-image`}>
