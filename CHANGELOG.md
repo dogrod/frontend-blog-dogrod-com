@@ -8,6 +8,7 @@
 
 ### Feature
 
+- Display CoverImage to each post
 - Add animation for @PostList @PostDetail @Loading components, support by [react-motion](https://github.com/chenglou/react-motion)
 
 ## 0.2 - Buzz!
