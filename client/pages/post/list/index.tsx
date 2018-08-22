@@ -94,7 +94,7 @@ class PostList extends React.Component<PropTypes, StateTypes> {
       // FIXME: Fix conflict between axios response & axios response interceptors
       const response: any = await http.get(url, { params })
 
-      const list = response.posts
+      const list = response.list
       this.mergePostList(list)
       this.setPageNumber(response.page)
     } catch (error) {
