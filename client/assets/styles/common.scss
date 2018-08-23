@@ -25,7 +25,9 @@ a, a:active {
 input,
 input:focus,
 button,
-button:focus {
+button:focus,
+textarea,
+textarea:focus {
   border: none;
   outline: none;
   background-color: transparent;

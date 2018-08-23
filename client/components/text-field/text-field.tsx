@@ -14,6 +14,7 @@ interface PropTypes extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 's
 
 interface StateTypes {
   isFocusing: boolean
+  isTextArea: boolean
 }
 
 export enum TextFieldSize {
@@ -24,24 +25,77 @@ export enum TextFieldSize {
 
 const PREFIX_CLASS = 'text-field'
 
-class Input extends React.Component<PropTypes, StateTypes> {
+class TextField extends React.Component<PropTypes, StateTypes> {
   id?: string
 
-  constructor(props: {}) {
+  /**
+   * getDerivedStateFromProps hook (after React 16)
+   * Cache isTextArea
+   */
+  static getDerivedStateFromProps(props: PropTypes, state: StateTypes) {
+    const isTextArea = props.type === 'textarea'
+
+    if (state.isTextArea !== isTextArea) {
+      return {
+        isTextArea,
+      }
+    }
+
+    return null
+  }
+
+  constructor(props: PropTypes) {
     super(props)
 
     this.id = generateUID('text-field-c')
     this.state = {
-      isFocusing: false
+      isFocusing: false,
+      isTextArea: false,
     }
   }
 
+  /**
+   * Input/ Textarea focus event, cache focus state first
+   * @param e - native focus event payload
+   */
+  handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    this.setFocusState(true)
+
+    const { onFocus } = this.props
+
+    if (onFocus) {
+      onFocus(e)
+    }
+  }
+
+  /**
+   * Input/ Textarea blur event, cache focus state first
+   * @param e - native focus event payload
+   */
+  handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    this.setFocusState(false)
+
+    const { onBlur } = this.props
+
+    if (onBlur) {
+      onBlur(e)
+    }
+  }
+
+  /**
+   * Set value of state.isFocusing
+   * @param isFocusing - target value
+   */
   setFocusState = (isFocusing: boolean) => {
     this.setState({
       isFocusing,
     })
   }
 
+  /**
+   * Get root element's class name
+   * @returns class name
+   */
   getClassName = () => {
     const { size, value } = this.props
 
@@ -56,18 +110,36 @@ class Input extends React.Component<PropTypes, StateTypes> {
     )
   }
 
-  getNativeLikeAttributes = () => omit(this.props, ['size', 'className', 'label', 'children'])
+  getAttributes = () => {
+    const { handleFocus, handleBlur } = this
+    return {
+      ...omit(this.props, ['size', 'className', 'label', 'children']),
+      id: this.id,
+      onFocus: handleFocus,
+      onBlur: handleBlur,
+    }
+  }
 
-  renderLabel = (label?: string) => label ? <label className={`${PREFIX_CLASS}__label`} htmlFor={this.id}>{label}</label> : null
+  renderLabel = (label?: string) => {
+    return label
+      ? <label className={`${PREFIX_CLASS}__label`} htmlFor={this.id}>{label}</label>
+      : null
+  }
 
-  renderInputElement = () => (
-    <input
-      {...this.getNativeLikeAttributes()}
-      id={this.id}
-      className={`${PREFIX_CLASS}__control`}
-      onFocus={() => this.setFocusState(true)}
-      onBlur={() => this.setFocusState(false)} />
-  )
+  renderInputElement = () => {
+    return (
+      <div className={`${PREFIX_CLASS}__control`}>
+        {
+          this.props.type === 'textarea'
+          ? (
+            <textarea {...this.getAttributes()}/>
+          ) : (
+            <input {...this.getAttributes()}/>
+          )
+        }
+      </div>
+    )
+  }
 
   renderUnderline = () => <div className={`${PREFIX_CLASS}__underline`}><hr/><hr/></div>
 
@@ -75,8 +147,7 @@ class Input extends React.Component<PropTypes, StateTypes> {
     <div className={this.getClassName()}>
       {this.renderLabel(this.props.label)}
       {this.renderInputElement()}
-      {this.renderUnderline()}
-      {}
+      {!this.state.isTextArea ? this.renderUnderline() : null}
     </div>
   )
 
@@ -85,4 +156,4 @@ class Input extends React.Component<PropTypes, StateTypes> {
   }
 }
 
-export default Input
+export default TextField
