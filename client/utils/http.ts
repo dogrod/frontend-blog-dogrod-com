@@ -1,11 +1,14 @@
 // http request util for client
 import axios from 'axios'
 
+const JWT = window.localStorage.getItem('DR_JW_TOKEN')
+
 const defaultHeaders = {
   'Accept': 'application/json, text/plain, */*; charset=utf-8',
   'Content-Type': 'application/json; charset=utf-8',
   'Pragma': 'no-cache',
   'Cache-Control': 'no-cache',
+  'Authorization': `JWT ${JWT}`,
 }
 
 const axiosInstance = axios.create({ headers: defaultHeaders })
