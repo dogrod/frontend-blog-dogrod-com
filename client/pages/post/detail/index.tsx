@@ -29,7 +29,7 @@ interface PropTypes extends RouteComponentProps<{ slug: string }> {}
 
 interface StateTypes {
   post?: PostType
-  slug: string
+  id: string
   isLoading: boolean
   disableLike: boolean
   activeLike: boolean
@@ -38,13 +38,16 @@ interface StateTypes {
 
 const PREFIX_CLASS = 'post-detail'
 const CACHE_KEY = 'DRCacheSuccessLike'
+const REG_EXTRACT_ID = /[a-zA-Z0-9]+$/
 
 class PostDetail extends React.Component<PropTypes, StateTypes> {
   constructor(props: PropTypes) {
     super(props)
 
+    const match = props.match.params.slug.match(REG_EXTRACT_ID)
+
     this.state = {
-      slug: props.match.params.slug,
+      id: match ? match[0] : '',
       isLoading: false,
       disableLike: false,
       activeLike: false,
@@ -67,7 +70,7 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
       const localCache = window.localStorage.getItem(CACHE_KEY)
       if (localCache) {
         const cacheObject = JSON.parse(localCache)
-        this.setSuccessLike(cacheObject[this.state.slug] === '1')
+        this.setSuccessLike(cacheObject[this.state.id] === '1')
       }
     } catch (error) {
       console.error(error)
@@ -80,13 +83,13 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
    * click like button event
    */
   handleClickLike = async () => {
-    const { slug, disableLike} = this.state
+    const { id, disableLike} = this.state
 
     if (disableLike) {
       return
     }
 
-    const url = `${api.getPosts}/${slug}/like`
+    const url = `${api.getPosts}/${id}/like`
     const data = {
       increment: 1,
     }
@@ -103,7 +106,7 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
       await this.triggerLikeSuccess()
 
       this.setSuccessLike(true)
-      this.cacheSuccessLikeStatus(slug)
+      this.cacheSuccessLikeStatus(id)
     } catch (error) {
       console.error(error)
     } finally {
@@ -116,8 +119,8 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
    * @returns promise instance
    */
   fetchPostDetailData = async () => {
-    const { slug } = this.state
-    const url = `${api.getPosts}/${slug}`
+    const { id } = this.state
+    const url = `${api.getPosts}/${id}`
     
     try {
       const response: any = await http.get(url)
@@ -190,13 +193,13 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
 
   /**
    * Cache success like status in local storage
-   * @param slug - post slug
+   * @param id - post id
    */
-  cacheSuccessLikeStatus = (slug: string) => {
+  cacheSuccessLikeStatus = (id: string) => {
     const cacheObjectString = window.localStorage.getItem(CACHE_KEY)
     const cacheObject = cacheObjectString ? JSON.parse(cacheObjectString) : {}
 
-    const newCacheObject =  {...cacheObject, ...{ [slug]: '1' }}
+    const newCacheObject =  {...cacheObject, ...{ [id]: '1' }}
     window.localStorage.setItem(CACHE_KEY, JSON.stringify(newCacheObject))
   }
 
