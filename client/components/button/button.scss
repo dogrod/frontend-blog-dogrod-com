@@ -1,12 +1,21 @@
 @import '~@/assets/styles/variables.scss';
 
+@mixin colorful-button($color) {
+  border-color: $color;
+  background-color: $color;
+
+  &:hover {
+    border-color: mix($white, $color, 20);
+    background-color: mix($white, $color, 20);
+  }
+}
+
 // normal
 .button {
-  padding: 8px 24px;
+  padding: 6px 15px;
 
   border: 1px solid $blue;
-  border-radius: 24px;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 2px 0px;
+  border-radius: 4px;
   transition: all .3s;
 
   &:hover {
@@ -15,14 +24,53 @@
   }
 }
 
+// Size
+// Options: small | large
+// --------------------------
+
 // small
 .button--small {
-  padding: 6px 18px;
+  padding: 4px 12px;
   font-size: $font-size-small;
 }
 
 // large
 .button--large {
-  width: 100%;
-  padding: 12px;
+  padding: 9px 20px;
+  font-size: $font-size-large;
+}
+
+// Theme
+// Options: dark | primary | danger
+// ---------------------------
+.button--dark,
+.button--primary,
+.button--danger {
+  color: $white;
+}
+
+.button--dark {
+  @include colorful-button($blue)
+}
+
+.button--primary {
+  @include colorful-button($blue-highlight)
+}
+
+.button--danger {
+  @include colorful-button($red);
+}
+
+
+
+// With shadow
+// ----------------------------
+.button--shadow {
+  box-shadow: 0 9px 19px rgba(0,0,0,0.2), 0 7px 6px rgba(0,0,0,0.11);
+}
+
+// Round button
+// ----------------------------
+.button--round {
+  border-radius: 24px;
 }

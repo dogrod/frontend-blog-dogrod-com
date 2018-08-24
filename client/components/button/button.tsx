@@ -7,16 +7,17 @@ import './button.scss'
 interface PropState extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: ButtonSize
   theme?: ButtonTheme
+  shadow?: boolean
+  round?: boolean
 }
 
 export enum ButtonTheme {
-  DEFAULT = 'DEFAULT',
+  DARK = 'DARK',
   PRIMARY = 'PRIMARY',
-  SECONDARY = 'SECONDARY',
+  DANGER = 'DANGER',
 }
 
 export enum ButtonSize {
-  DEFAULT = 'DEFAULT',
   SMALL = 'SMALL',
   LARGE = 'LARGE',
 }
@@ -29,21 +30,21 @@ class Button extends React.Component<PropState> {
   }
 
   getClassName = () => {
-    const { size, theme } = this.props
+    const { size, theme, shadow, round } = this.props
 
-    return classNames(
+    const classes = [
       PREFIX_CLASS,
-      {
-        [`${PREFIX_CLASS}--small`]: size === ButtonSize.SMALL,
-        [`${PREFIX_CLASS}--large`]: size === ButtonSize.LARGE,
-        [`${PREFIX_CLASS}--primary`]: theme === ButtonTheme.PRIMARY,
-        [`${PREFIX_CLASS}--secondary`]: theme === ButtonTheme.SECONDARY,
-      },
+      size ? `${PREFIX_CLASS}--${size.toLowerCase()}` : null,
+      theme ? `${PREFIX_CLASS}--${theme.toLowerCase()}` : null,
+      shadow ? `${PREFIX_CLASS}--shadow` : null,
+      round ? `${PREFIX_CLASS}--round` : null,
       this.props.className,
-    )
+    ]
+
+    return classNames(...classes)
   }
 
-  getNativeAttributes = () => omit(this.props, ['size', 'className', 'children'])
+  getNativeAttributes = () => omit(this.props, ['size', 'theme', 'className', 'children', 'shadow', 'round'])
 
   renderButton = () => {
     return (<button {...this.getNativeAttributes()} className={this.getClassName()}>{this.props.children}</button>)
