@@ -35,6 +35,7 @@ declare namespace Blog {
   }
 
   interface Comment {
+    id: number
     author: User.Info
     content: string
 

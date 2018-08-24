@@ -8,28 +8,26 @@ import Icon from '@/components/icon'
 import Card from '@/components/card'
 import Loading from '@/components/loading'
 
-import Comment from '@/pages/post/_components/comment'
+import Comments from '@/pages/post/_components/comment'
 
 import api from '@/api'
 import http from '@/utils/http'
 import marked from '@/utils/marked'
 import { convertTimeFormat, setTitle } from '@/utils'
 import BlogTypes from '@/types/blog'
+import { ImmutableMap } from '@/types/vendor'
 
 import './index.scss'
-
-// type PostType = Immutable.Map<string, any>
-interface ImmutableMap<T> extends Immutable.Map<string, any> {
-  get<K extends keyof T>(name: K): T[K];
-}
 
 type PostType = ImmutableMap<BlogTypes.Post>
 
 interface PropTypes extends RouteComponentProps<{ slug: string }> {}
 
 interface StateTypes {
-  post?: PostType
   id: string
+  post?: PostType
+  comments: Immutable.List<BlogTypes.Comment>
+
   isLoading: boolean
   disableLike: boolean
   activeLike: boolean
@@ -48,6 +46,7 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
 
     this.state = {
       id: match ? match[0] : '',
+      comments: Immutable.List(),
       isLoading: false,
       disableLike: false,
       activeLike: false,
@@ -56,6 +55,14 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
   }
 
   async componentDidMount() {
+    this.initPost()
+    this.initComments()
+  }
+
+  /**
+   * Process post related init actions, exclude fetch comments
+   */
+  initPost = async () => {
     this.setLoadingStatus(true)
 
     try {
@@ -76,6 +83,21 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
       console.error(error)
     } finally {
       this.setLoadingStatus(false)
+    }
+  }
+
+  /**
+   * Init comments
+   */
+  initComments = async () => {
+    try {
+      const comments: BlogTypes.Comment[] = await this.fetchComments()
+
+      this.setState({
+        comments: this.state.comments.merge(comments)
+      })      
+    } catch (error) {
+      console.error(error)
     }
   }
 
@@ -126,6 +148,22 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
       const response: any = await http.get(url)
 
       return response
+    } catch (error) {
+      throw error
+    }
+  }
+
+  /**
+   * Fetch comments data
+   */
+  fetchComments = async () => {
+    const { id } = this.state
+    const url = `${api.getPosts}/${id}/comments`
+    
+    try {
+      const response: any = await http.get(url)
+
+      return response.list
     } catch (error) {
       throw error
     }
@@ -321,7 +359,7 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
    * Render comment module
    */
   renderComment = () => {
-    return (<Comment />)
+    return (<Comments />)
   }
 
   /**
@@ -338,6 +376,9 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
       >
         {this.renderPost(post)}
         {this.renderComment()}
+        {this.state.comments.map(comment => (
+          <div key={comment.id}>{comment.author.username}说：{comment.content}</div>
+        ))}
       </div>
     )
   }
