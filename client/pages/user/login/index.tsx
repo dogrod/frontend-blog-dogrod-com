@@ -138,8 +138,8 @@ class Login extends React.Component<PropTypes, StateTypes> {
             <FormItem className={`${PREFIX_CLASS}__submit`}>
               <Button
                 type="submit"
-                className={`${PREFIX_CLASS}__submit-button`}
                 shadow={true}
+                block={true}
                 size={ButtonSize.LARGE}
                 theme={ButtonTheme.DARK}
               >

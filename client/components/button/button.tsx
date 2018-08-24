@@ -9,6 +9,7 @@ interface PropState extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   theme?: ButtonTheme
   shadow?: boolean
   round?: boolean
+  block?: boolean
 }
 
 export enum ButtonTheme {
@@ -30,7 +31,7 @@ class Button extends React.Component<PropState> {
   }
 
   getClassName = () => {
-    const { size, theme, shadow, round } = this.props
+    const { size, theme, shadow, round, block } = this.props
 
     const classes = [
       PREFIX_CLASS,
@@ -38,6 +39,7 @@ class Button extends React.Component<PropState> {
       theme ? `${PREFIX_CLASS}--${theme.toLowerCase()}` : null,
       shadow ? `${PREFIX_CLASS}--shadow` : null,
       round ? `${PREFIX_CLASS}--round` : null,
+      block ? `${PREFIX_CLASS}--block` : null,
       this.props.className,
     ]
 
