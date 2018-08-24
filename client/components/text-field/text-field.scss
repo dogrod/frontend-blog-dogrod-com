@@ -40,9 +40,10 @@
     }
 
     textarea {
+      height: 24px;
+
       border: 1px solid $blue-light;
       border-radius: 5px;
-      line-height: .7;
       transition: all .2s;
     }
   }
@@ -85,8 +86,9 @@
         }
 
         textarea {
+          height: 48px;
+
           border-color: $blue;
-          line-height: 2;
         }
       }
   
