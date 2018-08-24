@@ -7,15 +7,24 @@ import { Motion, spring, presets } from 'react-motion'
 import Icon from '@/components/icon'
 import Card from '@/components/card'
 import Loading from '@/components/loading'
+import Divider from '@/components/divider'
+import TextField, { TextFieldSize } from '@/components/text-field'
+import Button, { ButtonTheme } from '@/components/button'
 
 import api from '@/api'
 import http from '@/utils/http'
 import marked from '@/utils/marked'
 import { convertTimeFormat, setTitle } from '@/utils'
+import BlogTypes from '@/types/blog'
 
 import './index.scss'
 
-type PostType = Immutable.Map<string, any>
+// type PostType = Immutable.Map<string, any>
+interface ImmutableMap<T> extends Immutable.Map<string, any> {
+  get<K extends keyof T>(name: K): T[K];
+}
+
+type PostType = ImmutableMap<BlogTypes.Post>
 
 interface PropTypes extends RouteComponentProps<{ slug: string }> {}
 
@@ -48,7 +57,7 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
     this.setLoadingStatus(true)
 
     try {
-      const post = await this.fetchPostDetailData()
+      const post: BlogTypes.Post = await this.fetchPostDetailData()
 
       setTitle(post.title)
 
@@ -221,10 +230,10 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
 
   /**
    * Render post
-   * @param postData - post Map
+   * @param postData - Post Map
    * @returns JSX Elements
    */
-  renderPost(postData: PostType) {
+  renderPost = (postData: PostType) => {
     const { getDefaultStyles, getStyles } = this
 
     const renderMarkedContent = () => (
@@ -282,36 +291,65 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
     )
 
     return (
+      <Motion
+        defaultStyle={getDefaultStyles()}
+        style={getStyles()}
+      >
+        {style => 
+          <Card
+            className={PREFIX_CLASS}
+            style={{
+              opacity: style.opacity,
+              WebkitTransform: `translate(${style.translateX}px, 0)`,
+              transform: `translate(${style.translateX}px, 0)`,
+            }}
+          >
+            <h1 className={`${PREFIX_CLASS}__title`}>{postData.get('title')}</h1>
+            <div className={`${PREFIX_CLASS}__category`}>{postData.getIn(['category', 'title'])}</div>
+            {renderMarkedContent()}
+            {renderTags()}
+            {renderBottomInfo()}
+          </Card>
+        }
+      </Motion>
+    )
+  }
+
+  /**
+   * Render comment module
+   */
+  renderComment = () => {
+    return (
+      <Card className={`${PREFIX_CLASS}__comment`}>
+        <h2>评论</h2>
+        <Divider />
+        <div className={`${PREFIX_CLASS}__new-comment`}>
+          <TextField
+            type="textarea"
+            label="添加评论"
+            size={TextFieldSize.LARGE}
+            placeholder="想说点什么？"
+          />
+          <Button theme={ButtonTheme.PRIMARY}>提交</Button>
+        </div>
+      </Card>
+    )
+  }
+
+  /**
+   * Render page with content
+   * @param post - Post Map
+   */
+  renderPage = (post: PostType) => {
+    return (
       <div
         className={`${PREFIX_CLASS}__wrapper`}
         style={{
-          backgroundImage: `url(${postData.get('coverImage')})`,
+          backgroundImage: `url(${post.get('coverImage')})`,
         }}
       >
-        {/* <div className={`${PREFIX_CLASS}__cover-image`}>
-          <img src={`${postData.get('coverImage')}!/format/webp`} />
-        </div> */}
-        <Motion
-          defaultStyle={getDefaultStyles()}
-          style={getStyles()}
-        >
-          {style => 
-            <Card
-              className={PREFIX_CLASS}
-              style={{
-                opacity: style.opacity,
-                WebkitTransform: `translate(${style.translateX}px, 0)`,
-                transform: `translate(${style.translateX}px, 0)`,
-              }}
-            >
-              <h1 className={`${PREFIX_CLASS}__title`}>{postData.get('title')}</h1>
-              <div className={`${PREFIX_CLASS}__category`}>{postData.getIn(['category', 'title'])}</div>
-              {renderMarkedContent()}
-              {renderTags()}
-              {renderBottomInfo()}
-            </Card>
-          }
-        </Motion>
+        {this.renderPost(post)}
+        {this.renderComment()}
       </div>
     )
   }
@@ -321,7 +359,7 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
     
     return isLoading
           ? <Loading />
-          : post ? this.renderPost(post) : null
+          : post ? this.renderPage(post) : null
   }
 }
 

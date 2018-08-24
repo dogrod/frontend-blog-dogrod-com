@@ -1,19 +1,24 @@
 @import '~@/assets/styles/variables';
 
 .post-detail {
-  padding: 30px;
-  margin: 200px auto 100px;
-
-  width: 100%;
-  max-width: 1000px;
+  margin: 300px auto 50px;
 
   &__wrapper {
-    padding: 50px;
+    padding: 0 0 50px;
     position: relative;
     overflow: hidden;
 
     background-repeat: no-repeat;
     background-size: 100% auto;
+
+    > * {    
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    .card {
+      padding: 30px;
+    }
   }
 
   &__title,
@@ -121,15 +126,26 @@
     display: inline-block;
     color: $blue-light;
   }
+
+  &__comment {
+    margin: 0 auto;
+  }
+
+  &__new-comment {
+    text-align: right;
+  }
 }
 
 @media screen and (max-width: 650px) {
   .post-detail {
-    padding: 15px;
     margin: 100px auto;
 
     &__wrapper {
       padding: 10px;
+
+      .card {
+        padding: 15px;
+      }
     }
 
     &__title {
