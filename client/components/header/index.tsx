@@ -17,6 +17,8 @@ class NavBar extends React.Component {
       type: UserActionType.LOGOUT,
       payload: { username: '', email: '' }
     })
+
+    window.location.reload()
   }
 
   renderProfileOrLogin = (isLoggedIn: boolean, profile: UserProfile) => {
@@ -33,7 +35,7 @@ class NavBar extends React.Component {
       </div>
     ) : (
       <div className={className}>
-        <Link to="/login">登录</Link>
+        <Link to={`/login?redirect=${window.location.href}`}>登录</Link>
         {/* TODO: sign up /
         <Link to="/signup">注册</Link> */}
       </div>
