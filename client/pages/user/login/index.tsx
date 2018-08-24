@@ -9,7 +9,7 @@ import { setTitle } from '@/utils'
 import Form from '@/components/form'
 import FormItem from '@/components/form/item'
 import TextField, { TextFieldSize } from '@/components/text-field'
-import Button, { ButtonSize } from '@/components/button'
+import Button, { ButtonSize, ButtonTheme } from '@/components/button'
 import { UserConsumer, UserAction, UserActionType } from '@/context/user'
 import Logo from '@/components/logo'
 import SeaWave from '@/components/sea-wave'
@@ -136,7 +136,15 @@ class Login extends React.Component<PropTypes, StateTypes> {
               />
             </FormItem>
             <FormItem className={`${PREFIX_CLASS}__submit`}>
-              <Button type="submit" size={ButtonSize.LARGE}>登录</Button>
+              <Button
+                type="submit"
+                className={`${PREFIX_CLASS}__submit-button`}
+                shadow={true}
+                size={ButtonSize.LARGE}
+                theme={ButtonTheme.DARK}
+              >
+                登录
+              </Button>
             </FormItem>
             <UserConsumer>
               {({ dispatch }) => {
