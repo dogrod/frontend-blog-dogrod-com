@@ -359,7 +359,7 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
    * Render comment module
    */
   renderComment = () => {
-    return (<Comments />)
+    return (<Comments comments={this.state.comments} />)
   }
 
   /**
@@ -376,9 +376,6 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
       >
         {this.renderPost(post)}
         {this.renderComment()}
-        {this.state.comments.map(comment => (
-          <div key={comment.id}>{comment.author.username}说：{comment.content}</div>
-        ))}
       </div>
     )
   }

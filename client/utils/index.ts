@@ -8,7 +8,17 @@ export const convertTimeFormat = (timeString?: string) => {
     return
   }
 
-  return new Date(timeString).toLocaleString('zh-cn', { month: 'long', day: 'numeric', timeZone: 'Asia/Shanghai'})
+  return new Date(timeString).toLocaleString(
+    'zh-cn',
+    {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      timeZone: 'Asia/Shanghai'
+    }
+  )
 }
 
 const SITE_TITLE = '无敌筋斗雷'
