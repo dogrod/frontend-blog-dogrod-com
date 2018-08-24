@@ -1,3 +1,5 @@
+import User from "@/types/user";
+
 interface WithSlug {
   slug: string
 }
@@ -30,6 +32,14 @@ declare namespace Blog {
 
     likes: number
     comments: number
+  }
+
+  interface Comment {
+    author: User.Info
+    content: string
+
+    createAt: string
+    approved: boolean
   }
 }
 
