@@ -113,7 +113,7 @@ class Login extends React.Component<PropTypes, StateTypes> {
     return (
       <div className={PREFIX_CLASS}>
         <Card>
-          <Logo size={LogoSize.LARGE} />
+          <Logo className={`${PREFIX_CLASS}__logo`} size={LogoSize.LARGE} />
           <Form className={`${PREFIX_CLASS}__form`} onSubmit={e => handleSubmit(e)}>
             <FormItem>
               <TextField
