@@ -188,7 +188,7 @@ class PostList extends React.Component<PropTypes, StateTypes> {
    */
   renderPostContent = (item: BlogTypes.Post) => {
     const { handleClickPostItem } = this
-    const url = `/post/${item.slug}-${item.id}`
+    const url = `/posts/${item.slug}-${item.id}`
 
     return (
       <Card className={`${PREFIX_CLASS}__item`} onClick={() => handleClickPostItem(item.slug)}>

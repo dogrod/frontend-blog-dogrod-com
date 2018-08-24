@@ -18,7 +18,7 @@ const Routes: React.SFC<RouteComponentProps<{}>> = (props) => (
     />
     <Route
       key="post-detail"
-      path={`${props.match.path}post/:slug`}
+      path={`${props.match.path}posts/:slug`}
       component={DynamicLoad(() => import('@/pages/post/detail'))}
     />
     <Route
