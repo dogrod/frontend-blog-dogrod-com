@@ -1,10 +1,9 @@
 import * as React from 'react'
 // import { AxiosResponse } from 'axios'
-import { Link } from 'react-router-dom'
+import { Link, RouteComponentProps } from 'react-router-dom'
 import { TransitionMotion, spring, presets, TransitionPlainStyle } from 'react-motion'
 import omit from 'omit.js'
 import Immutable from 'immutable'
-import { RouteComponentProps } from 'react-router-dom'
 
 // import { PostListResponse } from '@/types/api'
 import BlogTypes from '@/types/blog'
