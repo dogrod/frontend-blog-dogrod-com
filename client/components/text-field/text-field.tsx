@@ -10,6 +10,10 @@ import './text-field.scss'
 interface PropTypes extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   size?: TextFieldSize
   label?: string
+  // Fix label position
+  fixed?: boolean
+  // Ghost mode, hide underline
+  ghost?: boolean
 }
 
 interface StateTypes {
@@ -97,17 +101,17 @@ class TextField extends React.Component<PropTypes, StateTypes> {
    * @returns class name
    */
   getClassName = () => {
-    const { size, value } = this.props
+    const { size, value, fixed } = this.props
 
-    return classNames(
+    const classes = [
       PREFIX_CLASS,
-      {
-        [`${PREFIX_CLASS}--small`]: size === TextFieldSize.SMALL,
-        [`${PREFIX_CLASS}--large`]: size === TextFieldSize.LARGE,
-        [`${PREFIX_CLASS}--active`]: this.state.isFocusing || value,
-      },
-      this.props.className,
-    )
+      size ? `${PREFIX_CLASS}--${size.toLowerCase()}` : null,
+      fixed ? `${PREFIX_CLASS}--fixed` : null,
+      this.state.isFocusing || value ? `${PREFIX_CLASS}--active` : null,
+      this.props.className
+    ]
+
+    return classNames(...classes)
   }
 
   getAttributes = () => {
@@ -147,7 +151,7 @@ class TextField extends React.Component<PropTypes, StateTypes> {
     <div className={this.getClassName()}>
       {this.renderLabel(this.props.label)}
       {this.renderInputElement()}
-      {!this.state.isTextArea ? this.renderUnderline() : null}
+      {!this.props.ghost ? this.renderUnderline() : null}
     </div>
   )
 
