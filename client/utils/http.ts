@@ -8,7 +8,7 @@ const defaultHeaders = {
   'Content-Type': 'application/json; charset=utf-8',
   'Pragma': 'no-cache',
   'Cache-Control': 'no-cache',
-  'Authorization': `JWT ${JWT}`,
+  'Authorization': JWT ? `JWT ${JWT}` : null,
 }
 
 const axiosInstance = axios.create({ headers: defaultHeaders })
