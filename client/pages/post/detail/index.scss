@@ -126,14 +126,6 @@
     display: inline-block;
     color: $blue-light;
   }
-
-  &__comment {
-    margin: 0 auto;
-  }
-
-  &__new-comment {
-    text-align: right;
-  }
 }
 
 @media screen and (max-width: 650px) {

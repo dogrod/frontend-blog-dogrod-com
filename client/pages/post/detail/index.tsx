@@ -7,9 +7,8 @@ import { Motion, spring, presets } from 'react-motion'
 import Icon from '@/components/icon'
 import Card from '@/components/card'
 import Loading from '@/components/loading'
-import Divider from '@/components/divider'
-import TextField, { TextFieldSize } from '@/components/text-field'
-import Button, { ButtonTheme } from '@/components/button'
+
+import Comment from '@/pages/post/_components/comment'
 
 import api from '@/api'
 import http from '@/utils/http'
@@ -319,21 +318,7 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
    * Render comment module
    */
   renderComment = () => {
-    return (
-      <Card className={`${PREFIX_CLASS}__comment`}>
-        <h2>评论</h2>
-        <Divider />
-        <div className={`${PREFIX_CLASS}__new-comment`}>
-          <TextField
-            type="textarea"
-            label="添加评论"
-            size={TextFieldSize.LARGE}
-            placeholder="想说点什么？"
-          />
-          <Button theme={ButtonTheme.PRIMARY}>提交</Button>
-        </div>
-      </Card>
-    )
+    return (<Comment />)
   }
 
   /**
