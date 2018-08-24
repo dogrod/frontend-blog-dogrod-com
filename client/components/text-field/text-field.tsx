@@ -117,7 +117,7 @@ class TextField extends React.Component<PropTypes, StateTypes> {
   getAttributes = () => {
     const { handleFocus, handleBlur } = this
     return {
-      ...omit(this.props, ['size', 'className', 'label', 'children']),
+      ...omit(this.props, ['size', 'className', 'label', 'children', 'fixed', 'ghost']),
       id: this.id,
       onFocus: handleFocus,
       onBlur: handleBlur,
