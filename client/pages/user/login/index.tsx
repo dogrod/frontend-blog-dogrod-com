@@ -20,7 +20,7 @@ import { LogoSize } from '@/components/logo/logo'
 
 interface LoginForm extends Immutable.Map<string, string> {}
 
-interface PropTypes extends RouteComponentProps<{}> {}
+interface PropTypes extends RouteComponentProps<{ redirect?: string }> {}
 
 interface StateTypes {
   form: LoginForm
@@ -83,7 +83,7 @@ class Login extends React.Component<PropTypes, StateTypes> {
 
       window.localStorage.setItem('DR_JW_TOKEN', result.token)
 
-      this.props.history.push('/')
+      window.location.href = this.props.match.params.redirect || '/'
     } catch (error) {
       console.error(error)
     }
