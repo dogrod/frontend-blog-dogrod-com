@@ -22,6 +22,15 @@
     color: $white;
     background-color: $blue;
   }
+
+  &:disabled,
+  &:disabled:hover {
+    color: $gray;
+    border-color: $gray;
+    background-color: $gray-light;
+
+    cursor: not-allowed;
+  }
 }
 
 // Size
