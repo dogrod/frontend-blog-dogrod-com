@@ -4,19 +4,33 @@ import Button, { ButtonTheme } from '@/components/button'
 
 import './editor.scss'
 
+interface PropTypes {
+  onSubmit: (content: string) => void
+}
+
 interface StateTypes {
   isFocusing: boolean
+  text: string
 }
 
 const PREFIX_CLASS = 'comment-editor'
 
-class CommentEditor extends React.Component<{}, StateTypes> {
-  constructor(props: {}) {
+class CommentEditor extends React.Component<PropTypes, StateTypes> {
+  constructor(props: PropTypes) {
     super(props)
 
     this.state = {
-      isFocusing: false
+      isFocusing: false,
+      text: '',
     }
+  }
+
+  handleChange = (text: string) => {
+    this.setState({ text })
+  }
+
+  handleClickSubmit = () => {
+    this.props.onSubmit(this.state.text)
   }
 
   setFocusState = (isFocusing: boolean) => {
@@ -24,7 +38,8 @@ class CommentEditor extends React.Component<{}, StateTypes> {
   }
 
   render() {
-    const { isFocusing } = this.state
+    const { handleChange, handleClickSubmit, setFocusState } = this
+    const { isFocusing, text } = this.state
   
     return (
       <div className={`${PREFIX_CLASS}__new-comment`}>
@@ -34,16 +49,23 @@ class CommentEditor extends React.Component<{}, StateTypes> {
           size={TextFieldSize.LARGE}
           fixed={true}
           ghost={true}
-          onFocus={() => this.setFocusState(true)}
-          onBlur={() => this.setFocusState(false)}
+          value={text}
+          onFocus={() => setFocusState(true)}
+          onBlur={() => setFocusState(false)}
+          onChange={e => handleChange(e.target.value)}
         />
         <div
           className={`${PREFIX_CLASS}__action`}
           style={{
-            display: isFocusing ? 'block' : 'none',
+            display: isFocusing || text ? 'block' : 'none',
           }}
         >
-          <Button theme={ButtonTheme.PRIMARY}>提交</Button>
+          <Button
+            theme={ButtonTheme.PRIMARY}
+            onClick={handleClickSubmit}
+          >
+            提交
+          </Button>
         </div>
       </div>
     )

@@ -13,15 +13,16 @@ import Divider from '@/components/divider';
 
 interface PropTypes {
   comments: Immutable.List<BlogTypes.Comment>
+  onSubmit: (comment: string) => void
 }
 
 const PREFIX_CLASS = 'comment'
 
 class Comment extends React.Component<PropTypes> {
   renderCommentList = () => this.props.comments.map(comment => (
-    <React.Fragment>
+    <React.Fragment key={comment.id}>
       <Divider />
-      <div className={`${PREFIX_CLASS}__item`} key={comment.id}>
+      <div className={`${PREFIX_CLASS}__item`}>
         <div className={`${PREFIX_CLASS}__author`}>
           {comment.author.username}
         </div>
@@ -39,7 +40,7 @@ class Comment extends React.Component<PropTypes> {
     return (
       <Card className={PREFIX_CLASS}>
         <h2>评论</h2>
-        <CommentEditor />
+        <CommentEditor onSubmit={this.props.onSubmit} />
         {this.renderCommentList()}
       </Card>
     )

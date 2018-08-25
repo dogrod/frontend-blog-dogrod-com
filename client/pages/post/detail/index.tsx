@@ -136,6 +136,20 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
     }
   }
 
+  handleSubmitNewComment = async (content: string) => {
+    const { id } = this.state
+    const url = `${api.getPosts}/${id}/comments`
+    const data = { content }
+
+    try {
+      const response: any = await http.post(url, data)
+
+      console.log(response)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   /**
    * fetch post detail data
    * @returns promise instance
@@ -359,7 +373,7 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
    * Render comment module
    */
   renderComment = () => {
-    return (<Comments comments={this.state.comments} />)
+    return (<Comments comments={this.state.comments} onSubmit={this.handleSubmitNewComment} />)
   }
 
   /**
