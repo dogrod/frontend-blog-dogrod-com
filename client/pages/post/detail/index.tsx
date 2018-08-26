@@ -143,6 +143,9 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
 
     try {
       const response: any = await http.post(url, data)
+
+      this.setCommentCount(response.comments)
+      this.unshiftComment(response.detail)
       
       return response
     } catch (error) {
@@ -216,11 +219,39 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
   }
 
   /**
+   * set comment count of post
+   * @param comments - comments of post
+   */
+  setCommentCount = (comments: number) => {
+    if (!this.state.post) {
+      return
+    }
+
+    const newState = {
+      post: this.state.post.set('comments', comments)
+    }
+
+    this.setState(newState)
+  }
+
+  /**
    * Set success like
    * @param successLike - success like status
    */
   setSuccessLike = (successLike: boolean) => {
     this.setState({ successLike })
+  }
+
+  /**
+   * Unshift new comment to comment list
+   * @param comment - new comment
+   */
+  unshiftComment = (comment: BlogTypes.Comment) => {
+    const newState = {
+      comments: this.state.comments.unshift(comment)
+    }
+
+    this.setState(newState)
   }
 
   /**
