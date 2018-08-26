@@ -13,7 +13,7 @@ import Divider from '@/components/divider';
 
 interface PropTypes {
   comments: Immutable.List<BlogTypes.Comment>
-  onSubmit: (comment: string) => void
+  onSubmit: (comment: string) => Promise<any>
 }
 
 const PREFIX_CLASS = 'comment'

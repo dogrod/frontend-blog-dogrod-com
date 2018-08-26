@@ -5,7 +5,7 @@ import Button, { ButtonTheme } from '@/components/button'
 import './editor.scss'
 
 interface PropTypes {
-  onSubmit: (content: string) => void
+  onSubmit: (content: string) => Promise<any>
 }
 
 interface StateTypes {
@@ -29,8 +29,15 @@ class CommentEditor extends React.Component<PropTypes, StateTypes> {
     this.setState({ text })
   }
 
-  handleClickSubmit = () => {
-    this.props.onSubmit(this.state.text)
+  handleClickSubmit = async () => {
+    await this.props.onSubmit(this.state.text)
+
+    this.clearEditorContext()
+  }
+
+  clearEditorContext = () => {
+    this.setState({ text: '' })
+    // this.setFocusState(false)
   }
 
   setFocusState = (isFocusing: boolean) => {

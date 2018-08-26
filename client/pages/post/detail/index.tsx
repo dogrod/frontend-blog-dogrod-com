@@ -143,8 +143,8 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
 
     try {
       const response: any = await http.post(url, data)
-
-      console.log(response)
+      
+      return response
     } catch (error) {
       console.error(error)
     }
