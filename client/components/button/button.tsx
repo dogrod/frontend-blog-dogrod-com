@@ -46,7 +46,18 @@ class Button extends React.Component<PropState> {
     return classNames(...classes)
   }
 
-  getNativeAttributes = () => omit(this.props, ['size', 'theme', 'className', 'children', 'shadow', 'round'])
+  getNativeAttributes = () => omit(
+    this.props,
+    [
+      'size',
+      'theme',
+      'className',
+      'children',
+      'shadow',
+      'round',
+      'block',
+    ]
+  )
 
   renderButton = () => {
     return (<button {...this.getNativeAttributes()} className={this.getClassName()}>{this.props.children}</button>)
