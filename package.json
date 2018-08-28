@@ -1,6 +1,6 @@
 {
   "name": "frontend-blog-dogrod-com",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "private": true,
   "description": "> My own blog project. > > [> Dokodemo Door](http://blog.dogrod.com)",
   "scripts": {
