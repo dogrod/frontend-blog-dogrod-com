@@ -16,6 +16,7 @@ import List from '@/components/list'
 import ListItem from '@/components/list/item'
 import Card from '@/components/card'
 import Loading from '@/components/loading'
+import Toast from '@/components/toast'
 
 import './index.scss'
 
@@ -97,7 +98,7 @@ class PostList extends React.Component<PropTypes, StateTypes> {
       this.mergePostList(list)
       this.setPageNumber(response.page)
     } catch (error) {
-      console.error(error)
+      Toast.show(error.message)
     } finally {
       // End loading status
       this.setLoadingStatus(false)

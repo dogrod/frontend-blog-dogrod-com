@@ -18,6 +18,7 @@ import BlogTypes from '@/types/blog'
 import { ImmutableMap } from '@/types/vendor'
 
 import './index.scss'
+import Toast from '@/components/toast';
 
 type PostType = ImmutableMap<BlogTypes.Post>
 
@@ -80,7 +81,7 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
         this.setSuccessLike(cacheObject[this.state.id] === '1')
       }
     } catch (error) {
-      console.error(error)
+      Toast.show(error.message)
     } finally {
       this.setLoadingStatus(false)
     }
@@ -95,9 +96,9 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
 
       this.setState({
         comments: this.state.comments.merge(comments)
-      })      
+      })
     } catch (error) {
-      console.error(error)
+      Toast.show(error.message)
     }
   }
 
@@ -130,7 +131,7 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
       this.setSuccessLike(true)
       this.cacheSuccessLikeStatus(id)
     } catch (error) {
-      console.error(error)
+      Toast.show(error.message)
     } finally {
       this.setDisableLike(false)
     }
@@ -143,13 +144,13 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
 
     try {
       const response: any = await http.post(url, data)
-
+      
       this.setCommentCount(response.comments)
       this.unshiftComment(response.detail)
       
-      return response
+      Toast.show('评论成功！')
     } catch (error) {
-      console.error(error)
+      Toast.show(error.message)
     }
   }
 

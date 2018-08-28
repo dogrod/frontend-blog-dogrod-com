@@ -14,6 +14,7 @@ import { UserConsumer, UserAction, UserActionType } from '@/context/user'
 import Logo from '@/components/logo'
 import SeaWave from '@/components/sea-wave'
 import Card from '@/components/card'
+import Toast from '@/components/toast'
 
 import './index.scss'
 import { LogoSize } from '@/components/logo/logo'
@@ -83,9 +84,14 @@ class Login extends React.Component<PropTypes, StateTypes> {
 
       window.localStorage.setItem('DR_JW_TOKEN', result.token)
 
+      await Toast.show({
+        message: '登录成功',
+        duration: 500,
+      })
+
       window.location.href = this.props.match.params.redirect || '/'
     } catch (error) {
-      console.error(error)
+      Toast.show(error.message)
     }
   }
 
