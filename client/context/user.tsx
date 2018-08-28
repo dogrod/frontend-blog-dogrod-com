@@ -22,13 +22,18 @@ export enum UserActionType {
   EXPIRE = 'EXPIRE',
 }
 
-const getDefaultProfile = () => { return { username: '', email: '' }}
+const getDefaultProfile = () => {
+  return {
+    username: '',
+    email: '',
+  }
+}
 
 const getDefaultState = () => {
   return {
     isLoggedIn: false,
     profile: getDefaultProfile(),
-    dispatch: (_action: UserAction) => {}
+    dispatch: (_action: UserAction) => { return }
   }
 }
 
