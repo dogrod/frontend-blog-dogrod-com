@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.2.2
+
+### Feature
+
+- Toast component
+- Create comment and display comments
+
 ## 0.2.1
 
 ### Coding
