@@ -42,36 +42,47 @@ class Toast extends React.Component<{}, StateTypes> {
   }
 
   add = (options: ToastOptions) => {
-    const newItem = {
-      key: options.key || getUUID(),
-      content: options.message,
-    }
-    
-    this.setState(prev => {
-      const newQueue = prev.toasts.slice()
-      newQueue.push(newItem)
-
-      if (options.duration) {
-        setTimeout(
-          () => {
-            this.remove(newItem.key)
-          },
-          options.duration
-        )
+    const promise = new Promise(resolve => {
+      const newItem = {
+        key: options.key || getUUID(),
+        content: options.message,
       }
-
-      return {
-        toasts: newQueue
-      }
+      
+      this.setState(prev => {
+        const newQueue = prev.toasts.slice()
+        newQueue.push(newItem)
+  
+        if (options.duration) {
+          setTimeout(
+            () => {
+              this.remove(newItem.key)
+                .then(() => resolve())
+            },
+            options.duration
+          )
+        }
+  
+        return {
+          toasts: newQueue
+        }
+      })
     })
+
+    return promise
   }
 
   remove = (key: string) => {
-    this.setState(prev => {
-      return {
-        toasts: prev.toasts.filter(toast => toast.key !== key)
-      }
+    const promise = new Promise(resolve => {
+      this.setState(prev => {
+        resolve()
+
+        return {
+          toasts: prev.toasts.filter(toast => toast.key !== key)
+        }
+      })
     })
+
+    return promise
   }
 
   getDefaultStyles = () => {

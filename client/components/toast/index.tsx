@@ -4,7 +4,7 @@ let toastInstance: any
 
 const defaultOptions: ToastOptions = {
   message: '',
-  duration: 3000,
+  duration: 2000,
 }
 
 /**
@@ -34,7 +34,9 @@ const show = async (payload: ToastOptions | string) => {
 
   const toast = await getContainerInstance()
 
-  toast.add(options)
+  await toast.add(options)
+
+  return
 }
 
 /**
@@ -44,7 +46,9 @@ const show = async (payload: ToastOptions | string) => {
 const remove = async (key: string) => {
   const toast = await getContainerInstance()
 
-  toast.remove(key)
+  await toast.remove(key)
+
+  return
 }
 
 const api = {
@@ -53,8 +57,8 @@ const api = {
 }
 
 export interface ToastAPI {
-  show(payload: ToastOptions | string): void
-  remove(key: string): void
+  show(payload: ToastOptions | string): Promise<any>
+  remove(key: string): Promise<any>
 }
 
 export default api as ToastAPI
