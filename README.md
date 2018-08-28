@@ -7,7 +7,7 @@
 ## TO-DO
 
 - Coding
-  - [ ] Code splitting
+  - [x] Code splitting
   - [x] Node.js server-side log
   - [ ] Unit test
   - [x] SPA-Node.js intelligence development environment
@@ -16,7 +16,7 @@
 - Feature
   - [x] Basic content rendering
   - [x] Deployment
-  - [ ] Comment modules (and back-end support)
+  - [x] Comment modules (and back-end support)
   - [ ] i18n
 
 ## Application Config
