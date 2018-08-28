@@ -1,24 +1,26 @@
 import * as React from 'react'
+import Immutable from 'immutable'
 import classNames from 'classnames'
 import { RouteComponentProps } from 'react-router'
-import Immutable from 'immutable'
 import { Motion, spring, presets } from 'react-motion'
 
 import Icon from '@/components/icon'
 import Card from '@/components/card'
+import Toast from '@/components/toast';
 import Loading from '@/components/loading'
-
 import Comments from '@/pages/post/_components/comment'
+
 
 import api from '@/api'
 import http from '@/utils/http'
 import marked from '@/utils/marked'
+import { UserConsumer } from '@/context/user'
 import { convertTimeFormat, setTitle } from '@/utils'
+
 import BlogTypes from '@/types/blog'
 import { ImmutableMap } from '@/types/vendor'
 
 import './index.scss'
-import Toast from '@/components/toast';
 
 type PostType = ImmutableMap<BlogTypes.Post>
 
@@ -405,7 +407,17 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
    * Render comment module
    */
   renderComment = () => {
-    return (<Comments comments={this.state.comments} onSubmit={this.handleSubmitNewComment} />)
+    return (
+      <UserConsumer>
+        {(({ isLoggedIn }) => (
+          <Comments
+            isLogged={isLoggedIn}
+            comments={this.state.comments}
+            onSubmit={this.handleSubmitNewComment}
+          />
+        ))}
+      </UserConsumer>
+    )
   }
 
   /**

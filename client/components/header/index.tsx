@@ -64,10 +64,11 @@ class NavBar extends React.Component {
             <a href="//www.github.com/dogrod" target="_blank">GIT HUB</a>
           </li>
         </ul>
-        <UserConsumer>{({ isLoggedIn, profile, dispatch }) => {
-          this.dispatch = dispatch
-          return this.renderProfileOrLogin(isLoggedIn, profile)}
-        }</UserConsumer>
+        <UserConsumer>
+          {({ isLoggedIn, profile, dispatch }) => {
+            this.dispatch = dispatch
+            return this.renderProfileOrLogin(isLoggedIn, profile)}}
+        </UserConsumer>
       </div>
     )
   }

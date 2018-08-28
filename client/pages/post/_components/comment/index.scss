@@ -3,6 +3,11 @@
 .comment {
   margin: 0 auto;
 
+  a:link {
+    color: $blue;
+    border-bottom: 1px solid $blue;
+  }
+
   h2 {
     margin: 0 0 10px;
   }

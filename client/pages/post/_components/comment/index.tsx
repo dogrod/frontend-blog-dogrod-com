@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Link } from 'react-router-dom'
 import Immutable from 'immutable'
 
 import Card from '@/components/card'
@@ -12,6 +13,7 @@ import './index.scss'
 import Divider from '@/components/divider';
 
 interface PropTypes {
+  isLogged: boolean
   comments: Immutable.List<BlogTypes.Comment>
   onSubmit: (comment: string) => Promise<any>
 }
@@ -19,6 +21,16 @@ interface PropTypes {
 const PREFIX_CLASS = 'comment'
 
 class Comment extends React.Component<PropTypes> {
+  renderAddComment = () => {
+    return this.props.isLogged
+      ? <CommentEditor onSubmit={this.props.onSubmit} />
+      : (
+        <div>
+          <Link to={`/login?redirect=${window.location.href}`}>登录</Link>后发表评论
+        </div>
+      )
+  }
+
   renderCommentList = () => this.props.comments.map(comment => (
     <React.Fragment key={comment.id}>
       <Divider />
@@ -40,7 +52,7 @@ class Comment extends React.Component<PropTypes> {
     return (
       <Card className={PREFIX_CLASS}>
         <h2>评论</h2>
-        <CommentEditor onSubmit={this.props.onSubmit} />
+        {this.renderAddComment()}
         {this.renderCommentList()}
       </Card>
     )
