@@ -177,7 +177,7 @@ class PostList extends React.Component<PropTypes, StateTypes> {
    */
   willLeave() {
     return {
-      translateX: spring(50,presets.gentle),
+      translateX: spring(50, presets.gentle),
       opacity: spring(0),
     }
   }
