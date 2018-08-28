@@ -55,6 +55,27 @@ class PostList extends React.Component<PropTypes, StateTypes> {
     this.clientWidth = window.innerWidth
     
     this.fetchPostList()
+
+    window.addEventListener(
+      'scroll',
+      this.handleScroll,
+    )
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener(
+      'scroll',
+      this.handleScroll,
+    )
+  }
+
+  handleScroll = () => {
+    const isReachedBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50
+
+    if (isReachedBottom) {
+      this.fetchPostList()
+      console.log(`you're at the bottom of the page`)
+    }
   }
 
   /**
@@ -95,6 +116,11 @@ class PostList extends React.Component<PropTypes, StateTypes> {
       const response: any = await http.get(url, { params })
 
       const list = response.list
+
+      if (response.pageCount <= response.page) {
+        this.setLoadable(false)
+      }
+
       this.mergePostList(list)
       this.setPageNumber(response.page)
     } catch (error) {
@@ -103,6 +129,14 @@ class PostList extends React.Component<PropTypes, StateTypes> {
       // End loading status
       this.setLoadingStatus(false)
     }
+  }
+
+  /**
+   * Set loadable field
+   * @param loadable - can load more
+   */
+  setLoadable = (loadable: boolean) => {
+    this.setState({ loadable })
   }
 
   /**

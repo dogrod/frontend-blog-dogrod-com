@@ -10,7 +10,6 @@ import Toast from '@/components/toast';
 import Loading from '@/components/loading'
 import Comments from '@/pages/post/_components/comment'
 
-
 import api from '@/api'
 import http from '@/utils/http'
 import marked from '@/utils/marked'
