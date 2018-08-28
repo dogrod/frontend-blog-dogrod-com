@@ -135,7 +135,6 @@ class Toast extends React.Component<{}, StateTypes> {
           ...omit(style, ['translateX']),
           WebkitTransform: `translate(${style.translateX}px, 0)`,
           transform: `translate(${style.translateX}px, 0)`,
-          marginBottom: '30px',
         }}
       >
         {data.content}
