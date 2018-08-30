@@ -10,7 +10,9 @@
     "build": "cross-env NODE_ENV=production rm -rf dist && ./node_modules/.bin/webpack --config ./config/webpack.config.prod.js",
     "analyze": "cross-env ANALYZE=true yarn run build",
     "upload-bundle": "node scripts/upload-bundle.js",
-    "deploy": "cross-env NODE_ENV=production yarn run build && yarn run upload-bundle"
+    "deploy": "cross-env NODE_ENV=production yarn run build && yarn run upload-bundle",
+    "lint": "tslint -c tslint.json 'client/**/*.ts?(x)'",
+    "lint-server": "tslint -c tslint.json 'server/**/*.ts'"
   },
   "main": "server/index.js",
   "repository": {
@@ -46,7 +48,7 @@
     "react-motion": "^0.5.2",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
-    "ts-node": "^6.0.3",
+    "ts-node": "^7.0.1",
     "upyun": "^3.3.4",
     "winston": "^2.4.2"
   },
@@ -63,7 +65,7 @@
     "@types/react-router-dom": "^4.2.6",
     "@types/winston": "^2.3.9",
     "autoprefixer": "^8.6.2",
-    "awesome-typescript-loader": "^5.0.0",
+    "awesome-typescript-loader": "^5.2.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.7.0",
@@ -84,7 +86,7 @@
     "style-loader": "^0.21.0",
     "tslint": "^5.11.0",
     "tslint-react": "^3.6.0",
-    "typescript": "^2.8.3",
+    "typescript": "^3.0.1",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "url-loader": "^1.0.1",
     "webpack": "^4.8.2",
