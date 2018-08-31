@@ -6,8 +6,8 @@ const PREFIX_CLASS = 'sea-wave'
 
 const SeaWave: React.SFC = () => (
   <div className={PREFIX_CLASS}>
-    <div className={`${PREFIX_CLASS}__wave`}></div>
-    <div className={`${PREFIX_CLASS}__wave`}></div>
+    <div className={`${PREFIX_CLASS}__wave`}/>
+    <div className={`${PREFIX_CLASS}__wave`} />
   </div>
 )
 
