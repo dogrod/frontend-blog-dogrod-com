@@ -15,7 +15,7 @@ const PREFIX_CLASS = 'user'
 const User: React.SFC<RouteComponentProps<{}>> = (props) => {
   return (
     <div className={PREFIX_CLASS}>
-      <Card>
+      <Card className={`${PREFIX_CLASS}__content`}>
         <Logo className={`${PREFIX_CLASS}__logo`} size={LogoSize.LARGE} />
         <Route
           key="login"
