@@ -35,9 +35,9 @@ class NavBar extends React.Component {
       </div>
     ) : (
       <div className={className}>
-        <Link to={`/login?redirect=${window.location.href}`}>登录</Link>
-        {/* TODO: sign up /
-        <Link to="/signup">注册</Link> */}
+        <Link to={`/user/login?redirect=${window.location.href}`}>登录</Link>
+        /
+        <Link to={`/user/signup?redirect=${window.location.href}`}>注册</Link>
       </div>
     )
   }
