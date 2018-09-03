@@ -7,6 +7,7 @@ declare namespace User {
     email: string
     active: boolean
     staff: boolean
+    nickName: string
   }
 }
 

@@ -25,6 +25,7 @@ class CheckLogin extends React.Component {
         payload: {
           username: result.user.username,
           email: result.user.email,
+          nickName: result.user.nickName,
         }
       })
       

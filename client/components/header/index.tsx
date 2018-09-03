@@ -30,7 +30,7 @@ class NavBar extends React.Component {
 
     return isLoggedIn ? (
       <div className={className}>
-        <span>{profile.username}</span>
+        <span>{profile.nickName || profile.username}</span>
         <a onClick={this.handleLogOut}>退出</a>
       </div>
     ) : (

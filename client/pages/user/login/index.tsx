@@ -75,6 +75,7 @@ class Login extends React.Component<PropTypes, StateTypes> {
         payload: {
           username: user.username,
           email: user.email,
+          nickName: user.nickName,
         }
       })
 

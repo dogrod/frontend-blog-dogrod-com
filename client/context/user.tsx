@@ -9,6 +9,7 @@ interface StateTypes {
 export interface UserProfile {
   username: string
   email: string
+  nickName?: string
 }
 
 export interface UserAction {
