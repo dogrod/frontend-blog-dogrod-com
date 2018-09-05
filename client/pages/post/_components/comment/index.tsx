@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Link } from 'react-router-dom'
 import Immutable from 'immutable'
 
-import Card from '@/components/card'
+import AnimatedCard from '../animated-card'
 
 import CommentEditor from './editor'
 
@@ -50,11 +50,11 @@ class Comment extends React.Component<PropTypes> {
 
   render() {
     return (
-      <Card className={PREFIX_CLASS}>
+      <AnimatedCard className={PREFIX_CLASS}>
         <h2>评论</h2>
         {this.renderAddComment()}
         {this.renderCommentList()}
-      </Card>
+      </AnimatedCard>
     )
   }
 }
