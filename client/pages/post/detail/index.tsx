@@ -2,13 +2,12 @@ import * as React from 'react'
 import Immutable from 'immutable'
 import classNames from 'classnames'
 import { RouteComponentProps } from 'react-router'
-import { Motion, spring, presets } from 'react-motion'
 
 import Icon from '@/components/icon'
-import Card from '@/components/card'
 import Toast from '@/components/toast';
 import Loading from '@/components/loading'
 import Comments from '@/pages/post/_components/comment'
+import AnimatedCard from '@/pages/post/_components/animated-card'
 
 import api from '@/api'
 import http from '@/utils/http'
@@ -294,26 +293,6 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
    * @returns html string
    */
   convertMarkdownContent = (content: string) => marked(content)
-  
-  /**
-   * get default style for transition motion
-   */
-  getDefaultStyles() {
-    return {
-      translateX: 50,
-      opacity: 1,
-    }
-  }
-
-  /**
-   * get style
-   */
-  getStyles() {
-    return {
-      translateX: spring(0, presets.gentle),
-      opacity: spring(1, presets.gentle),
-    }
-  }
 
   /**
    * Render post
@@ -321,8 +300,6 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
    * @returns JSX Elements
    */
   renderPost = (postData: PostType) => {
-    const { getDefaultStyles, getStyles } = this
-
     const renderMarkedContent = () => (
       <div
         className={`${PREFIX_CLASS}__content markdown`}
@@ -378,27 +355,15 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
     )
 
     return (
-      <Motion
-        defaultStyle={getDefaultStyles()}
-        style={getStyles()}
+      <AnimatedCard
+        className={PREFIX_CLASS}
       >
-        {style => 
-          <Card
-            className={PREFIX_CLASS}
-            style={{
-              opacity: style.opacity,
-              WebkitTransform: `translate(${style.translateX}px, 0)`,
-              transform: `translate(${style.translateX}px, 0)`,
-            }}
-          >
-            <h1 className={`${PREFIX_CLASS}__title`}>{postData.get('title')}</h1>
-            <div className={`${PREFIX_CLASS}__category`}>{postData.getIn(['category', 'title'])}</div>
-            {renderMarkedContent()}
-            {renderTags()}
-            {renderBottomInfo()}
-          </Card>
-        }
-      </Motion>
+        <h1 className={`${PREFIX_CLASS}__title`}>{postData.get('title')}</h1>
+        <div className={`${PREFIX_CLASS}__category`}>{postData.getIn(['category', 'title'])}</div>
+        {renderMarkedContent()}
+        {renderTags()}
+        {renderBottomInfo()}
+      </AnimatedCard>
     )
   }
 
