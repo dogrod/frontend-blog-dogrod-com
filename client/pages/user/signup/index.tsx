@@ -96,13 +96,25 @@ class Signup extends React.Component<PropTypes, StateTypes> {
   handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    const data = {}
-
-    this.state.form.forEach((item, key) => {
-      data[key] = item.value
-    })
-
     try {
+      const data: any = {}
+
+      this.state.form.forEach((item, key) => {
+        const value = item.value
+
+        if (!value) {
+          throw new Error(`${item.label}不能为空`)
+        }
+
+        data[key] = value
+      })
+
+      if (
+        data.password1 !== data.password2
+      ) {
+        throw new Error('两次输入的密码不相同！')
+      }
+
       const result = await this.submitForm(data)
 
       const { user } = result
@@ -127,7 +139,6 @@ class Signup extends React.Component<PropTypes, StateTypes> {
     } catch (error) {
       Toast.show(error.message)
     }
-    console.log(data)
   }
 
   submitForm = async (data: any) => {
