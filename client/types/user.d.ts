@@ -1,5 +1,5 @@
 declare namespace User {
-  type Token = String
+  type Token = string
 
   interface Info {
     id: number
