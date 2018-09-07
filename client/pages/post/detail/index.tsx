@@ -312,8 +312,8 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
     const renderTags = () => (
       <div className={`${PREFIX_CLASS}__tags`}>
         {
-          postData.get('tags').map((tag: string) => 
-            <a key={tag} className={`${PREFIX_CLASS}__tag`}>{tag}</a>
+          postData.get('tags').map((tag) => 
+            <a key={tag.id} className={`${PREFIX_CLASS}__tag`}>{tag.name}</a>
           )
         }
       </div>

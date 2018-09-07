@@ -11,6 +11,7 @@ declare namespace Blog {
   }
 
   interface Tag extends WithSlug {
+    id: number
     name: string
   }
 
@@ -26,7 +27,7 @@ declare namespace Blog {
     content: string
     
     author: Author
-    tags: string[]
+    tags: Tag[]
     category: Category
     coverImage: string
 
