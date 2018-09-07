@@ -316,7 +316,7 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
             <Link
               key={tag.id}
               className={`${PREFIX_CLASS}__tag`}
-              to={`/?tag=${tag.slug}-${tag.id}`}
+              to={`/?tag=${tag.name}-${tag.id}`}
             >
               {tag.name}
             </Link>
