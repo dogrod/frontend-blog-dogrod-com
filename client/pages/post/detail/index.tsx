@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Immutable from 'immutable'
 import classNames from 'classnames'
-import { RouteComponentProps } from 'react-router'
+import { RouteComponentProps, Link } from 'react-router-dom'
 
 import Icon from '@/components/icon'
 import Toast from '@/components/toast';
@@ -12,8 +12,9 @@ import AnimatedCard from '@/pages/post/_components/animated-card'
 import api from '@/api'
 import http from '@/utils/http'
 import marked from '@/utils/marked'
-import { UserConsumer } from '@/context/user'
 import { convertTimeFormat, setTitle } from '@/utils'
+import { REG_EXTRACT_ID_FROM_MIXED_SLUG } from '@/utils/regs'
+import { UserConsumer } from '@/context/user'
 
 import BlogTypes from '@/types/blog'
 import { ImmutableMap } from '@/types/vendor'
@@ -37,13 +38,12 @@ interface StateTypes {
 
 const PREFIX_CLASS = 'post-detail'
 const CACHE_KEY = 'DRCacheSuccessLike'
-const REG_EXTRACT_ID = /[a-zA-Z0-9]+$/
 
 class PostDetail extends React.Component<PropTypes, StateTypes> {
   constructor(props: PropTypes) {
     super(props)
 
-    const match = props.match.params.slug.match(REG_EXTRACT_ID)
+    const match = props.match.params.slug.match(REG_EXTRACT_ID_FROM_MIXED_SLUG)
 
     this.state = {
       id: match ? match[0] : '',
@@ -313,7 +313,13 @@ class PostDetail extends React.Component<PropTypes, StateTypes> {
       <div className={`${PREFIX_CLASS}__tags`}>
         {
           postData.get('tags').map((tag) => 
-            <a key={tag.id} className={`${PREFIX_CLASS}__tag`}>{tag.name}</a>
+            <Link
+              key={tag.id}
+              className={`${PREFIX_CLASS}__tag`}
+              to={`/?tag=${tag.slug}-${tag.id}`}
+            >
+              {tag.name}
+            </Link>
           )
         }
       </div>
