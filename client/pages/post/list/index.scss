@@ -3,6 +3,15 @@
 .post-list {
   padding: 50px;
 
+  &__tag-panel {
+    position: relative;
+    margin-bottom: 30px;
+    padding: 20px;
+
+    text-align: center;
+    font-size: $font-size-large;
+  }
+
   &__item {
     display: flex;
     text-align: left;

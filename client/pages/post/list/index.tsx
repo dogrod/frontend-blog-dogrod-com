@@ -4,6 +4,7 @@ import { Link, RouteComponentProps } from 'react-router-dom'
 import { TransitionMotion, spring, presets, TransitionPlainStyle } from 'react-motion'
 import omit from 'omit.js'
 import Immutable from 'immutable'
+import qs from 'query-string'
 
 // import { PostListResponse } from '@/types/api'
 import BlogTypes from '@/types/blog'
@@ -11,12 +12,14 @@ import BlogTypes from '@/types/blog'
 import http from '@/utils/http'
 import api from '@/api'
 import { convertTimeFormat, setTitle } from '@/utils'
+import { REG_EXTRACT_ID_FROM_MIXED_SLUG } from '@/utils/regs'
 
 import List from '@/components/list'
 import ListItem from '@/components/list/item'
 import Card from '@/components/card'
 import Loading from '@/components/loading'
 import Toast from '@/components/toast'
+import AnimatedCard from '../_components/animated-card'
 
 import './index.scss'
 
@@ -28,6 +31,7 @@ interface StateTypes {
   page: number
   pageSize: number
   tag: string | null
+  tagId: string | null
   loadable: boolean
 }
 
@@ -39,12 +43,26 @@ class PostList extends React.Component<PropTypes, StateTypes> {
   constructor(props: PropTypes) {
     super(props)
 
+    let tag = null
+
+    const search = this.props.location.search
+    const query = qs.parse(search)
+    const tagQuery: string = query.tag || ''
+    const matchedArray = tagQuery.match(REG_EXTRACT_ID_FROM_MIXED_SLUG)
+    const tagId = matchedArray ? matchedArray[0] : null
+    
+    if (tagId) {
+      const endPoint = tagQuery.length - tagId.length - 1
+      tag = tagQuery.substring(0, endPoint)
+    }
+
     this.state = {
       list: Immutable.List([]),
       isLoading: false,
       page: 0,
       pageSize: 15,
-      tag: null,
+      tag,
+      tagId,
       loadable: true,
     }
   }
@@ -95,7 +113,7 @@ class PostList extends React.Component<PropTypes, StateTypes> {
    * @returns promise instance
    */
   fetchPostList = async () => {
-    const { page, pageSize, tag, loadable, isLoading } = this.state
+    const { page, pageSize, tagId, loadable, isLoading } = this.state
 
     if (isLoading || !loadable) {
       return
@@ -105,7 +123,7 @@ class PostList extends React.Component<PropTypes, StateTypes> {
     const params = {
       page: page + 1,
       pageSize,
-      tag,
+      tag: tagId,
     }
 
     // Start loading status
@@ -218,6 +236,19 @@ class PostList extends React.Component<PropTypes, StateTypes> {
   }
 
   /**
+   * Render tag panel
+   */
+  renderTagPanel = () => {
+    const { tag } = this.state
+
+    return tag ? (
+      <AnimatedCard className={`${PREFIX_CLASS}__tag-panel`}>
+        标签包含“{tag}”的文章
+      </AnimatedCard>
+    ) : null
+  }
+
+  /**
    * render post content inside <Card></Card>
    * @param item - post item
    */
@@ -287,12 +318,14 @@ class PostList extends React.Component<PropTypes, StateTypes> {
       getStyles,
       willEnter,
       willLeave,
+      renderTagPanel,
       renderStyledItem,
     } = this
     const { isLoading } = state
 
     return (
       <div className={PREFIX_CLASS}>
+        {renderTagPanel()}
         <TransitionMotion
           defaultStyles={getDefaultStyles()}
           styles={getStyles()}
