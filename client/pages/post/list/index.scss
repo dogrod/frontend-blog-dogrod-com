@@ -4,8 +4,9 @@
   padding: 50px;
 
   &__tag-panel {
+    max-width: 1000px;
     position: relative;
-    margin-bottom: 30px;
+    margin: 0 auto 30px;
     padding: 20px;
 
     text-align: center;
