@@ -36,13 +36,14 @@ export const setTitle = (title: string) => {
 }
 
 let lastId = 0
+const timestamp = +(new Date())
 
 /**
  * Generate a unique ID
  * @param prefix - prefix of id
  * @returns UID
  */
-export const generateUID = (prefix?: string) => {
+export const generateUID = (prefix: string = 'dogrod') => {
   lastId++
-  return `${prefix}${lastId}`
+  return `${prefix}-${lastId}-${timestamp}`
 }
