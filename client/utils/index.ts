@@ -47,3 +47,25 @@ export const generateUID = (prefix: string = 'dogrod') => {
   lastId++
   return `${prefix}-${lastId}-${timestamp}`
 }
+
+let timer: number | null = null
+
+/**
+ * Throttle function
+ */
+export const throttle = function(
+  this: any,
+  callback: () => void,
+  delay?: number
+) {
+  if (timer) {
+    clearTimeout(timer)
+  }
+
+  timer = setTimeout(
+    () => {
+      callback.apply(this, arguments)
+    },
+    delay
+  )
+}
