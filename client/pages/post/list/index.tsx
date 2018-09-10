@@ -11,7 +11,7 @@ import BlogTypes from '@/types/blog'
 
 import http from '@/utils/http'
 import api from '@/api'
-import { convertTimeFormat, setTitle } from '@/utils'
+import { convertTimeFormat, setTitle, throttle } from '@/utils'
 import { REG_EXTRACT_ID_FROM_MIXED_SLUG } from '@/utils/regs'
 
 import List from '@/components/list'
@@ -89,10 +89,15 @@ class PostList extends React.Component<PropTypes, StateTypes> {
 
   handleScroll = () => {
     const isReachedBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50
-
+  
     if (isReachedBottom) {
-      this.fetchPostList()
-      console.log(`you're at the bottom of the page`)
+      throttle(
+        () => {
+            this.fetchPostList()
+            console.log(`you're at the bottom of the page`)
+        },
+        1000
+      )
     }
   }
 
