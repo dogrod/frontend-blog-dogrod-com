@@ -3,6 +3,11 @@
     "tslint:latest",
     "tslint-react"
   ],
+  "linterOptions": {
+    "exclude": [
+        "**/__test__/**"
+    ]
+  },
   "rules": {
       "align": [
           true,
