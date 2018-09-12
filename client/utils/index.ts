@@ -3,11 +3,7 @@
  * @param timeString - time string
  * @returns localized time
  */
-export const convertTimeFormat = (timeString?: string) => {
-  if (!timeString) {
-    return
-  }
-
+export const convertTimeFormat = (timeString: string) => {
   return new Date(timeString).toLocaleString(
     'zh-cn',
     {
