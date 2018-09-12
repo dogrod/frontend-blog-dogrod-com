@@ -24,10 +24,6 @@ const SITE_TITLE = '无敌筋斗雷'
  * @param title - title
  */
 export const setTitle = (title: string) => {
-  if (typeof document.title === 'undefined') {
-    return
-  }
-
   document.title = title.includes(SITE_TITLE) ? title : `${title} | ${SITE_TITLE}`
 }
 
