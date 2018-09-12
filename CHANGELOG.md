@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 0.3.0
+
+### Feature
+
+- Sign up feature
+- View post list by specific tag
+
+### Other optimization & bug fix
+
 ## 0.2.2
 
 ### Feature
