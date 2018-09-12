@@ -12,7 +12,8 @@
     "upload-bundle": "node scripts/upload-bundle.js",
     "deploy": "cross-env NODE_ENV=production yarn run build && yarn run upload-bundle",
     "lint": "tslint -c tslint.json 'client/**/*.ts?(x)'",
-    "lint-server": "tslint -c tslint.json 'server/**/*.ts'"
+    "lint-server": "tslint -c tslint.json 'server/**/*.ts'",
+    "test": "jest"
   },
   "main": "server/index.js",
   "repository": {
@@ -28,6 +29,30 @@
     "url": "https://github.com/dogrod/frontend-blog-dogrod-com/issues"
   },
   "homepage": "https://github.com/dogrod/frontend-blog-dogrod-com#readme",
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    },
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "client/tsconfig.json",
+        "useBabelrc": true
+      },
+      "__TRANSFORM_HTML__": true
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleNameMapper": {
+      "@/(.*)": "<rootDir>/client/$1"
+    }
+  },
   "dependencies": {
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
@@ -56,6 +81,7 @@
   "devDependencies": {
     "@types/classnames": "^2.2.6",
     "@types/ip": "^0.0.31",
+    "@types/jest": "^23.3.2",
     "@types/koa": "^2.0.45",
     "@types/koa-logger": "^3.1.0",
     "@types/marked": "^0.4.0",
@@ -78,6 +104,7 @@
     "cross-env": "^5.2.0",
     "css-loader": "^0.28.11",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^23.6.0",
     "koa-connect": "^2.0.1",
     "mini-css-extract-plugin": "^0.4.0",
     "node-sass-chokidar": "^1.3.0",
@@ -86,6 +113,7 @@
     "sass-loader": "^7.0.3",
     "source-map-loader": "^0.2.3",
     "style-loader": "^0.21.0",
+    "ts-jest": "^23.1.4",
     "tslint": "^5.11.0",
     "tslint-react": "^3.6.0",
     "typescript": "^3.0.1",
