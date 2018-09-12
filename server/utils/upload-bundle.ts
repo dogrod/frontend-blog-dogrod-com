@@ -1,6 +1,7 @@
 import * as fs from 'fs'
 import * as path from 'path'
-import * as Upyun from 'upyun'
+
+const Upyun = require('upyun')
 
 import Logger from './logger'
 
