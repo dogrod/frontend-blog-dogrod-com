@@ -9,7 +9,7 @@
 - Coding
   - [x] Code splitting
   - [x] Node.js server-side log
-  - [ ] Unit test
+  - [x] Unit test
   - [x] SPA-Node.js intelligence development environment
   - [x] Custom project architecture (include webpack configuration, paths, and e.t.c.)
 
