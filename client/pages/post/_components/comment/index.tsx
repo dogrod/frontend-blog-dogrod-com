@@ -28,7 +28,7 @@ class Comment extends React.Component<PropTypes> {
         <div>
           <Link to={`/user/login?redirect=${window.location.href}`}>登录</Link>
           或
-          <Link to={`/user/signup?redirect=${window.location.href}`}>登录</Link>
+          <Link to={`/user/signup?redirect=${window.location.href}`}>注册</Link>
           后发表评论
         </div>
       )
