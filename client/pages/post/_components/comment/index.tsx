@@ -26,7 +26,10 @@ class Comment extends React.Component<PropTypes> {
       ? <CommentEditor onSubmit={this.props.onSubmit} />
       : (
         <div>
-          <Link to={`/login?redirect=${window.location.href}`}>登录</Link>后发表评论
+          <Link to={`/user/login?redirect=${window.location.href}`}>登录</Link>
+          或
+          <Link to={`/user/signup?redirect=${window.location.href}`}>登录</Link>
+          后发表评论
         </div>
       )
   }
