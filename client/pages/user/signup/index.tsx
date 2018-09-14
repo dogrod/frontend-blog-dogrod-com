@@ -12,6 +12,7 @@ import { UserConsumer, UserAction, UserActionType } from '@/context/user'
 import api from '@/api'
 import { setTitle } from '@/utils'
 import http from '@/utils/http'
+import { REG_EMAIL } from '@/utils/regs'
 
 import './index.scss'
 
@@ -110,9 +111,20 @@ class Signup extends React.Component<PropTypes, StateTypes> {
       })
 
       if (
+        data.password1.length < 8
+        || data.password2.length < 8
+      ) {
+        throw new Error('密码长度必须为8位以上！')
+      }
+
+      if (
         data.password1 !== data.password2
       ) {
         throw new Error('两次输入的密码不相同！')
+      }
+
+      if (!REG_EMAIL.test(data.email)) {
+        throw new Error('请填写正确的邮箱地址')
       }
 
       const result = await this.submitForm(data)
