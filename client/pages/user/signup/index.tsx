@@ -111,10 +111,10 @@ class Signup extends React.Component<PropTypes, StateTypes> {
       })
 
       if (
-        data.password1.length < 8
-        || data.password2.length < 8
+        data.password1.length < 6
+        || data.password2.length < 6
       ) {
-        throw new Error('密码长度必须为8位以上！')
+        throw new Error('密码长度必须为6位以上！')
       }
 
       if (
