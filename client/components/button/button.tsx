@@ -4,7 +4,7 @@ import omit from 'omit.js'
 
 import './button.scss'
 
-interface PropState extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface PropTypes extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: ButtonSize
   theme?: ButtonTheme
   shadow?: boolean
@@ -25,8 +25,8 @@ export enum ButtonSize {
 
 const PREFIX_CLASS = 'button'
 
-class Button extends React.Component<PropState> {
-  constructor(props: PropState) {
+class Button extends React.Component<PropTypes> {
+  constructor(props: PropTypes) {
     super(props)
   }
 
