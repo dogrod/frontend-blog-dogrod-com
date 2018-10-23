@@ -1,5 +1,7 @@
 # Front-end project of blog.dogrod.com
 
+[![Build Status](http://jenkins.dogrod.xyz/buildStatus/icon?job=prod-frontend-blog)](http://jenkins.dogrod.xyz/job/prod-frontend-blog/)
+
 > My own blog project.
 >
 > [> Dokodemo Door](http://blog.dogrod.com)
