@@ -28,7 +28,6 @@ server.config.js
 upyun.config.js
 # PM2 config file
 pm2.json
-dev-*.*
 
 # bundle files
 /dist
