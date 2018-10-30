@@ -6,7 +6,7 @@ WORKDIR /home/service
 COPY . /home/service
 
 # Install PM2
-RUN yarn global add pm2
+RUN npm install pm2 -g --no-optional
 
 # Install app dependencies
 RUN yarn install
