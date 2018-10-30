@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.3.1
+
+### Other
+
+- Bug fixing and other changes
+
 ## 0.3.0
 
 ### Feature
