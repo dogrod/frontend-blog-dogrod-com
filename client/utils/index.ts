@@ -4,7 +4,7 @@
  * @returns localized time
  */
 export const convertTimeFormat = (timeString: string) => {
-  return new Date(timeString).toLocaleString(
+  return new Date(`${timeString}.000Z`).toLocaleString(
     'zh-cn',
     {
       year: 'numeric',
