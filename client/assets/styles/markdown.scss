@@ -70,6 +70,14 @@
     padding: 0;
   }
 
+  ul {
+    list-style: disc;
+  }
+
+  ol {
+    list-style-type: decimal;
+  }
+
   // link field
   a:any-link {
     color: #657b83;
