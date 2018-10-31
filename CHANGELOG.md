@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.3.2
+
+### Style
+
+- Adding list-style & more vertical margin for `ol` & `ul` in markdown
+
+### Bugs
+
+- Fix wrong date time display
+
 ## 0.3.1
 
 ### Other
