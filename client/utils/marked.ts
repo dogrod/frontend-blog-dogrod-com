@@ -4,7 +4,7 @@
  */
 import * as highlightjs from 'highlightjs'
 
-import marked from 'marked'
+import * as marked from 'marked'
 
 import '@/assets/styles/markdown.scss'
 import '@/assets/styles/highlightjs/solarized-dark.css'

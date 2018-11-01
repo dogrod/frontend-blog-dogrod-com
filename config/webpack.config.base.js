@@ -33,7 +33,7 @@ module.exports = () => {
             options: {
               usaCache: false,
               forceIsolatedModules: true,
-              configFileName: paths.clientTsConfig,
+              configFileName: paths.tsConfig,
               reportFiles: [
                 'client/**/*.{ts,tsx}'
               ],

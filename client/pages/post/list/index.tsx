@@ -4,7 +4,7 @@ import { Link, RouteComponentProps } from 'react-router-dom'
 import { TransitionMotion, spring, presets, TransitionPlainStyle } from 'react-motion'
 import omit from 'omit.js'
 import Immutable from 'immutable'
-import qs from 'query-string'
+import * as qs from 'query-string'
 
 // import { PostListResponse } from '@/types/api'
 import BlogTypes from '@/types/blog'

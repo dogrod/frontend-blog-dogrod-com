@@ -43,7 +43,7 @@
     },
     "globals": {
       "ts-jest": {
-        "tsConfigFile": "client/tsconfig.json",
+        "tsConfigFile": "tsconfig.json",
         "useBabelrc": true
       },
       "__TRANSFORM_HTML__": true

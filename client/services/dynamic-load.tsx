@@ -1,6 +1,6 @@
-import React from 'react'
+import * as React from 'react'
 
-import Loadable from 'react-loadable'
+import * as Loadable from 'react-loadable'
 
 type LoaderType = any
 
