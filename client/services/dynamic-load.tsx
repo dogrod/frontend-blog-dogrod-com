@@ -10,7 +10,8 @@ const Loading: React.SFC<Loadable.LoadingComponentProps> = props => {
   if (props.error) {
     return (
       <div className={CLASSNAME}>
-        加载发生错误 (´・Å・`)<button onClick={props.retry}>点击重试</button>
+        <div>加载发生错误 (´・Å・`)<button onClick={props.retry}>点击重试</button></div>
+        <div>错误信息：{props.error.message}</div>
       </div>
     )
   } else if (props.timedOut) {
