@@ -102,15 +102,15 @@ class PostList extends React.Component<PropTypes, StateTypes> {
   }
 
   /**
-   * click post item event, only work when client width is larger than 650 pixels
-   * @param slug - slug of post
+   * click post item event, only work when client width is smaller than 650 pixels
+   * @param url - url of post detail
    */
-  handleClickPostItem = (slug: string) => {
+  handleClickPostItem = (url: string) => {
     if (this.clientWidth > 650) {
       return
     }
 
-    this.props.history.push(`/post/${slug}`)
+    this.props.history.push(url)
   }
 
   /**
@@ -262,7 +262,7 @@ class PostList extends React.Component<PropTypes, StateTypes> {
     const url = `/posts/${item.slug}-${item.id}`
 
     return (
-      <Card className={`${PREFIX_CLASS}__item`} onClick={() => handleClickPostItem(item.slug)}>
+      <Card className={`${PREFIX_CLASS}__item`} onClick={() => handleClickPostItem(url)}>
         <div className={`${PREFIX_CLASS}__cover-image`}>
           <img src={`${item.coverImage}!/fh/300`} />
         </div>
