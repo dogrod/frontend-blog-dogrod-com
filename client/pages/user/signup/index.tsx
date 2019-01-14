@@ -149,7 +149,14 @@ class Signup extends React.Component<PropTypes, StateTypes> {
 
       window.location.href = this.props.match.params.redirect || '/'
     } catch (error) {
-      Toast.show(error.message)
+      const reason = error.response.data.reason
+      if (reason && typeof reason === 'object') {
+        Object.keys(reason).forEach(key => {
+          Toast.show(reason[key][0])
+        })
+      } else {
+        Toast.show(error.message)
+      }
     }
   }
 
