@@ -28,6 +28,8 @@ server.config.js
 upyun.config.js
 # PM2 config file
 pm2.json
+# dockerfile
+dockerfile
 
 # bundle files
 /dist
