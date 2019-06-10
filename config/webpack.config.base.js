@@ -1,9 +1,11 @@
 // Basic webpack configuration
 const path = require('path')
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 
 const paths = require('./paths')
+const appConfig = require(paths.appConfig)
 
 module.exports = () => {
   return {
@@ -80,6 +82,9 @@ module.exports = () => {
         inject: true,
         chunks: ['index', 'vendors'],
       }),
+      new webpack.DefinePlugin({
+        __ARMS_PID__: JSON.stringify(appConfig.arms && appConfig.arms.pid),
+      })
     ],
     optimization: {
       splitChunks: {

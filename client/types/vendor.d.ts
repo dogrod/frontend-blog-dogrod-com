@@ -7,6 +7,8 @@ declare global {
       ['xlink:href']?: string
     }
   }
+
+  const __ARMS_PID__: string
 }
 
 declare interface ImmutableMap<T> extends Immutable.Map<string, any> {
